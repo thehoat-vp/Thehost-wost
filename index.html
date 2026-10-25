@@ -713,6 +713,56 @@ body.light-theme .menu-btn {
 body.light-theme footer {
   background: #eaf1f7;
 }
+  /* LIGHT THEME */
+body.light-theme {
+--bg: #f4f7fb;
+--panel: #ffffff;
+--panel2: #eaf1f7;
+--text: #172b3a;
+--muted: #526779;
+--line: #d5e0e9;
+}
+
+body.light-theme header {
+background: #ffffff;
+}
+
+body.light-theme .navlinks {
+background: #ffffff;
+}
+
+body.light-theme .card,
+body.light-theme .feature,
+body.light-theme .quick {
+background: #ffffff;
+color: #172b3a;
+}
+
+body.light-theme .menu-btn {
+background: #ffffff;
+color: #172b3a;
+}
+
+body.light-theme footer {
+background: #eaf1f7;
+}
+
+.theme-option {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 10px;
+padding: 10px;
+color: var(--text);
+}
+
+.theme-option select {
+padding: 8px;
+border-radius: 8px;
+border: 1px solid var(--line);
+background: var(--panel);
+color: var(--text);
+}
 </style>
 </head>
 
@@ -740,6 +790,16 @@ body.light-theme footer {
       <a href="#events">Events</a>
       <a href="#more">More</a>
       <a href="#contact">Contact</a>
+
+<div class="theme-option">
+  <label for="themeSelect">🎨 Theme</label>
+  <select id="themeSelect">
+    <option value="dark">🌙 Dark Theme</option>
+    <option value="light">☀️ Light Theme</option>
+  </select>
+</div>
+
+    </nav>
 
 <div class="theme-option">
   <label for="themeSelect">🎨 Theme</label>
@@ -1019,14 +1079,14 @@ body.light-theme footer {
       </a>
 
       <a class="feature" href="#contact">
-        <div class="icon">🤝</div>
+        <div class="card" style="margin-top:18px">
         <h3>Join the Community →</h3>
         <p>
           <a class="gold" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" targer="_blank" rel="noopener">Whatsapp Group:-</a>
       </a>
     </p>
         <p>Community se judi jaankari ke liye sampark karein.</p>
-        
+    </div>
     </div>
 
     <div class="card" style="margin-top:18px">
@@ -1061,7 +1121,7 @@ body.light-theme footer {
             <small>
               <a href="mailto:thehostwost@gmail.com">thehostwost@gmail.com</a>
               <br>
-              <a href="mobile number: +919214360582
+              <a href="mobile number: +919214360582 "> Mobile number : +919214360582 </a>
             </small>
           </div>
     
