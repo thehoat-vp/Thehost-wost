@@ -96,6 +96,18 @@ footer p,footer small{color:var(--muted);margin:4px 0}
   }
 </style>
 </head>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("menuBtn");
+  const navlinks = document.getElementById("navlinks");
+
+  if (menuBtn && navlinks) {
+    menuBtn.addEventListener("click", function () {
+      navlinks.classList.toggle("open");
+    });
+  }
+});
+  </script>
 <body>
 <!-- EDIT HERE: Replace the website name, email, phone, address and sample text with your real details. -->
 <header>
@@ -128,9 +140,12 @@ footer p,footer small{color:var(--muted);margin:4px 0}
 <section id="about">
   <div class="container about-grid reveal">
    <img
-  src="images/942fe674faf2ef24f01fc8b726c5222a.jpg"
-  alt="Beauty of our village"
-  class="profile-photo"
+src="942fe674faf2ef24f01fc8b726c5222a.jpg"
+alt="My Profile Photo"
+class="profile-photo"
+
+
+
 >
     <h3>Apna Shiv Nagar Butbherwa ❤️</h3></div></div>
     <div class="card">
