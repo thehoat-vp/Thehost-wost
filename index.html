@@ -1408,18 +1408,25 @@ body.light-theme footer {
     }
   });
 
-  // 5. STEP-BY-STEP FORM & WHATSAPP OTP SYSTEM
-  let currentOtp = null;
-  let isVerified = false;
-
-  function sendWhatsAppOtp() {
-    const phone = document.getElementById('userPhone').value.trim();
-
-    if (!phone || phone.length !== 10) {
-      alert('Kripya 10-digit ka sahi mobile number daalein!');
-      document.getElementById('userPhone').focus();
-      return;
-    }
+  // ================= 5. APNI FIREBASE CONFIG YAHAN REPLACE KAREIN =================
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDAg3mFHxUNrndIqxX7Gvp7hFl8d0B7uGU",
+  authDomain: "testing-project-5df0e.firebaseapp.com",
+  projectId: "testing-project-5df0e",
+  storageBucket: "testing-project-5df0e.firebasestorage.app",
+  messagingSenderId: "1002577167949",
+  appId: "1:1002577167949:web:3e0a99fd2c2b2823d4be04",
+  measurementId: "G-P0HXDGGB29"
+};"
+};
+  
 
     // 4-Digit Unique OTP Generate
     currentOtp = Math.floor(1000 + Math.random() * 9000).toString();
