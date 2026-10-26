@@ -1,71 +1,932 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" data-font="normal">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Shiv Nagar Butbherwa — hamari pehchaan, hamara gaurav. Gaon ki jaankari, gallery, events aur useful contacts.">
-<meta name="theme-color" content="#04131d">
-<title>Shiv Nagar Butbherwa | Hamari Pehchaan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wyndhamganj Butbherwa (Shiv Nagar) - Official Gram Suchna, Vikas & Digital Panchayat Portal.">
+<title>Shiv Nagar Butbherwa | Official Digital Gram Portal</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#04131d;--panel:#081f2d;--panel2:#0b2938;--gold:#ffc32c;--text:#f4f7fa;--muted:#b8c8d2;--line:#214253;--teal:#2dd4bf;--radius:18px;--shadow:0 16px 40px #0003}
-*{box-sizing:border-box;scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}img{max-width:100%}button,input,textarea,select{font:inherit}.container{width:min(1180px,92%);margin:auto}
-header{position:sticky;top:0;z-index:100;background:#020f18f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px;position:relative}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.1rem;line-height:1.2}.brand-icon{display:grid;place-items:center;color:var(--gold);font-size:1.8rem;width:46px;height:46px;border:1px solid #71591b;border-radius:14px}.brand small{display:block;color:var(--muted);font-size:.68rem;font-weight:500;margin-top:5px}.gold,.brand em{color:var(--gold);font-style:normal}.navlinks{display:flex;align-items:center;gap:4px}.navlinks a{padding:9px 10px;border-radius:10px;font-size:.88rem;color:#e5edf2}.navlinks a:hover,.navlinks a.active{background:var(--gold);color:#15202a}.menu-btn{display:none;border:1px solid var(--line);background:var(--panel);color:white;border-radius:10px;padding:8px 12px;cursor:pointer}
-.hero{min-height:500px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(90deg,#020f18f5,#020f18a6 55%,#020f1840),url('IMG_20250929_062521.jpg') center/cover}.hero:after{content:"";position:absolute;inset:auto 0 0;height:100px;background:linear-gradient(transparent,var(--bg))}.hero-content{position:relative;z-index:1;padding:70px 0;max-width:730px}.kicker{color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.78rem}.hero h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.05;margin:12px 0 18px;letter-spacing:-1.5px}.hero p{font-size:1.08rem;color:#e1eaf0;max-width:620px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#14202a;border:0;border-radius:999px;padding:12px 21px;font-weight:800;cursor:pointer;transition:.25s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px #ffc32c30}.btn-outline{background:transparent;color:var(--text);border:1px solid var(--gold);margin-left:8px}.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.pill{padding:7px 12px;border:1px solid #ffffff32;background:#051722b8;border-radius:999px;font-size:.88rem}
-.quicklinks{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:-24px;position:relative;z-index:3}.quick{background:linear-gradient(145deg,#092435,#061721);border:1px solid var(--line);border-radius:15px;padding:17px 8px;text-align:center;transition:.25s}.quick:hover{transform:translateY(-5px);border-color:var(--gold)}.quick b{display:block;font-size:1.45rem;color:var(--gold)}.quick span{font-size:.85rem}
-section{padding:72px 0;scroll-margin-top:80px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px}.section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0;line-height:1.2}.section-head p{margin:8px 0 0;color:var(--muted)}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:stretch}.card{background:linear-gradient(145deg,var(--panel),#061923);border:1px solid var(--line);border-radius:var(--radius);padding:25px}.profile-card{text-align:center}.profile-photo{width:180px;height:180px;object-fit:cover;border-radius:50%;border:4px solid var(--gold);display:block;margin:10px auto 18px;background:var(--panel2)}.muted{color:var(--muted)}.info-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.info-item{background:#0a2938;border:1px solid #1e4558;padding:14px;border-radius:12px}.info-item strong{display:block;color:var(--gold);font-size:.9rem}.info-item span{font-size:.9rem;color:var(--muted)}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:var(--panel);border:1px solid var(--line);padding:22px;border-radius:16px;transition:.25s}.feature:hover{transform:translateY(-4px);border-color:#4a7c8f}.feature .icon{font-size:1.8rem}.feature h3{margin:4px 0 8px}.feature p{color:var(--muted);font-size:.94rem;margin:0}
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.gallery figure{margin:0;height:190px;overflow:hidden;border-radius:14px;border:1px solid var(--line);position:relative;background:#102d3b}.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block}.gallery figure:hover img{transform:scale(1.06)}.gallery figcaption{position:absolute;inset:auto 0 0;padding:30px 12px 10px;background:linear-gradient(transparent,#001019dc);font-weight:700}.gallery-note{font-size:.9rem;color:var(--muted);margin-top:14px}.notice{display:flex;gap:15px;align-items:flex-start;background:#0b2938;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:12px}.notice .date{min-width:64px;text-align:center;background:#153e50;border-radius:10px;padding:7px;color:var(--gold);font-weight:800}.notice p{margin:4px 0 0;color:var(--muted);font-size:.92rem}.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}.contact-line{padding:14px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;overflow-wrap:anywhere}.contact-line:last-child{border-bottom:0}.symbol{font-size:1.3rem;color:var(--gold)}.contact-line small{display:block;color:var(--muted)}form{display:grid;grid-template-columns:1fr 1fr;gap:14px}form label{display:block;font-size:.88rem;color:var(--muted)}form input,form textarea,form select{width:100%;margin-top:6px;background:#041722;color:white;border:1px solid #315061;border-radius:10px;padding:12px;outline:none}form input:focus,form textarea:focus{border-color:var(--gold)}form .full{grid-column:1/-1}form textarea{min-height:110px;resize:vertical}.form-note{color:var(--muted);font-size:.84rem}footer{border-top:1px solid var(--line);padding:28px 0;background:#020d14}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}footer p,footer small{color:var(--muted);margin:4px 0}.footer-links{display:flex;gap:15px;flex-wrap:wrap;font-size:.9rem}.footer-links a:hover{color:var(--gold)}.top{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:#15202a;display:grid;place-items:center;font-size:1.3rem;font-weight:900;box-shadow:0 5px 20px #0005;z-index:30;border:0;cursor:pointer}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#123447;border:1px solid var(--line);padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:200}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:900px){.navlinks{display:none;position:absolute;left:0;right:0;top:70px;background:#041721;border:1px solid var(--line);border-radius:14px;padding:12px;flex-direction:column;align-items:stretch;box-shadow:var(--shadow)}.navlinks.open{display:flex}.navlinks a{padding:12px}.menu-btn{display:block}.quicklinks{grid-template-columns:repeat(3,1fr)}.about-grid,.contact-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.brand{font-size:.95rem}.brand-icon{width:40px;height:40px;font-size:1.5rem}.hero{min-height:550px;background-position:58% center}.hero-content{padding:55px 0}.hero p{font-size:1rem}.quicklinks{grid-template-columns:repeat(2,1fr)}section{padding:54px 0}.section-head{display:block}.grid-3,.info-list{grid-template-columns:1fr}.gallery figure{height:155px}.card{padding:18px}form{grid-template-columns:1fr}form .full{grid-column:auto}.btn-outline{margin:10px 0 0}.footer-row{align-items:flex-start}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style>
-</head>
-<body>
-<header><div class="container nav">
-<a class="brand" href="#home"><span class="brand-icon">ॐ</span><span>Shiv Nagar <em>Butbherwa</em><small>Hamari Pehchaan • Hamara Gaurav</small></span></a>
-<button class="menu-btn" id="menuBtn" aria-label="Menu kholen" aria-expanded="false" aria-controls="navlinks">☰ Menu</button>
-<nav class="navlinks" id="navlinks" aria-label="Main navigation"><a class="active" href="#home">⌂ Home</a><a href="#about">About</a><a href="#information">Information</a><a href="#gallery">Gallery</a><a href="#events">Events</a><a href="#more">More</a><a href="#contact">Contact</a></nav>
-</div></header>
-<main>
-<section class="hero" id="home"><div class="container hero-content"><div class="kicker">Welcome to our community</div><h1>Shiv Nagar <span class="gold">Butbherwa</span></h1><p>Swagat hai 🙏 Ham Shiv Nagar Butbherwa gramwasi aapka hardik swagat karte hain. Yeh website hamare gaon ki jaankari, tasveerein, events aur zaroori links ko ek jagah laane ke liye hai.</p><div class="pill-row"><span class="pill">📚 Shiksha</span><span class="pill">🌿 Sanskriti</span><span class="pill">🤝 Ekta aur Vikas</span><span class="pill">🏡 Hamari Pehchaan</span></div><a class="btn" href="#information">Explore Information ↗</a><a class="btn btn-outline" href="#gallery">View Gallery</a></div></section>
-<div class="container quicklinks"><a class="quick" href="#about"><b>👥</b><span>About Us</span></a><a class="quick" href="#information"><b>ℹ️</b><span>Information</span></a><a class="quick" href="#gallery"><b>🖼️</b><span>Gallery</span></a><a class="quick" href="#events"><b>📅</b><span>Events</span></a><a class="quick" href="#more"><b>🔗</b><span>Useful Links</span></a><a class="quick" href="#contact"><b>✉️</b><span>Contact</span></a></div>
-<section id="about"><div class="container about-grid">
-<div class="card profile-card"><div class="kicker">Aapka apna gaon</div><img class="profile-photo" src="942fe674faf2ef24f01fc8b726c5222a.jpg" alt="Profile photo" onerror="this.style.display='none'"><h2>Apna Shiv Nagar Butbherwa ❤️</h2><p class="muted">Hamari mitti, hamari sanskriti aur hamare log — yahi hamari asli pehchaan hain.</p><h3>Social Media</h3><div class="footer-links" style="justify-content:center"><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://youtube.com/" target="_blank" rel="noopener">YouTube ↗</a><a href="https://facebook.com/" target="_blank" rel="noopener">Facebook ↗</a></div></div>
-<div class="card"><div class="kicker">Who we are</div><h2>About <span class="gold">Shiv Nagar Butbherwa</span></h2><p>Shiv Nagar Butbherwa hamara apna kshetra hai, jahan ke log, parampara aur apnapan hamari pehchaan hain. Is website ka maksad gaon/area ki upyogi jaankari, tasveerein, announcements aur zaroori contacts ko ek hi jagah par lana hai.</p><p class="muted">Yahan local updates, education, public services, events aur community se judi jaankari dekhi ja sakti hai.</p><div class="info-list"><div class="info-item"><strong>📍 Location</strong><span>Shiv Nagar, Butbherwa<br>Uttar Pradesh, India</span></div><div class="info-item"><strong>🤝 Community</strong><span>Ekta, sahyog aur vikas</span></div><div class="info-item"><strong>📸 Gallery</strong><span>Gaon aur events ki tasveerein</span></div><div class="info-item"><strong>📢 Updates</strong><span>Local announcements aur jaankari</span></div></div></div>
-</div></section>
-<section id="information" style="background:#061923"><div class="container"><div class="section-head"><div><div class="kicker">Useful resources</div><h2>Information <span class="gold">Center</span></h2><p>Area se judi zaroori jaankari.</p></div></div><div class="grid-3">
-<article class="feature"><div class="icon">🎓</div><h3>Education</h3><p>Schools, colleges, coaching aur scholarship ki jaankari yahan share ki ja sakti hai.</p></article><article class="feature"><div class="icon">🏥</div><h3>Health Services</h3><p>Nearby hospital, clinic aur health centre ki verified details add karein.</p></article><article class="feature"><div class="icon">🚌</div><h3>Transport</h3><p>Bus, railway station, route aur transport timing ki details.</p></article><article class="feature"><div class="icon">🏛️</div><h3>Government Services</h3><p>Panchayat services aur official government scheme links.</p></article><article class="feature"><div class="icon">📢</div><h3>Local News & Updates</h3><p>Verified local announcements, public notices aur community updates.</p></article><article class="feature"><div class="icon">☎️</div><h3>Important Contacts</h3><p>Useful public-service contacts. Personal details sirf permission se publish karein.</p></article>
-</div></div></section>
-<section id="gallery"><div class="container"><div class="section-head"><div><div class="kicker">Memories & moments</div><h2>Our <span class="gold">Gallery</span></h2><p>Hamare area, events aur celebrations ki photos.</p></div><span class="gold">Photo memories ✦</span></div><div class="gallery">
-<figure><img src="IMG_20250930_164330.jpg" alt="Shiv Nagar Butbherwa ki photo" loading="lazy"><figcaption>Hamare Gaon Ki Khoobsurti ❤️</figcaption></figure>
-<figure><img src="IMG_20250929_062521.jpg" alt="Shiv Nagar Butbherwa ka nazara" loading="lazy"><figcaption>Hamari Pehchaan</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Indian architecture" loading="lazy"><figcaption>Culture & Heritage</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Nature landscape" loading="lazy"><figcaption>Beautiful Nature</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80" alt="Sunset sky" loading="lazy"><figcaption>Golden Moments</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80" alt="Green fields" loading="lazy"><figcaption>Green Fields</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80" alt="Event lights" loading="lazy"><figcaption>Events & Festivals</figcaption></figure>
-<figure><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80" alt="People gathering" loading="lazy"><figcaption>Community</figcaption></figure>
-</div><p class="gallery-note">Apni photo add karne ke liye image file ko <strong>index.html</strong> ke saath repository ke same folder mein upload karein, phir neeche diye pattern jaisa ek <code>&lt;figure&gt;</code> block add karein.</p></div></section>
-<section id="events" style="background:#061923"><div class="container"><div class="section-head"><div><div class="kicker">What's happening</div><h2>Events & <span class="gold">Announcements</span></h2><p>Yahan verified dates aur event details update karein.</p></div></div><div class="notice"><div class="date">UPDATE</div><div><strong>Local announcements</strong><p>Meeting, safai abhiyan, public notice ya zaroori update ki verified details yahan likhein.</p></div></div><div class="notice"><div class="date">EVENT</div><div><strong>Festival & community events</strong><p>Event ka naam, date, time aur venue yahan add karein.</p></div></div><div class="notice"><div class="date">INFO</div><div><strong>Education & public services</strong><p>Admission dates, camps ya service information ke saath official source bhi dein.</p></div></div></div></section>
-<section id="more"><div class="container"><div class="section-head"><div><div class="kicker">Explore more</div><h2>More <span class="gold">Useful Features</span></h2><p>Community ke liye helpful links.</p></div></div><div class="grid-3"><a class="feature" href="#contact"><div class="icon">📝</div><h3>Submit Information →</h3><p>Local update ya correction bhejne ke liye contact karein.</p></a><a class="feature" href="#gallery"><div class="icon">📸</div><h3>Share a Memory →</h3><p>Gallery ke liye photo aur uska caption add karein.</p></a><a class="feature" href="#contact"><div class="icon">🤝</div><h3>Join the Community →</h3><p>Apne group ya community contact ka link add karein.</p></a></div><div class="card" style="margin-top:18px"><h3>🔗 Official Useful Links</h3><p><a class="gold" href="https://www.india.gov.in/" target="_blank" rel="noopener">India Government Portal ↗</a> &nbsp; • &nbsp; <a class="gold" href="https://up.gov.in/" target="_blank" rel="noopener">Uttar Pradesh Government ↗</a></p></div></div></section>
-<section id="contact" style="background:#061923"><div class="container"><div class="section-head"><div><div class="kicker">Get in touch</div><h2>Contact <span class="gold">Us</span></h2><p>Koi jaankari share karni ho ya correction karwana ho, message bhejein.</p></div></div><div class="contact-grid">
-<div class="card"><h3>Contact Details</h3><div class="contact-line"><span class="symbol">✉️</span><div><strong>Email</strong><small><a href="mailto:unavailable@gmail.com">unavailable@gmail.com</a></small></div></div><div class="contact-line"><span class="symbol">📞</span><div><strong>Phone / WhatsApp</strong><small><a href="tel:+919214360582">+91 92143 60582 — Call</a></small><small><a class="gold" href="https://wa.me/919214360582" target="_blank" rel="noopener">WhatsApp par message karein ↗</a></small></div></div><div class="contact-line"><span class="symbol">📍</span><div><strong>Address</strong><small>Shiv Nagar, Butbherwa, Uttar Pradesh, India</small></div></div><div class="contact-line"><span class="symbol">🌐</span><div><strong>Social Media</strong><small><a class="gold" href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a class="gold" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a class="gold" href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a></small><small class="form-note">In links ko apne official profile links se replace karein.</small></div></div></div>
-<div class="card"><h3>Send a Message</h3><p class="muted" style="font-size:.92rem">Yeh form aapke device ke email app mein message draft kholega. Website par automatic submission ke liye alag form service chahiye.</p><form id="contactForm"><label>Your Name *<input name="name" placeholder="Apna naam likhein" required></label><label>Your Email *<input type="email" name="email" placeholder="you@example.com" required></label><label class="full">Subject<select name="subject"><option>General Information</option><option>Gallery Photo</option><option>Correction / Update</option><option>Community Event</option><option>Other</option></select></label><label class="full">Message *<textarea name="message" placeholder="Apna message likhein..." required></textarea></label><div class="full"><button class="btn" type="submit">Email se Message Bhejein ↗</button></div></form><p class="form-note">Agar email app set up nahi hai, to upar WhatsApp button use karein.</p></div>
-</div></div></section>
-</main>
-<footer><div class="container footer-row"><div><strong>Shiv Nagar <span class="gold">Butbherwa</span></strong><p>Hamari pehchaan, hamara gaurav. 🙏</p><small>© <span id="year"></span> Shiv Nagar Butbherwa. Community information website.</small></div><div class="footer-links"><a href="#home">Home ↑</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div></div></footer>
-<button class="top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button><div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-(function(){
- const menuBtn=document.getElementById('menuBtn');
- const navlinks=document.getElementById('navlinks');
- menuBtn.addEventListener('click',function(){const open=navlinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'✕ Close':'☰ Menu';});
- navlinks.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){navlinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰ Menu';navlinks.querySelectorAll('a').forEach(a=>a.classList.remove('active'));link.classList.add('active');});});
- document.getElementById('year').textContent=new Date().getFullYear();
- document.getElementById('backToTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
- const toast=document.getElementById('toast');let toastTimer;function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),3500)}
- document.querySelectorAll('.gallery img').forEach(function(img){img.addEventListener('error',function(){img.style.opacity='.25';img.alt='Photo load nahi hui: '+img.getAttribute('src');img.title='Photo file ka naam aur folder check karein';});});
- document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const data=new FormData(e.currentTarget);const name=String(data.get('name')||'').trim();const email=String(data.get('email')||'').trim();const subject=String(data.get('subject')||'General Information');const message=String(data.get('message')||'').trim();if(!name||!email||!message){showToast('Kripya naam, email aur message bharein.');return;}const body='Naam: '+name+'\nEmail: '+email+'\n\nMessage:\n'+message;const mailto='mailto:unavailable@gmail.com?subject='+encodeURIComponent('[Shiv Nagar Website] '+subject)+'&body='+encodeURIComponent(body);window.location.href=mailto;showToast('Email app kholne ki koshish ki ja rahi hai.');});
-})();
-</script>
-</body>
-</html>
+/* ==========================================================================
+   1. CSS VARIABLES & THEME ENGINE
+   ========================================================================== */
+:root {
+  --bg-primary: #030d14;
+  --bg-secondary: #071926;
+  --bg-card: rgba(11, 33, 49, 0.78);
+  --bg-card-hover: rgba(16, 46, 68, 0.92);
+  --border-color: rgba(45, 95, 126, 0.35);
+  --border-highlight: rgba(255, 195, 44, 0.5);
+  
+  --gold: #ffc32c;
+  --gold-glow: rgba(255, 195, 44, 0.35);
+  --gold-hover: #e0a81d;
+  --teal: #2dd4bf;
+  --teal-glow: rgba(45, 212, 191, 0.3);
+  --whatsapp: #25D366;
+  --whatsapp-glow: rgba(37, 211, 102, 0.35);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  
+  --danger: #ef4444;
+  --success: #10b981;
+  --shadow-main: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-base: 16px;
+}
+
+/* Light Theme Variables (High Contrast & Clear Readability) */
+body.light-theme {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-hover: #ffffff;
+  --border-color: rgba(148, 163, 184, 0.45);
+  --border-highlight: rgba(180, 83, 9, 0.6);
+  
+  --gold: #b45309;
+  --gold-glow: rgba(180, 83, 9, 0.25);
+  --gold-hover: #92400e;
+  --teal: #0f766e;
+  --teal-glow: rgba(15, 118, 110, 0.25);
+  
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --shadow-main: 0 10px 25px -8px rgba(100, 116, 139, 0.22);
+}
+
+/* Font Resizing Controls */
+html[data-font="small"] { --font-base: 14px; }
+html[data-font="normal"] { --font-base: 16px; }
+html[data-font="large"] { --font-base: 18px; }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Background Animated Gradient Mesh */
+.vfx-mesh-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mesh-ball {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.14;
+  animation: floatBall 22s infinite alternate ease-in-out;
+}
+.mesh-ball-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--gold), transparent);
+  top: -60px;
+  left: -60px;
+}
+.mesh-ball-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--teal), transparent);
+  bottom: 8%;
+  right: -80px;
+  animation-duration: 28s;
+}
+
+@keyframes floatBall {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 35px) scale(1.08); }
+  100% { transform: translate(-25px, 60px) scale(0.96); }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button, input, textarea, select {
+  font: inherit;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   2. ULTRA-COMPACT TOP UTILITY BAR (LESS SPACE, HIGH FUNCTIONALITY)
+   ========================================================================== */
+.top-bar {
+  background: rgba(2, 9, 14, 0.98);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.74rem;
+  padding: 3px 0;
+  position: relative;
+  z-index: 105;
+}
+body.light-theme .top-bar {
+  background: rgba(241, 245, 249, 0.98);
+  border-bottom-color: #cbd5e1;
+}
+
+.top-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Compact Ticker */
+.ticker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 220px;
+  overflow: hidden;
+  height: 22px;
+}
+
+.ticker-badge {
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+.ticker-marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ticker-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 25s linear infinite;
+  font-weight: 500;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+body.light-theme .ticker-content {
+  color: #334155;
+  font-weight: 600;
+}
+.ticker-wrap:hover .ticker-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Ultra-Compact Weather, Clock & Font Bar */
+.top-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.compact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.weather-badge {
+  color: var(--teal);
+  font-weight: 600;
+}
+body.light-theme .weather-badge {
+  color: #0f766e;
+}
+
+.clock-badge {
+  color: var(--gold);
+  font-weight: 700;
+}
+body.light-theme .clock-badge {
+  color: #b45309;
+}
+
+.font-resizer {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 1px 4px;
+  gap: 2px;
+}
+
+.font-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.font-btn:hover, .font-btn.active {
+  color: var(--gold);
+  background: rgba(255, 195, 44, 0.15);
+}
+
+/* ==========================================================================
+   3. GLASSMORPHIC NAVBAR (LIGHT THEME CONTRAST BUG FIXED)
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(3, 13, 20, 0.9);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: var(--transition);
+}
+
+body.light-theme header {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #cbd5e1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 66px;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-symbol {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, rgba(255, 195, 44, 0.2), rgba(45, 212, 191, 0.2));
+  border: 1px solid var(--border-highlight);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: var(--gold);
+  box-shadow: 0 0 12px var(--gold-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Perfect Light Theme Brand Contrast */
+body.light-theme .brand-symbol {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #b45309;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+.brand-text h1 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.15;
+  color: var(--text-main);
+}
+body.light-theme .brand-text h1 {
+  color: #0f172a !important;
+}
+
+.brand-text em {
+  font-style: normal;
+  color: var(--gold);
+}
+body.light-theme .brand-text em {
+  color: #b45309 !important;
+  font-weight: 900;
+}
+
+.brand-text span {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+body.light-theme .brand-text span {
+  color: #475569 !important;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-links a {
+  padding: 7px 11px;
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+body.light-theme .nav-links a {
+  color: #1e293b;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--gold);
+  background: rgba(255, 195, 44, 0.08);
+}
+body.light-theme .nav-links a:hover {
+  background: rgba(180, 83, 9, 0.08);
+  color: #b45309;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+body.light-theme .theme-toggle-btn {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--gold);
+  transform: scale(1.03);
+}
+
+.menu-toggle {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 7px 11px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+}
+body.light-theme .menu-toggle {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   4. HERO SECTION (HIGH-CONTRAST LIGHT MODE READY)
+   ========================================================================== */
+.hero {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 50px 0;
+}
+
+#heroVfxCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, var(--bg-primary) 0%, rgba(3, 13, 20, 0.82) 55%, rgba(3, 13, 20, 0.35) 100%),
+    radial-gradient(ellipse at 80% 50%, rgba(45, 212, 191, 0.12), transparent 70%);
+  z-index: 1;
+}
+body.light-theme .hero-overlay {
+  background: 
+    linear-gradient(90deg, rgba(241, 245, 249, 0.96) 0%, rgba(241, 245, 249, 0.85) 60%, rgba(241, 245, 249, 0.4) 100%),
+    radial-gradient(ellipse at 80% 50%, rgba(15, 118, 110, 0.08), transparent 70%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  align-items: center;
+  gap: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 195, 44, 0.12);
+  border: 1px solid rgba(255, 195, 44, 0.35);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+body.light-theme .hero-kicker {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #b45309;
+}
+
+.hero-title {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+body.light-theme .hero-title {
+  color: #0f172a;
+}
+
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, #ffffff 50%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.light-theme .hero-title .gradient-text {
+  background: linear-gradient(135deg, #b45309 0%, #0f172a 60%, #0f766e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+  line-height: 1.65;
+}
+body.light-theme .hero-description {
+  color: #334155;
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+  color: #04121a;
+  box-shadow: 0 4px 18px var(--gold-glow);
+}
+body.light-theme .btn-primary {
+  color: #ffffff;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 195, 44, 0.45);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-color: var(--border-color);
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.hero-stats-row {
+  display: flex;
+  gap: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+}
+
+.stat-item h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin: 0;
+}
+.stat-item p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+body.light-theme .stat-item p {
+  color: #475569;
+}
+
+/* Hero Right Floating Status Card */
+.hero-card-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-main);
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.widget-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.widget-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.widget-row {
+  background: rgba(2, 12, 19, 0.4);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+}
+body.light-theme .widget-row {
+  background: rgba(248, 250, 252, 0.8);
+}
+
+/* ==========================================================================
+   5. QUICK ACCESS TILES
+   ========================================================================== */
+.quicklinks-section {
+  margin-top: -26px;
+  position: relative;
+  z-index: 10;
+}
+
+.quicklinks-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.quick-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 8px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+
+.quick-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 8px 20px var(--gold-glow);
+  background: var(--bg-card-hover);
+}
+
+.quick-card-icon {
+  font-size: 1.5rem;
+}
+.quick-card span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   6. SECTIONS COMMON
+   ========================================================================== */
+section {
+  padding: 65px 0;
+  scroll-margin-top: 75px;
+  position: relative;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-kicker {
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+.section-title span {
+  color: var(--gold);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  max-width: 580px;
+  font-size: 0.92rem;
+}
+body.light-theme .section-subtitle {
+  color: #475569;
+}
+
+/* ==========================================================================
+   7. ABOUT THE HOST & VILLAGE
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 26px;
+}
+
+.host-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 26px 20px;
+  text-align: center;
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-main);
+}
+
+.host-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(255, 195, 44, 0.18), rgba(45, 212, 191, 0.1));
+}
+
+.host-avatar-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 10px auto 14px;
+}
+
+.host-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.host-card:hover .host-photo {
+  transform: scale(1.03);
+}
+
+.host-badge-creator {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+  background: var(--gold);
+  color: #04121a;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  z-index: 3;
+}
+
+.host-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.host-role {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.86rem;
+  margin-bottom: 6px;
+}
+
+.host-bio {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+body.light-theme .host-bio {
+  color: #475569;
+}
+
+.btn-whatsapp-community {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 18px var(--whatsapp-glow);
+  transition: var(--transition);
+}
+.btn-whatsapp-community:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+}
+
+.village-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-main);
+}
+
+.village-info-card p {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+body.light-theme .village-info-card p {
+  color: #334155;
+}
+
+.village-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.stat-feature-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+.stat-feature-box strong {
+  display: block;
+  color: var(--gold);
+  font-size: 0.94rem;
+  margin-bottom: 3px;
+}
+.stat-feature-box span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+body.light-theme .stat-feature-box span {
+  color: #475569;
+}
+
+/* ==========================================================================
+   8. COMPACT GRAM PRATINIDHI DIRECTORY
+   ================================
