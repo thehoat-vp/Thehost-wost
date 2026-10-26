@@ -6,6 +6,10 @@
 <meta name="description" content="Wyndhamganj Butbherwa - Gram Portal, Samachar, Jankari aur Panchayat Sewaen.">
 <title>Shiv Nagar Butbherwa | Official Portal</title>
 
+<!-- Firebase SDK Libraries (Real SMS OTP) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
 <style>
 :root {
   --bg: #04131d;
@@ -22,7 +26,6 @@
   --whatsapp: #25D366;
 }
 
-/* Light Theme Variables */
 body.light-theme {
   --bg: #f3f6fa;
   --panel: #ffffff;
@@ -84,17 +87,15 @@ body.light-theme .top-bar {
   gap: 15px;
 }
 
-/* Sliding Ticker Animation */
 .ticker-container {
   overflow: hidden;
   white-space: nowrap;
   flex: 1;
-  position: relative;
 }
 .ticker-text {
   display: inline-block;
   padding-left: 100%;
-  animation: slideTicker 24s linear infinite;
+  animation: slideTicker 25s linear infinite;
 }
 .ticker-container:hover .ticker-text {
   animation-play-state: paused;
@@ -137,7 +138,6 @@ body.light-theme header {
   justify-content: space-between;
   gap: 15px;
   min-height: 72px;
-  position: relative;
 }
 
 .brand {
@@ -378,7 +378,6 @@ section {
   border-radius: 16px;
 }
 
-/* ABOUT SECTION GRID */
 .about-grid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -404,7 +403,6 @@ section {
   border-radius: 50%;
 }
 
-/* WhatsApp Group Button under Host */
 .btn-whatsapp-group {
   display: inline-flex;
   align-items: center;
@@ -418,12 +416,11 @@ section {
   font-size: 0.88rem;
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
-  transition: transform 0.2s, filter 0.2s;
+  transition: transform 0.2s;
 }
 
 .btn-whatsapp-group:hover {
   transform: translateY(-2px);
-  filter: brightness(1.1);
 }
 
 .info-list {
@@ -450,7 +447,7 @@ section {
   font-size: 0.88rem;
 }
 
-/* ================= COMPACT GRAM PRATINIDHI ================= */
+/* 6. GRAM PRATINIDHI */
 .pratinidhi-box {
   max-width: 900px;
   margin: 0 auto;
@@ -458,7 +455,6 @@ section {
   border: 2px solid var(--line);
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .pratinidhi-header {
@@ -468,15 +464,6 @@ section {
   border-bottom: 1px solid var(--line);
   padding-bottom: 12px;
   margin-bottom: 16px;
-}
-
-.pratinidhi-header h3 {
-  margin: 0;
-  font-size: 1.35rem;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .pratinidhi-list {
@@ -500,13 +487,7 @@ section {
 .pratinidhi-role {
   font-weight: 800;
   color: var(--gold);
-  font-size: 0.95rem;
   min-width: 170px;
-}
-
-.pratinidhi-name {
-  font-weight: 700;
-  font-size: 1rem;
 }
 
 .pratinidhi-call {
@@ -520,7 +501,6 @@ section {
   border-radius: 20px;
   font-weight: 700;
   font-size: 0.88rem;
-  transition: 0.2s;
 }
 
 .pratinidhi-call:hover {
@@ -528,7 +508,7 @@ section {
   color: #121c24;
 }
 
-/* 6. INFORMATION FEATURES */
+/* 7. INFORMATION & GALLERY */
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -540,31 +520,8 @@ section {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 15px;
-  transition: 0.25s;
 }
 
-.feature:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
-}
-
-.feature .icon {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-.feature h3 {
-  margin: 8px 0;
-  font-size: 1.15rem;
-}
-
-.feature p {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-/* 7. GALLERY & LIGHTBOX */
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -580,16 +537,9 @@ section {
   border: 1px solid var(--line);
   border-radius: 14px;
   cursor: pointer;
-  transition: transform 0.25s, border-color 0.25s;
-}
-
-.gallery figure:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
 }
 
 .gallery img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -602,10 +552,9 @@ section {
   background: linear-gradient(transparent, rgba(0, 14, 23, 0.95));
   font-weight: 700;
   font-size: 0.88rem;
-  color: #ffffff;
+  color: #fff;
 }
 
-/* Lightbox Modal */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -615,7 +564,6 @@ section {
   justify-content: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(8px);
 }
 
 .lightbox-box {
@@ -631,13 +579,6 @@ section {
   object-fit: contain;
   border-radius: 12px;
   border: 2px solid var(--gold);
-}
-
-.lightbox-title {
-  margin-top: 12px;
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 700;
 }
 
 .lightbox-close {
@@ -656,11 +597,10 @@ section {
   place-items: center;
 }
 
-/* 8. EVENTS */
+/* 8. NOTICES */
 .notice {
   display: flex;
   gap: 15px;
-  align-items: flex-start;
   margin-bottom: 14px;
   padding: 16px;
   background: var(--panel);
@@ -680,7 +620,7 @@ section {
   font-size: 0.8rem;
 }
 
-/* 9. PROGRESSIVE STEP-BY-STEP SUBMISSION FORM */
+/* 9. FORM & OTP FLOW */
 .form-step-badge {
   display: inline-flex;
   align-items: center;
@@ -695,24 +635,6 @@ section {
   margin-bottom: 12px;
 }
 
-.whatsapp-otp-notify {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px dashed var(--whatsapp);
-  font-size: 0.86rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.whatsapp-otp-notify b {
-  color: var(--whatsapp);
-}
-
 .otp-box {
   display: none;
   margin-top: 16px;
@@ -720,21 +642,13 @@ section {
   background: var(--panel2);
   border: 1px solid var(--gold);
   border-radius: 12px;
-  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Detail Form Section (Hidden until OTP is verified) */
 .detailed-form-section {
-  display: none; /* Initially hidden */
+  display: none;
   margin-top: 24px;
   padding-top: 20px;
   border-top: 2px dashed var(--line);
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 form label {
@@ -752,11 +666,6 @@ form input, form textarea, form select {
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: 8px;
-}
-
-form input:focus, form textarea:focus, form select:focus {
-  outline: none;
-  border-color: var(--gold);
 }
 
 footer {
@@ -791,15 +700,10 @@ body.light-theme footer {
   font-size: 1.3rem;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* MOBILE RESPONSIVE */
 @media (max-width: 900px) {
-  .menu-btn {
-    display: block;
-  }
-
+  .menu-btn { display: block; }
   .navlinks {
     display: none;
     position: absolute;
@@ -808,84 +712,39 @@ body.light-theme footer {
     right: 0;
     padding: 16px;
     flex-direction: column;
-    align-items: stretch;
     background: var(--panel);
     border-bottom: 2px solid var(--line);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
   }
-
-  .navlinks.open {
-    display: flex !important;
-  }
-
-  .navlinks a {
-    padding: 12px;
-  }
-
-  .quicklinks {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .about-grid, .grid-3 {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .navlinks.open { display: flex !important; }
+  .quicklinks { grid-template-columns: repeat(3, 1fr); }
+  .about-grid, .grid-3 { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
-  .quicklinks {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery figure {
-    height: 180px;
-  }
-
-  .pratinidhi-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .info-list {
-    grid-template-columns: 1fr;
-  }
-
-  .ticker-container {
-    max-width: 60%;
-  }
+  .quicklinks { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: 1fr; }
+  .pratinidhi-item { flex-direction: column; align-items: flex-start; }
+  .info-list { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= 1. TOP BAR WITH LIVE SLIDING TICKER ================= -->
+<!-- 1. TOP BAR -->
 <div class="top-bar">
   <div class="container top-bar-content">
-    
-    <!-- Smooth Sliding Ticker -->
-    <div class="ticker-container" title="Padhne ke liye yahan rokein">
+    <div class="ticker-container">
       <div class="ticker-text">
         📢 <b>Gram Suchna Portal:</b> Wyndhamganj Butbherwa me aapka swagat hai &bull; Safai aur gram vikas karyakram jari &bull; Swasthya shivir ki jankari dekhein &bull; Gaon ki har nayi suchna ab digital roop se uplabdh!
       </div>
     </div>
-
-    <!-- Live Running Clock -->
-    <div class="live-clock-badge" id="liveClock">
-      🕒 Samay load ho raha hai...
-    </div>
-
+    <div class="live-clock-badge" id="liveClock">🕒 Samay load ho raha hai...</div>
   </div>
 </div>
 
-<!-- ================= 2. NAVBAR (MENU + THEME) ================= -->
+<!-- 2. NAVBAR -->
 <header>
   <div class="container nav">
     <a class="brand" href="#home">
@@ -895,10 +754,7 @@ body.light-theme footer {
       </span>
     </a>
 
-    <!-- Hamburger Menu Button -->
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu Toggle">
-      ☰ Menu
-    </button>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu Toggle">☰ Menu</button>
 
     <nav class="navlinks" id="navlinks">
       <a href="#home" onclick="closeMenu()">⌂ Home</a>
@@ -910,7 +766,6 @@ body.light-theme footer {
       <a href="#submit-info" onclick="closeMenu()">Suchna Dein ✍️</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
 
-      <!-- Theme Selector inside Menu -->
       <div class="theme-selector-box">
         <span>🎨 Theme:</span>
         <select id="themeSelect" onchange="switchTheme(this.value)">
@@ -924,21 +779,17 @@ body.light-theme footer {
 
 <main>
 
-<!-- ================= 3. HERO SECTION ================= -->
+<!-- 3. HERO -->
 <section class="hero" id="home">
   <div class="container hero-content">
     <div class="kicker">Gram Panchayat Wyndhamganj</div>
     <h1>WDM <span>Butbherwa</span></h1>
-    <p>
-      Swagat Hai 🙏 Ham Wyndhamganj Butbherwa nagarwasi aapka hardik swagat karte hain. Gaon ki har nayi jankari aur updates ab ek hi jagah.
-    </p>
-
+    <p>Swagat Hai 🙏 Ham Wyndhamganj Butbherwa nagarwasi aapka hardik swagat karte hain. Gaon ki har nayi jankari aur updates ab ek hi jagah.</p>
     <div class="pill-row">
       <span class="pill">📚 Shiksha</span>
       <span class="pill">🌿 Sanskriti</span>
       <span class="pill">🤝 Ekta aur Vikas</span>
     </div>
-
     <div>
       <a class="btn" href="#information">Information Dekhein ↗</a>
       <a class="btn btn-outline" href="#gallery">Poori Gallery 📸</a>
@@ -946,7 +797,7 @@ body.light-theme footer {
   </div>
 </section>
 
-<!-- ================= 4. QUICK LINKS ================= -->
+<!-- 4. QUICK LINKS -->
 <div class="container quicklinks">
   <a class="quick" href="#about"><b>👥</b><span>About</span></a>
   <a class="quick" href="#pratinidhi"><b>🏛️</b><span>Pratinidhi</span></a>
@@ -956,7 +807,7 @@ body.light-theme footer {
   <a class="quick" href="#contact"><b>✉️</b><span>Contact</span></a>
 </div>
 
-<!-- ================= 5. ABOUT SECTION ================= -->
+<!-- 5. ABOUT -->
 <section id="about">
   <div class="container">
     <div class="section-head">
@@ -967,28 +818,21 @@ body.light-theme footer {
     </div>
 
     <div class="about-grid">
-      <!-- Profile Card with Host Photo & WhatsApp Group Button -->
       <div class="card profile-card">
         <h3>The Host</h3>
         <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" class="profile-photo" alt="The Host" onerror="this.src='https://placehold.co/150x150/0b2938/ffc32c?text=Host'">
         <p style="margin: 6px 0 2px;"><b>Creator & Village Contributor</b></p>
         <p class="muted" style="font-size:0.86rem; margin-top:0;">Wyndhamganj Butbherwa ke vikas ke liye digital pehal.</p>
         
-        <!-- WHATSAPP GROUP LINK BUTTON -->
         <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-group">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.115-.515-1.815-.749-2.986-2.595-3.077-2.716-.09-.12-1.442-1.921-1.442-3.664 0-1.743.914-2.6 1.239-2.955.325-.355.709-.444.945-.444.236 0 .473.002.68.012.219.01.513-.083.803.613.297.712 1.012 2.471 1.102 2.651.09.182.15.395.03.636-.12.241-.18.39-.356.596-.177.206-.372.46-.532.618-.178.175-.363.366-.156.722.207.355.918 1.516 1.97 2.455 1.353 1.208 2.493 1.583 2.848 1.761.355.177.562.148.772-.09.21-.24.89-1.036 1.127-1.392.237-.355.474-.296.799-.177.325.12 2.063.974 2.418 1.152.355.177.592.266.68.414.088.148.088.858-.056 1.263zM12.004 2C6.479 2 2 6.48 2 12.008c0 1.968.57 3.805 1.558 5.362L2 22l4.789-1.527C8.293 21.378 10.091 22 12.004 22 17.526 22 22 17.52 22 12.008 22 6.48 17.526 2 12.004 2z"/>
-          </svg>
-          Gaon WhatsApp Group se Judein
+          💬 Gaon WhatsApp Group se Judein
         </a>
       </div>
 
       <div class="card">
         <div class="kicker">Parichay</div>
         <h2>Wyndhamganj <span class="gold">Butbherwa</span></h2>
-        <p>
-          Wyndhamganj Butbherwa prakritik sundarta, shant vatavaran aur apnepan se bhara hua hai. Is portal ka mukhya uddeshya gaonwasiyon tak sarkari yojnaayein, zaroori suchnaayein aur samachar jaldi pahunchana hai.
-        </p>
+        <p>Wyndhamganj Butbherwa prakritik sundarta, shant vatavaran aur apnepan se bhara hua hai. Is portal ka mukhya uddeshya gaonwasiyon tak sarkari yojnaayein aur samachar jaldi pahunchana hai.</p>
 
         <div class="info-list">
           <div class="info-item">
@@ -1013,240 +857,183 @@ body.light-theme footer {
   </div>
 </section>
 
-<!-- ================= 6. GRAM PRATINIDHI (SINGLE BOX) ================= -->
+<!-- 6. PRATINIDHI -->
 <section id="pratinidhi" style="background:var(--panel2)">
   <div class="container">
-    
     <div class="pratinidhi-box">
       <div class="pratinidhi-header">
-        <h3>🏛️ Gram Pratinidhi</h3>
+        <h3 style="margin:0; color:var(--gold);">🏛️ Gram Pratinidhi</h3>
         <span class="muted" style="font-size:0.85rem;">Wyndhamganj, Butbherwa</span>
       </div>
 
       <div class="pratinidhi-list">
-        <!-- 1. Gram Pradhan -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">🎖️ Gram Pradhan:</div>
-          <div class="pratinidhi-name">Shri Shyam Kumar</div>
+          <div>Shri Shyam Kumar</div>
           <a class="pratinidhi-call" href="tel:+919452696410">📞 +91 94526 96410</a>
         </div>
-
-        <!-- 2. Gram Sachiv -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">📜 Gram Sachiv:</div>
-          <div class="pratinidhi-name">Shri Ram</div>
+          <div>Shri Ram</div>
           <a class="pratinidhi-call" href="tel:+919876543210">📞 +91 98765 43210</a>
         </div>
-
-        <!-- 3. Gram Rojgar Sevak -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">💼 Rojgar Sevak:</div>
-          <div class="pratinidhi-name">Mohan Singh</div>
+          <div>Mohan Singh</div>
           <a class="pratinidhi-call" href="tel:+919123456789">📞 +91 91234 56789</a>
         </div>
-
-        <!-- 4. ASHA Karyakarti -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">🩺 ASHA Karyakarti:</div>
-          <div class="pratinidhi-name">Geeta Devi</div>
+          <div>Geeta Devi</div>
           <a class="pratinidhi-call" href="tel:+919345678901">📞 +91 93456 78901</a>
         </div>
-
-        <!-- 5. The Host (Website Admin) -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">💻 Portal Admin (Host):</div>
-          <div class="pratinidhi-name">The Host</div>
+          <div>The Host</div>
           <a class="pratinidhi-call" href="tel:+919214360582">📞 +91 92143 60582</a>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ================= 7. INFORMATION CENTER ================= -->
+<!-- 7. INFORMATION -->
 <section id="information">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Suvidha & Helpline</div>
         <h2>Information <span class="gold">Center</span></h2>
-        <p>Gaon aur aas-paas ki zaroori sewayein aur helpline numbers.</p>
       </div>
     </div>
-
     <div class="grid-3">
       <article class="feature">
-        <div class="icon">🏥</div>
-        <h3>Swasthya & Upkendra</h3>
-        <p>Nikat-tam Swasthya Kendra par doctor aur dawai suvidha uplabdh hai. Aapatkaalin seva ke liye 108 dial karein.</p>
+        <div style="font-size:2rem;">🏥</div>
+        <h3>Swasthya Upkendra</h3>
+        <p>Doctor aur dawai uplabdh hai. Aapatkaalin seva ke liye 108 dial karein.</p>
       </article>
-
       <article class="feature">
-        <div class="icon">⚡</div>
+       <div style="font-size:2rem;">⚡</div>
         <h3>Bijli & Jal Vibhag</h3>
-        <p>Gaon mein bijli ya handpump samasya ke liye shikayat darj karein. Bijli helpline: 1912 par call karein.</p>
+        <p>Bijli ya handpump samasya ke liye 1912 par call karein.</p>
       </article>
-
       <article class="feature">
-        <div class="icon">💻</div>
+        <div style="font-size:2rem;">💻</div>
         <h3>Jan Seva Kendra (CSC)</h3>
-        <p>Aay, jati, niwas praman patra, kisan kyc aur banking sewaon ke liye Panchayat Bhawan sampark karein.</p>
+        <p>Aay, jati, niwas praman patra aur sarkari yojna KYC hetu sampark karein.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ================= 8. GALLERY (CLICK TO OPEN FULL PHOTO) ================= -->
+<!-- 8. GALLERY -->
 <section id="gallery" style="background:var(--panel2)">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Memories</div>
         <h2>Gaon Ki <span class="gold">Gallery 📸</span></h2>
-        <p>Kisi bhi photo par click karke badi screen mein dekhein.</p>
       </div>
     </div>
-
     <div class="gallery">
-      <figure onclick="openLightbox('IMG_20250930_164330.jpg', 'Railway Bridge - Wyndhamganj')">
+      <figure onclick="openLightbox('IMG_20250930_164330.jpg', 'Railway Bridge')">
         <img src="IMG_20250930_164330.jpg" alt="Railway Bridge" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80'">
         <figcaption>Railway Bridge</figcaption>
       </figure>
-
-      <figure onclick="openLightbox('IMG_20250929_062521.jpg', 'Piprahava Bandh - Wyndhamganj')">
+      <figure onclick="openLightbox('IMG_20250929_062521.jpg', 'Piprahava Bandh')">
         <img src="IMG_20250929_062521.jpg" alt="Piprahava Bandh" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'">
         <figcaption>Piprahava Bandh</figcaption>
       </figure>
-
-      <figure onclick="openLightbox('942fe674faf2ef24f01fc8b726c5222a.jpg', 'The Host - Developer')">
+      <figure onclick="openLightbox('942fe674faf2ef24f01fc8b726c5222a.jpg', 'The Host')">
         <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" alt="The Host" onerror="this.src='https://placehold.co/600x400/0b2938/ffc32c?text=The+Host'">
         <figcaption>The Host</figcaption>
       </figure>
-
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80', 'Gaon ke Hari-Bhari Faslein')">
         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80" alt="Fields">
         <figcaption>Hari Bhari Kheti</figcaption>
-      </figure>
-
-      <figure onclick="openLightbox('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80', 'Prakriti aur Shant Vatavaran')">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Nature">
-        <figcaption>Gaon Ki Prakriti</figcaption>
-      </figure>
-
-      <figure onclick="openLightbox('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80', 'Shaam Ka Sundar Suraj')">
-        <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80" alt="Sunset">
-        <figcaption>Suraj Ka Nazara</figcaption>
-      </figure>
-
-      <figure onclick="openLightbox('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80', 'Gramin Basti aur Raste')">
-        <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=80" alt="Village">
-        <figcaption>Gramin Parivesh</figcaption>
-      </figure>
-
-      <figure onclick="openLightbox('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1200&q=80', 'Subah Ka Naya Prakash')">
-        <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80" alt="Sunrise">
-        <figcaption>Naya Savera</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ================= 9. EVENTS & NOTICES ================= -->
+<!-- 9. EVENTS -->
 <section id="events">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Gaon Ke Samachar</div>
         <h2>Events & <span class="gold">Announcements</span></h2>
-        <p>Aane wale karyakram aur verified notices.</p>
       </div>
     </div>
-
     <div class="notice">
       <div class="date">NOTICE</div>
       <div>
         <strong>Gram Sabha Baithak</strong>
-        <p>Aane wale maheene mein gaon ke vikas karyon aur safai abhiyan par charcha hogi.</p>
+        <p>Aane wale maheene mein gaon ke vikas karyon par charcha hogi.</p>
       </div>
     </div>
-
     <div class="notice">
       <div class="date">CAMP</div>
       <div>
         <strong>Kisan E-KYC Camp</strong>
-        <p>Panchayat bhawan par shivir chal raha hai, zaroori dastawez aur bank passbook lekar jayein.</p>
-      </div>
-    </div>
-
-    <div class="notice">
-      <div class="date">TYOHAR</div>
-      <div>
-        <strong>Mandir Mahotsav & Samuhik Puja</strong>
-        <p>Shiv Mandir par aayojan aur bhandare ki dates jald update hongi.</p>
+        <p>Panchayat bhawan par shivir chal raha hai.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 10. SUBMIT INFO / SHIKAYAT (CLEAN PROGRESSIVE FLOW) ================= -->
+<!-- 10. REAL SMS OTP & SHIKAYAT FORM -->
 <section id="submit-info" style="background:var(--panel2)">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Digital Seva</div>
         <h2>Suchna / Shikayat <span class="gold">Darj Karein ✍️</span></h2>
-        <p>Pehle WhatsApp verification karein, fir aage ka form bharein.</p>
+        <p>Pehle Mobile OTP verify karein, fir aage ka form bharein.</p>
       </div>
     </div>
 
     <div class="card" style="max-width: 780px; margin: 0 auto;">
       <form id="infoSubmitForm" onsubmit="handleFinalSubmit(event)">
-        
-        <!-- STEP 1: MOBILE NUMBER & WHATSAPP OTP -->
+<!-- STEP 1: MOBILE NUMBER -->
         <div id="stepVerificationBox">
-          <div class="form-step-badge">Pehla Kadam: Mobile Verification</div>
+          <div class="form-step-badge">Pehla Kadam: Mobile SMS Verification</div>
           
-          <label for="userPhone"><b>Apna Mobile Number (10 Digit) *</b></label>
+          <label for="userPhone"><b>Mobile Number (10 Digit) *</b></label>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
             <input type="tel" id="userPhone" pattern="[0-9]{10}" maxlength="10" placeholder="Jaise: 9876543210" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="flex:1; min-width:220px;" required>
             
-            <button type="button" class="btn" id="sendOtpBtn" style="margin:0;" onclick="sendWhatsAppOtp()">
-              💬 WhatsApp Par OTP Bhejein
+            <button type="button" class="btn" id="sendOtpBtn" style="margin:0;" onclick="sendRealSmsOtp()">
+              📱 Asli SMS OTP Bhejein
             </button>
           </div>
-          <small class="muted">Aapke is number par WhatsApp verification code aayega.</small>
+          <small class="muted">Aapke number par Google SMS se 6-digit OTP code aayega.</small>
+
+          <!-- Firebase Invisible reCAPTCHA Container -->
+          <div id="recaptcha-container"></div>
         </div>
 
-        <!-- STEP 2: ENTER OTP BOX -->
+        <!-- STEP 2: ENTER OTP -->
         <div class="otp-box" id="otpBox">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-            <span style="font-weight:700; color:var(--gold);">🔑 WhatsApp OTP Darj Karein:</span>
-            <span id="resendOtpTimer" class="muted" style="font-size:0.8rem;"></span>
-          </div>
-
-          <div class="whatsapp-otp-notify">
-            <span>📲 Aapka WhatsApp OTP hai: <b id="demoOtpText">----</b></span>
-            <a href="javascript:void(0)" id="directWaLink" target="_blank" style="color:var(--whatsapp); font-weight:700; text-decoration:underline;">WhatsApp me kholein ↗</a>
-          </div>
-
-          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-            <input type="text" id="otpInput" maxlength="4" placeholder="4-digit code yahan likhein" style="flex:1; min-width:180px;">
-            <button type="button" class="btn" style="margin:0; background:var(--teal); border-color:var(--teal); color:#051722;" onclick="verifyUserOtp()">
+          <span style="font-weight:700; color:var(--gold);">🔑 SMS OTP Yahan Bharein:</span>
+          
+          <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+            <input type="text" id="otpInput" maxlength="6" placeholder="6-digit SMS code likhein" style="flex:1; min-width:180px;">
+            <button type="button" class="btn" style="margin:0; background:var(--teal); border-color:var(--teal); color:#051722;" onclick="verifyRealSmsOtp()">
               ✅ Verify Karein
             </button>
           </div>
           <span id="otpStatus" style="display:block; margin-top:8px; font-weight:700;"></span>
         </div>
 
-        <!-- STEP 3: DETAILED FORM (REVEALED ONLY AFTER OTP IS VERIFIED) -->
+        <!-- STEP 3: REVEALED FORM AFTER VERIFICATION -->
         <div class="detailed-form-section" id="detailedFormSection">
           <div class="form-step-badge" style="color:var(--success); border-color:var(--success);">
-            ✅ Number Verified! Kripya Poori Jankari Bharein
+            ✅ Number Verify Ho Gaya! Ab Apni Baat Likhein:
           </div>
 
           <label for="userName">Aapka Poora Naam *</label>
-          <input type="text" id="userName" placeholder="Apna poora naam daalein" required>
+          <input type="text" id="userName" placeholder="Apna naam likhein" required>
 
           <label for="userAddress">Pata (Mohalla / Tola / Gaon) *</label>
           <input type="text" id="userAddress" placeholder="Jaise: Purana Bazar, Wyndhamganj" required>
@@ -1261,9 +1048,9 @@ body.light-theme footer {
           </select>
 
           <label for="userMessage">Suchna / Samasya Ka Pura Vivaran *</label>
-          <textarea id="userMessage" rows="4" placeholder="Apni baat yahan vistar se likhein..." required></textarea>
+          <textarea id="userMessage" rows="4" placeholder="Apni baat vistar se likhein..." required></textarea>
 
-          <button type="submit" class="btn" style="margin-top: 18px; width: 100%; font-size:1rem; padding:13px;">
+          <button type="submit" class="btn" style="margin-top: 18px; width: 100%; padding:13px;">
             🚀 Antyatah Suchna Submit Karein
           </button>
         </div>
@@ -1273,30 +1060,26 @@ body.light-theme footer {
   </div>
 </section>
 
-<!-- ================= 11. CONTACT SECTION ================= -->
+<!-- 11. CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Sampark</div>
         <h2>Contact <span class="gold">Us</span></h2>
-        <p>Prashasan ya portal team se direct sampark karein.</p>
       </div>
     </div>
-
     <div class="grid-3">
       <div class="card">
         <h4 class="gold">The Host</h4>
         <p class="muted">Website Developer</p>
         <p><a href="tel:+919214360582">📞 +91 92143 60582</a></p>
       </div>
-
       <div class="card">
         <h4 class="gold">Gram Pradhan</h4>
         <p class="muted">Shri Shyam Kumar</p>
         <p><a href="tel:+919452696410">📞 +91 94526 96410</a></p>
       </div>
-
       <div class="card">
         <h4 class="gold">Gram Sachiv</h4>
         <p class="muted">Shri Ram</p>
@@ -1308,7 +1091,6 @@ body.light-theme footer {
 
 </main>
 
-<!-- ================= 12. FOOTER ================= -->
 <footer>
   <div class="container footer-row">
     <div>
@@ -1324,183 +1106,145 @@ body.light-theme footer {
   </div>
 </footer>
 
-<!-- ================= 13. FULLSCREEN IMAGE LIGHTBOX MODAL ================= -->
 <div class="lightbox" id="imageLightbox" onclick="closeLightboxOnBackdrop(event)">
   <div class="lightbox-box">
-    <button class="lightbox-close" onclick="closeLightbox()" title="Band karein">&times;</button>
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
     <img id="lightboxLargeImg" src="" alt="Full view">
-    <div class="lightbox-title" id="lightboxCaption"></div>
+    <div id="lightboxCaption" style="margin-top:10px; color:#fff; font-weight:700;"></div>
   </div>
 </div>
 
-<a href="#home" class="top" title="Upar jayein">↑</a>
+<a href="#home" class="top">↑</a>
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================= JAVASCRIPT & FIREBASE CONFIG ================= -->
 <script>
-  // 1. LIVE RUNNING CLOCK
-  function updateLiveClock() {
-    const now = new Date();
-    const d = now.toLocaleDateString('hi-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-    const t = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-    const clock = document.getElementById('liveClock');
-    if (clock) {
-      clock.innerHTML = `🕒 <b>${d}</b> | ${t}`;
-    }
-  }
-  setInterval(updateLiveClock, 1000);
-  updateLiveClock();
+  // 1. APKI VERIFIED FIREBASE CONFIGURATION
+  const firebaseConfig = {
+    apiKey: "AIzaSyDAg3mFHxUNrndIqxX7Gvp7hFl8d0B7uGU",
+    authDomain: "testing-project-5df0e.firebaseapp.com",
+    projectId: "testing-project-5df0e",
+    storageBucket: "testing-project-5df0e.firebasestorage.app",
+    messagingSenderId: "1002577167949",
+    appId: "1:1002577167949:web:3e0a99fd2c2b2823d4be04",
+    measurementId: "G-P0HXDGGB29"
+  };
 
-  // 2. MOBILE MENU CONTROLS
-  function toggleMenu() {
-    const nav = document.getElementById('navlinks');
-    nav.classList.toggle('open');
-  }
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
-  function closeMenu() {
-    const nav = document.getElementById('navlinks');
-    if (nav) {
-      nav.classList.remove('open');
-    }
-  }
+  let confirmationResult = null;
+  let isVerified = false;
 
-  // 3. THEME SWITCHER (DARK / LIGHT)
-  function switchTheme(theme) {
-    const select = document.getElementById('themeSelect');
-    if (theme === 'light') {
-      document.body.classList.add('light-theme');
-      localStorage.setItem('wdm_theme', 'light');
-      if (select) select.value = 'light';
-    } else {
-      document.body.classList.remove('light-theme');
-      localStorage.setItem('wdm_theme', 'dark');
-      if (select) select.value = 'dark';
-    }
-  }
+  // Invisible reCAPTCHA Initialize
+  window.onload = function() {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible'
+    });
+  };
 
-  const savedTheme = localStorage.getItem('wdm_theme') || 'dark';
-  switchTheme(savedTheme);
+  // 2. REAL SMS BHEJNE KA FUNCTION
+  function sendRealSmsOtp() {
+    const phone = document.getElementById('userPhone').value.trim();
 
-  // 4. GALLERY FULLSCREEN LIGHTBOX
-  function openLightbox(imgSrc, captionText) {
-    const lightbox = document.getElementById('imageLightbox');
-    const largeImg = document.getElementById('lightboxLargeImg');
-    const caption = document.getElementById('lightboxCaption');
-
-    largeImg.src = imgSrc;
-    caption.textContent = captionText;
-    lightbox.style.display = 'flex';
-  }
-
-  function closeLightbox() {
-    document.getElementById('imageLightbox').style.display = 'none';
-  }
-
-  function closeLightboxOnBackdrop(e) {
-    if (e.target.id === 'imageLightbox') {
-      closeLightbox();
-    }
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeLightbox();
-      closeMenu();
-    }
-  });
-
-  // ================= 5. APNI FIREBASE CONFIG YAHAN REPLACE KAREIN =================
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDAg3mFHxUNrndIqxX7Gvp7hFl8d0B7uGU",
-  authDomain: "testing-project-5df0e.firebaseapp.com",
-  projectId: "testing-project-5df0e",
-  storageBucket: "testing-project-5df0e.firebasestorage.app",
-  messagingSenderId: "1002577167949",
-  appId: "1:1002577167949:web:3e0a99fd2c2b2823d4be04",
-  measurementId: "G-P0HXDGGB29"
-};"
-};
-  
-
-    // 4-Digit Unique OTP Generate
-    currentOtp = Math.floor(1000 + Math.random() * 9000).toString();
-
-    // UI Updates
-    document.getElementById('otpBox').style.display = 'block';
-    document.getElementById('demoOtpText').textContent = currentOtp;
-    
-    // WhatsApp direct message URL (User can click to view code directly in WhatsApp)
-    const waText = encodeURIComponent(`Wyndhamganj Butbherwa Portal OTP: ${currentOtp} (Valid for verification)`);
-    const waUrl = `https://wa.me/91${phone}?text=${waText}`;
-    
-    const waLink = document.getElementById('directWaLink');
-    waLink.href = waUrl;
-
-    alert(`✅ OTP generate ho gaya hai: ${currentOtp}\nAap WhatsApp link par click karke bhi code dekh sakte hain.`);
-  }
-
-  function verifyUserOtp() {
-    const userOtp = document.getElementById('otpInput').value.trim();
-    const status = document.getElementById('otpStatus');
-
-    if (!userOtp) {
-      status.style.color = 'var(--danger)';
-      status.textContent = '❌ Kripya OTP daalein!';
+    if (!phone || phone.length !== 10) {
+      alert('Kripya 10-digit ka sahi mobile number daalein!');
       return;
     }
 
-    if (userOtp === currentOtp) {
-      isVerified = true;
-      status.style.color = 'var(--success)';
-      status.textContent = '✅ Mobile number safaltapoorvak verify ho gaya!';
-      
-      // Lock mobile number input & OTP
-      document.getElementById('userPhone').disabled = true;
-      document.getElementById('sendOtpBtn').disabled = true;
-      document.getElementById('sendOtpBtn').textContent = '✅ Verified';
-      document.getElementById('otpBox').style.display = 'none';
+    const fullPhoneNumber = "+91" + phone;
+    const appVerifier = window.recaptchaVerifier;
 
-      // REVEAL NEXT DETAILS (Form fields show smoothly)
-      document.getElementById('detailedFormSection').style.display = 'block';
-      document.getElementById('userName').focus();
-    } else {
-      status.style.color = 'var(--danger)';
-      status.textContent = '❌ Galat OTP! Sahi code daalein.';
-    }
+    document.getElementById('sendOtpBtn').disabled = true;
+    document.getElementById('sendOtpBtn').textContent = 'SMS Bheja ja raha hai...';
+
+    firebase.auth().signInWithPhoneNumber(fullPhoneNumber, appVerifier)
+      .then((result) => {
+        confirmationResult = result;
+        document.getElementById('otpBox').style.display = 'block';
+        document.getElementById('sendOtpBtn').textContent = 'SMS Bhej Diya Gaya';
+        alert(`OTP aapke mobile (+91 ${phone}) par SMS dwara bhej diya gaya hai!`);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('SMS bhejne mein samasya: ' + error.message);
+        document.getElementById('sendOtpBtn').disabled = false;
+        document.getElementById('sendOtpBtn').textContent = '📱 Dobara Koshish Karein';
+        grecaptcha.reset(window.recaptchaWidgetId);
+      });
   }
 
+  // 3. REAL SMS OTP VERIFY KARNE KA FUNCTION
+  function verifyRealSmsOtp() {
+    const code = document.getElementById('otpInput').value.trim();
+    const status = document.getElementById('otpStatus');
+
+    if (!code || code.length !== 6) {
+      status.style.color = 'var(--danger)';
+      status.textContent = '❌ Kripya 6-digit SMS OTP daalein!';
+      return;
+    }
+
+    confirmationResult.confirm(code)
+      .then((result) => {
+        isVerified = true;
+        status.style.color = 'var(--success)';
+        status.textContent = '✅ Verified! Number confirm ho gaya.';
+
+        document.getElementById('userPhone').disabled = true;
+        document.getElementById('otpBox').style.display = 'none';
+        document.getElementById('detailedFormSection').style.display = 'block';
+        document.getElementById('userName').focus();
+      })
+      .catch((error) => {
+        status.style.color = 'var(--danger)';
+        status.textContent = '❌ Galat ya expired OTP! SMS dobara check karein.';
+      });
+  }
+
+  // 4. FINAL SUBMISSION
   function handleFinalSubmit(e) {
     e.preventDefault();
     if (!isVerified) {
       alert('Kripya pehle mobile OTP verify karein!');
       return;
     }
-
-    const name = document.getElementById('userName').value.trim();
-    const phone = document.getElementById('userPhone').value.trim();
-    const address = document.getElementById('userAddress').value.trim();
-    const cat = document.getElementById('infoCategory').value;
-    const msg = document.getElementById('userMessage').value.trim();
-
-    alert(`Dhanyawad ${name} ji! Aapki suchna/shikayat darj kar li gayi hai.\n\nPrakar: ${cat}\nGaon: Wyndhamganj Butbherwa`);
-
-    // Reset Form
+    const name = document.getElementById('userName').value;
+    alert(`Dhanyawad ${name} ji! Suchna safaltapoorvak darj ho gayi hai.`);
     document.getElementById('infoSubmitForm').reset();
     document.getElementById('detailedFormSection').style.display = 'none';
     document.getElementById('userPhone').disabled = false;
     document.getElementById('sendOtpBtn').disabled = false;
-    document.getElementById('sendOtpBtn').textContent = '💬 WhatsApp Par OTP Bhejein';
-    document.getElementById('otpStatus').textContent = '';
+    document.getElementById('sendOtpBtn').textContent = '📱 Asli SMS OTP Bhejein';
     isVerified = false;
-    currentOtp = null;
   }
+
+  // CLOCK, MENU & THEME
+  function updateLiveClock() {
+    const now = new Date();
+    const d = now.toLocaleDateString('hi-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    const t = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    const clock = document.getElementById('liveClock');
+    if (clock) clock.innerHTML = `🕒 <b>${d}</b> | ${t}`;
+  }
+  setInterval(updateLiveClock, 1000);
+  updateLiveClock();
+
+  function toggleMenu() { document.getElementById('navlinks').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('navlinks').classList.remove('open'); }
+  function switchTheme(theme) {
+    if (theme === 'light') document.body.classList.add('light-theme');
+    else document.body.classList.remove('light-theme');
+  }
+
+  function openLightbox(imgSrc, captionText) {
+    document.getElementById('lightboxLargeImg').src = imgSrc;
+    document.getElementById('lightboxCaption').textContent = captionText;
+    document.getElementById('imageLightbox').style.display = 'flex';
+  }
+  function closeLightbox() { document.getElementById('imageLightbox').style.display = 'none'; }
+  function closeLightboxOnBackdrop(e) { if (e.target.id === 'imageLightbox') closeLightbox(); }
 </script>
 
 </body>
 </html>
+        
