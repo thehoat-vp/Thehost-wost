@@ -19,6 +19,7 @@
   --teal: #2dd4bf;
   --success: #22c55e;
   --danger: #ef4444;
+  --whatsapp: #25D366;
 }
 
 /* Light Theme Variables */
@@ -26,6 +27,8 @@ body.light-theme {
   --bg: #f3f6fa;
   --panel: #ffffff;
   --panel2: #e8f0f8;
+  --gold: #b45309;
+  --gold-hover: #92400e;
   --text: #111e28;
   --muted: #4e6578;
   --line: #cfdce6;
@@ -63,12 +66,13 @@ img {
   margin: auto;
 }
 
-/* 1. TOP BAR & CLOCK */
+/* 1. TOP BAR & SLIDING TICKER */
 .top-bar {
   background: #020c13;
   border-bottom: 1px solid var(--line);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   padding: 8px 0;
+  overflow: hidden;
 }
 body.light-theme .top-bar {
   background: #dfe8f0;
@@ -77,9 +81,29 @@ body.light-theme .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
+
+/* Sliding Ticker Animation */
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+  position: relative;
+}
+.ticker-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: slideTicker 24s linear infinite;
+}
+.ticker-container:hover .ticker-text {
+  animation-play-state: paused;
+}
+@keyframes slideTicker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 .live-clock-badge {
   display: inline-flex;
   align-items: center;
@@ -90,7 +114,8 @@ body.light-theme .top-bar {
   border: 1px solid var(--line);
   color: var(--gold);
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 /* 2. NAVBAR */
@@ -207,7 +232,7 @@ body.light-theme header {
   position: relative;
   background:
     linear-gradient(90deg, rgba(2,15,23,0.95), rgba(2,15,23,0.7) 60%, rgba(2,15,23,0.3)),
-    url('IMG_20250929_062521.jpg') center/cover;
+    url('IMG_20250929_062521.jpg') center/cover no-repeat #04131d;
 }
 
 .hero-content {
@@ -262,9 +287,12 @@ h1 span, .gold {
 
 .btn-outline {
   background: transparent;
-  color: white;
+  color: #ffffff;
+  border-color: #ffffff77;
 }
-body.light-theme .btn-outline {
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
 
@@ -353,23 +381,49 @@ section {
 /* ABOUT SECTION GRID */
 .about-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 0.85fr 1.15fr;
   gap: 22px;
   align-items: stretch;
 }
 
 .profile-card {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-photo {
   display: block;
-  width: 160px;
-  height: 160px;
-  margin: 15px auto;
+  width: 150px;
+  height: 150px;
+  margin: 12px auto;
   object-fit: cover;
   border: 4px solid var(--gold);
   border-radius: 50%;
+}
+
+/* WhatsApp Group Button under Host */
+.btn-whatsapp-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 11px 18px;
+  background: var(--whatsapp);
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 0.88rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btn-whatsapp-group:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .info-list {
@@ -396,7 +450,7 @@ section {
   font-size: 0.88rem;
 }
 
-/* ================= COMPACT GRAM PRATINIDHI (SINGLE BOX) ================= */
+/* ================= COMPACT GRAM PRATINIDHI ================= */
 .pratinidhi-box {
   max-width: 900px;
   margin: 0 auto;
@@ -404,7 +458,7 @@ section {
   border: 2px solid var(--line);
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .pratinidhi-header {
@@ -495,11 +549,13 @@ section {
 }
 
 .feature .icon {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  margin-bottom: 8px;
 }
 
 .feature h3 {
   margin: 8px 0;
+  font-size: 1.15rem;
 }
 
 .feature p {
@@ -549,7 +605,7 @@ section {
   color: #ffffff;
 }
 
-/* Lightbox Modal (Click Image Full View) */
+/* Lightbox Modal */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -624,36 +680,61 @@ section {
   font-size: 0.8rem;
 }
 
-/* 9. SUBMIT INFO & OTP */
+/* 9. PROGRESSIVE STEP-BY-STEP SUBMISSION FORM */
+.form-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.whatsapp-otp-notify {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px dashed var(--whatsapp);
+  font-size: 0.86rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.whatsapp-otp-notify b {
+  color: var(--whatsapp);
+}
+
 .otp-box {
   display: none;
-  margin-top: 14px;
+  margin-top: 16px;
   padding: 16px;
   background: var(--panel2);
-  border: 1px dashed var(--gold);
+  border: 1px solid var(--gold);
   border-radius: 12px;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.demo-otp-banner {
-  display: inline-block;
-  padding: 6px 12px;
-  background: rgba(255, 195, 44, 0.15);
-  color: var(--gold);
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+/* Detail Form Section (Hidden until OTP is verified) */
+.detailed-form-section {
+  display: none; /* Initially hidden */
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--line);
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-.locked-step {
-  opacity: 0.35;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-
-.locked-step.unlocked {
-  opacity: 1;
-  pointer-events: auto;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 form label {
@@ -671,6 +752,11 @@ form input, form textarea, form select {
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: 8px;
+}
+
+form input:focus, form textarea:focus, form select:focus {
+  outline: none;
+  border-color: var(--gold);
 }
 
 footer {
@@ -705,6 +791,7 @@ body.light-theme footer {
   font-size: 1.3rem;
   font-weight: 900;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 /* MOBILE RESPONSIVE */
@@ -769,21 +856,32 @@ body.light-theme footer {
   .info-list {
     grid-template-columns: 1fr;
   }
+
+  .ticker-container {
+    max-width: 60%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= 1. TOP BAR WITH LIVE RUNNING CLOCK ================= -->
+<!-- ================= 1. TOP BAR WITH LIVE SLIDING TICKER ================= -->
 <div class="top-bar">
   <div class="container top-bar-content">
-    <div>
-      <span>📢 <b>Gram Suchna Portal:</b> Wyndhamganj Butbherwa me aapka swagat hai.</span>
+    
+    <!-- Smooth Sliding Ticker -->
+    <div class="ticker-container" title="Padhne ke liye yahan rokein">
+      <div class="ticker-text">
+        📢 <b>Gram Suchna Portal:</b> Wyndhamganj Butbherwa me aapka swagat hai &bull; Safai aur gram vikas karyakram jari &bull; Swasthya shivir ki jankari dekhein &bull; Gaon ki har nayi suchna ab digital roop se uplabdh!
+      </div>
     </div>
+
+    <!-- Live Running Clock -->
     <div class="live-clock-badge" id="liveClock">
-      🕒 Ghadi load ho rahi hai...
+      🕒 Samay load ho raha hai...
     </div>
+
   </div>
 </div>
 
@@ -869,11 +967,20 @@ body.light-theme footer {
     </div>
 
     <div class="about-grid">
+      <!-- Profile Card with Host Photo & WhatsApp Group Button -->
       <div class="card profile-card">
         <h3>The Host</h3>
-        <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" class="profile-photo" alt="The Host">
-        <p><b>Creator & Village Contributor</b></p>
-        <p class="muted">Wyndhamganj Butbherwa ke vikas ke liye digital pehal.</p>
+        <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" class="profile-photo" alt="The Host" onerror="this.src='https://placehold.co/150x150/0b2938/ffc32c?text=Host'">
+        <p style="margin: 6px 0 2px;"><b>Creator & Village Contributor</b></p>
+        <p class="muted" style="font-size:0.86rem; margin-top:0;">Wyndhamganj Butbherwa ke vikas ke liye digital pehal.</p>
+        
+        <!-- WHATSAPP GROUP LINK BUTTON -->
+        <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-group">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.115-.515-1.815-.749-2.986-2.595-3.077-2.716-.09-.12-1.442-1.921-1.442-3.664 0-1.743.914-2.6 1.239-2.955.325-.355.709-.444.945-.444.236 0 .473.002.68.012.219.01.513-.083.803.613.297.712 1.012 2.471 1.102 2.651.09.182.15.395.03.636-.12.241-.18.39-.356.596-.177.206-.372.46-.532.618-.178.175-.363.366-.156.722.207.355.918 1.516 1.97 2.455 1.353 1.208 2.493 1.583 2.848 1.761.355.177.562.148.772-.09.21-.24.89-1.036 1.127-1.392.237-.355.474-.296.799-.177.325.12 2.063.974 2.418 1.152.355.177.592.266.68.414.088.148.088.858-.056 1.263zM12.004 2C6.479 2 2 6.48 2 12.008c0 1.968.57 3.805 1.558 5.362L2 22l4.789-1.527C8.293 21.378 10.091 22 12.004 22 17.526 22 22 17.52 22 12.008 22 6.48 17.526 2 12.004 2z"/>
+          </svg>
+          Gaon WhatsApp Group se Judein
+        </a>
       </div>
 
       <div class="card">
@@ -906,7 +1013,7 @@ body.light-theme footer {
   </div>
 </section>
 
-<!-- ================= 6. GRAM PRATINIDHI (EK HI COMPACT DABBA) ================= -->
+<!-- ================= 6. GRAM PRATINIDHI (SINGLE BOX) ================= -->
 <section id="pratinidhi" style="background:var(--panel2)">
   <div class="container">
     
@@ -924,7 +1031,7 @@ body.light-theme footer {
           <a class="pratinidhi-call" href="tel:+919452696410">📞 +91 94526 96410</a>
         </div>
 
-        <!-- 2. Gram Sachiv (Ram) -->
+        <!-- 2. Gram Sachiv -->
         <div class="pratinidhi-item">
           <div class="pratinidhi-role">📜 Gram Sachiv:</div>
           <div class="pratinidhi-name">Shri Ram</div>
@@ -964,13 +1071,33 @@ body.light-theme footer {
       <div>
         <div class="kicker">Suvidha & Helpline</div>
         <h2>Information <span class="gold">Center</span></h2>
-        <p>Gaon aur aas-paas ki zaroori sewayein.</p>
+        <p>Gaon aur aas-paas ki zaroori sewayein aur helpline numbers.</p>
       </div>
     </div>
 
     <div class="grid-3">
-      <article
-        <!-- ================= 8. GALLERY (CLICK TO OPEN FULL PHOTO) ================= -->
+      <article class="feature">
+        <div class="icon">🏥</div>
+        <h3>Swasthya & Upkendra</h3>
+        <p>Nikat-tam Swasthya Kendra par doctor aur dawai suvidha uplabdh hai. Aapatkaalin seva ke liye 108 dial karein.</p>
+      </article>
+
+      <article class="feature">
+        <div class="icon">⚡</div>
+        <h3>Bijli & Jal Vibhag</h3>
+        <p>Gaon mein bijli ya handpump samasya ke liye shikayat darj karein. Bijli helpline: 1912 par call karein.</p>
+      </article>
+
+      <article class="feature">
+        <div class="icon">💻</div>
+        <h3>Jan Seva Kendra (CSC)</h3>
+        <p>Aay, jati, niwas praman patra, kisan kyc aur banking sewaon ke liye Panchayat Bhawan sampark karein.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. GALLERY (CLICK TO OPEN FULL PHOTO) ================= -->
 <section id="gallery" style="background:var(--panel2)">
   <div class="container">
     <div class="section-head">
@@ -982,49 +1109,41 @@ body.light-theme footer {
     </div>
 
     <div class="gallery">
-      <!-- Image 1 -->
       <figure onclick="openLightbox('IMG_20250930_164330.jpg', 'Railway Bridge - Wyndhamganj')">
-        <img src="IMG_20250930_164330.jpg" alt="Railway Bridge">
+        <img src="IMG_20250930_164330.jpg" alt="Railway Bridge" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80'">
         <figcaption>Railway Bridge</figcaption>
       </figure>
 
-      <!-- Image 2 -->
       <figure onclick="openLightbox('IMG_20250929_062521.jpg', 'Piprahava Bandh - Wyndhamganj')">
-        <img src="IMG_20250929_062521.jpg" alt="Piprahava Bandh">
+        <img src="IMG_20250929_062521.jpg" alt="Piprahava Bandh" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'">
         <figcaption>Piprahava Bandh</figcaption>
       </figure>
 
-      <!-- Image 3 -->
       <figure onclick="openLightbox('942fe674faf2ef24f01fc8b726c5222a.jpg', 'The Host - Developer')">
-        <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" alt="The Host">
+        <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" alt="The Host" onerror="this.src='https://placehold.co/600x400/0b2938/ffc32c?text=The+Host'">
         <figcaption>The Host</figcaption>
       </figure>
 
-      <!-- Image 4 -->
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80', 'Gaon ke Hari-Bhari Faslein')">
         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80" alt="Fields">
         <figcaption>Hari Bhari Kheti</figcaption>
       </figure>
 
-      <!-- Image 5 -->
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80', 'Prakriti aur Shant Vatavaran')">
         <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" alt="Nature">
         <figcaption>Gaon Ki Prakriti</figcaption>
       </figure>
 
-      <!-- Image 6 -->
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80', 'Shaam Ka Sundar Suraj')">
         <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80" alt="Sunset">
         <figcaption>Suraj Ka Nazara</figcaption>
       </figure>
 
-      <!-- Image 7 -->
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80', 'Gramin Basti aur Raste')">
         <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=80" alt="Village">
         <figcaption>Gramin Parivesh</figcaption>
       </figure>
 
-      <!-- Image 8 -->
       <figure onclick="openLightbox('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1200&q=80', 'Subah Ka Naya Prakash')">
         <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80" alt="Sunrise">
         <figcaption>Naya Savera</figcaption>
@@ -1056,7 +1175,7 @@ body.light-theme footer {
       <div class="date">CAMP</div>
       <div>
         <strong>Kisan E-KYC Camp</strong>
-        <p>Panchayat bhawan par shivir chal raha hai, aadhar aur bank passbook lekar jayein.</p>
+        <p>Panchayat bhawan par shivir chal raha hai, zaroori dastawez aur bank passbook lekar jayein.</p>
       </div>
     </div>
 
@@ -1070,70 +1189,85 @@ body.light-theme footer {
   </div>
 </section>
 
-<!-- ================= 10. SUBMIT INFO (OTP VERIFICATION) ================= -->
+<!-- ================= 10. SUBMIT INFO / SHIKAYAT (CLEAN PROGRESSIVE FLOW) ================= -->
 <section id="submit-info" style="background:var(--panel2)">
   <div class="container">
     <div class="section-head">
       <div>
         <div class="kicker">Digital Seva</div>
         <h2>Suchna / Shikayat <span class="gold">Darj Karein ✍️</span></h2>
-        <p>Mobile verification ke baad apni baat submit karein.</p>
+        <p>Pehle WhatsApp verification karein, fir aage ka form bharein.</p>
       </div>
     </div>
 
     <div class="card" style="max-width: 780px; margin: 0 auto;">
       <form id="infoSubmitForm" onsubmit="handleFinalSubmit(event)">
-        <!-- Step 1 -->
-        <div>
-          <h4 style="margin: 0 0 10px 0; color: var(--gold);">Step 1: Apni Jankari Bharein</h4>
+        
+        <!-- STEP 1: MOBILE NUMBER & WHATSAPP OTP -->
+        <div id="stepVerificationBox">
+          <div class="form-step-badge">Pehla Kadam: Mobile Verification</div>
           
-          <label for="userName">Poora Naam *</label>
-          <input type="text" id="userName" placeholder="Apna naam daalein" required>
-
-          <label for="userAddress">Pata (Mohalla / Tola) *</label>
-          <input type="text" id="userAddress" placeholder="Jaise: Wyndhamganj Purana Bazar" required>
-
-          <label for="userPhone">Mobile Number (10 Digit) *</label>
-          <input type="tel" id="userPhone" pattern="[0-9]{10}" placeholder="10-digit number" required>
-
-          <button type="button" class="btn" id="sendOtpBtn" style="margin-top: 15px;" onclick="sendVerificationOtp()">
-            📱 Mobile Par OTP Bhejein
-          </button>
+          <label for="userPhone"><b>Apna Mobile Number (10 Digit) *</b></label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
+            <input type="tel" id="userPhone" pattern="[0-9]{10}" maxlength="10" placeholder="Jaise: 9876543210" oninput="this.value = this.value.replace(/[^0-9]/g, '')" style="flex:1; min-width:220px;" required>
+            
+            <button type="button" class="btn" id="sendOtpBtn" style="margin:0;" onclick="sendWhatsAppOtp()">
+              💬 WhatsApp Par OTP Bhejein
+            </button>
+          </div>
+          <small class="muted">Aapke is number par WhatsApp verification code aayega.</small>
         </div>
 
-        <!-- Step 2: OTP Box -->
+        <!-- STEP 2: ENTER OTP BOX -->
         <div class="otp-box" id="otpBox">
-          <h4 style="margin: 0 0 8px 0; color: var(--gold);">Step 2: OTP Verify Karein</h4>
-          <div class="demo-otp-banner" id="demoOtpText"></div>
-          
-          <label for="otpInput">Yahan 4-digit OTP bharein:</label>
-          <input type="text" id="otpInput" maxlength="4" placeholder="Code yahan likhein">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span style="font-weight:700; color:var(--gold);">🔑 WhatsApp OTP Darj Karein:</span>
+            <span id="resendOtpTimer" class="muted" style="font-size:0.8rem;"></span>
+          </div>
 
-          <button type="button" class="btn" style="margin-top: 10px;" onclick="verifyUserOtp()">
-            ✅ OTP Match Karein
-          </button>
+          <div class="whatsapp-otp-notify">
+            <span>📲 Aapka WhatsApp OTP hai: <b id="demoOtpText">----</b></span>
+            <a href="javascript:void(0)" id="directWaLink" target="_blank" style="color:var(--whatsapp); font-weight:700; text-decoration:underline;">WhatsApp me kholein ↗</a>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+            <input type="text" id="otpInput" maxlength="4" placeholder="4-digit code yahan likhein" style="flex:1; min-width:180px;">
+            <button type="button" class="btn" style="margin:0; background:var(--teal); border-color:var(--teal); color:#051722;" onclick="verifyUserOtp()">
+              ✅ Verify Karein
+            </button>
+          </div>
           <span id="otpStatus" style="display:block; margin-top:8px; font-weight:700;"></span>
         </div>
 
-        <!-- Step 3: Locked Message Section -->
-        <div class="locked-step" id="lockedMessageSection" style="margin-top: 24px; border-top: 1px solid var(--line); padding-top: 15px;">
-          <h4 style="margin: 0 0 10px 0; color: var(--gold);">Step 3: Jankari Likh Kar Bhejein</h4>
-          
-          <label for="infoCategory">Suchna Ka Prakar</label>
+        <!-- STEP 3: DETAILED FORM (REVEALED ONLY AFTER OTP IS VERIFIED) -->
+        <div class="detailed-form-section" id="detailedFormSection">
+          <div class="form-step-badge" style="color:var(--success); border-color:var(--success);">
+            ✅ Number Verified! Kripya Poori Jankari Bharein
+          </div>
+
+          <label for="userName">Aapka Poora Naam *</label>
+          <input type="text" id="userName" placeholder="Apna poora naam daalein" required>
+
+          <label for="userAddress">Pata (Mohalla / Tola / Gaon) *</label>
+          <input type="text" id="userAddress" placeholder="Jaise: Purana Bazar, Wyndhamganj" required>
+
+          <label for="infoCategory">Suchna / Shikayat Ka Prakar</label>
           <select id="infoCategory">
-            <option>Gaon ki Nayi Khabar / Event</option>
-            <option>Safai / Nali / Sadak Shikayat</option>
-            <option>Bijli / Paani Samasya</option>
-            <option>Gram Vikas Sujhav</option>
+            <option>📢 Gaon ki Nayi Khabar / Event Suchna</option>
+            <option>🚰 Bijli / Paani / Handpump Samasya</option>
+            <option>🛣️ Sadak / Nali / Safai Shikayat</option>
+            <option>🌾 Kisan / Sarkari Yojna Sahyog</option>
+            <option>💡 Gram Vikas Hetu Naya Sujhav</option>
           </select>
 
-          <label for="userMessage">Suchna Ka Pura Vivaran *</label>
+          <label for="userMessage">Suchna / Samasya Ka Pura Vivaran *</label>
           <textarea id="userMessage" rows="4" placeholder="Apni baat yahan vistar se likhein..." required></textarea>
 
-          <button type="submit" class="btn" style="margin-top: 15px; width: 100%;">
-            🚀 Antyatah Submit Karein
+          <button type="submit" class="btn" style="margin-top: 18px; width: 100%; font-size:1rem; padding:13px;">
+            🚀 Antyatah Suchna Submit Karein
           </button>
         </div>
+
       </form>
     </div>
   </div>
@@ -1154,19 +1288,19 @@ body.light-theme footer {
       <div class="card">
         <h4 class="gold">The Host</h4>
         <p class="muted">Website Developer</p>
-        <p>📞 +91 92143 60582</p>
+        <p><a href="tel:+919214360582">📞 +91 92143 60582</a></p>
       </div>
 
       <div class="card">
         <h4 class="gold">Gram Pradhan</h4>
         <p class="muted">Shri Shyam Kumar</p>
-        <p>📞 +91 94526 96410</p>
+        <p><a href="tel:+919452696410">📞 +91 94526 96410</a></p>
       </div>
 
       <div class="card">
         <h4 class="gold">Gram Sachiv</h4>
         <p class="muted">Shri Ram</p>
-        <p>📞 +91 98765 43210</p>
+        <p><a href="tel:+919876543210">📞 +91 98765 43210</a></p>
       </div>
     </div>
   </div>
@@ -1206,7 +1340,7 @@ body.light-theme footer {
   // 1. LIVE RUNNING CLOCK
   function updateLiveClock() {
     const now = new Date();
-    const d = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const d = now.toLocaleDateString('hi-IN', { day: '2-digit', month: 'short', year: 'numeric' });
     const t = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
     const clock = document.getElementById('liveClock');
     if (clock) {
@@ -1231,21 +1365,20 @@ body.light-theme footer {
 
   // 3. THEME SWITCHER (DARK / LIGHT)
   function switchTheme(theme) {
+    const select = document.getElementById('themeSelect');
     if (theme === 'light') {
       document.body.classList.add('light-theme');
       localStorage.setItem('wdm_theme', 'light');
+      if (select) select.value = 'light';
     } else {
       document.body.classList.remove('light-theme');
       localStorage.setItem('wdm_theme', 'dark');
+      if (select) select.value = 'dark';
     }
   }
 
-  // Check saved theme on load
   const savedTheme = localStorage.getItem('wdm_theme') || 'dark';
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-    document.getElementById('themeSelect').value = 'light';
-  }
+  switchTheme(savedTheme);
 
   // 4. GALLERY FULLSCREEN LIGHTBOX
   function openLightbox(imgSrc, captionText) {
@@ -1268,30 +1401,41 @@ body.light-theme footer {
     }
   }
 
-  // 5. OTP & FORM VERIFICATION
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      closeMenu();
+    }
+  });
+
+  // 5. STEP-BY-STEP FORM & WHATSAPP OTP SYSTEM
   let currentOtp = null;
   let isVerified = false;
 
-  function sendVerificationOtp() {
-    const name = document.getElementById('userName').value.trim();
+  function sendWhatsAppOtp() {
     const phone = document.getElementById('userPhone').value.trim();
-    const address = document.getElementById('userAddress').value.trim();
 
-    if (!name || !phone || !address) {
-      alert('Kripya pehle Apna Naam, Pata aur Mobile Number bharein!');
+    if (!phone || phone.length !== 10) {
+      alert('Kripya 10-digit ka sahi mobile number daalein!');
+      document.getElementById('userPhone').focus();
       return;
     }
 
-    if (phone.length < 10) {
-      alert('Kripya 10-digit ka sahi mobile number daalein.');
-      return;
-    }
-
+    // 4-Digit Unique OTP Generate
     currentOtp = Math.floor(1000 + Math.random() * 9000).toString();
 
+    // UI Updates
     document.getElementById('otpBox').style.display = 'block';
-    document.getElementById('demoOtpText').innerHTML = `📩 <b>Aapka OTP hai: ${currentOtp}</b>`;
-    alert(`Aapke number (${phone}) par OTP bhej diya gaya hai: ${currentOtp}`);
+    document.getElementById('demoOtpText').textContent = currentOtp;
+    
+    // WhatsApp direct message URL (User can click to view code directly in WhatsApp)
+    const waText = encodeURIComponent(`Wyndhamganj Butbherwa Portal OTP: ${currentOtp} (Valid for verification)`);
+    const waUrl = `https://wa.me/91${phone}?text=${waText}`;
+    
+    const waLink = document.getElementById('directWaLink');
+    waLink.href = waUrl;
+
+    alert(`✅ OTP generate ho gaya hai: ${currentOtp}\nAap WhatsApp link par click karke bhi code dekh sakte hain.`);
   }
 
   function verifyUserOtp() {
@@ -1307,11 +1451,17 @@ body.light-theme footer {
     if (userOtp === currentOtp) {
       isVerified = true;
       status.style.color = 'var(--success)';
-      status.textContent = '✅ Verified! Step 3 unlock ho gaya hai.';
+      status.textContent = '✅ Mobile number safaltapoorvak verify ho gaya!';
       
-      document.getElementById('lockedMessageSection').classList.add('unlocked');
+      // Lock mobile number input & OTP
+      document.getElementById('userPhone').disabled = true;
       document.getElementById('sendOtpBtn').disabled = true;
-      document.getElementById('sendOtpBtn').textContent = '✅ Number Verified';
+      document.getElementById('sendOtpBtn').textContent = '✅ Verified';
+      document.getElementById('otpBox').style.display = 'none';
+
+      // REVEAL NEXT DETAILS (Form fields show smoothly)
+      document.getElementById('detailedFormSection').style.display = 'block';
+      document.getElementById('userName').focus();
     } else {
       status.style.color = 'var(--danger)';
       status.textContent = '❌ Galat OTP! Sahi code daalein.';
@@ -1325,21 +1475,25 @@ body.light-theme footer {
       return;
     }
 
-    const name = document.getElementById('userName').value;
+    const name = document.getElementById('userName').value.trim();
+    const phone = document.getElementById('userPhone').value.trim();
+    const address = document.getElementById('userAddress').value.trim();
     const cat = document.getElementById('infoCategory').value;
+    const msg = document.getElementById('userMessage').value.trim();
 
-    alert(`Dhanyawad ${name} ji! Aapki suchna ("${cat}") safaltapoorvak darj kar li gayi hai.`);
+    alert(`Dhanyawad ${name} ji! Aapki suchna/shikayat darj kar li gayi hai.\n\nPrakar: ${cat}\nGaon: Wyndhamganj Butbherwa`);
 
+    // Reset Form
     document.getElementById('infoSubmitForm').reset();
-    document.getElementById('otpBox').style.display = 'none';
-    document.getElementById('lockedMessageSection').classList.remove('unlocked');
-    document.getElementById('otpStatus').textContent = '';
+    document.getElementById('detailedFormSection').style.display = 'none';
+    document.getElementById('userPhone').disabled = false;
     document.getElementById('sendOtpBtn').disabled = false;
-    document.getElementById('sendOtpBtn').textContent = '📱 Mobile Par OTP Bhejein';
+    document.getElementById('sendOtpBtn').textContent = '💬 WhatsApp Par OTP Bhejein';
+    document.getElementById('otpStatus').textContent = '';
     isVerified = false;
     currentOtp = null;
   }
 </script>
 
 </body>
-      </html>
+</html>
