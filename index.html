@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Shiv Nagar Butbherwa - hamari pehchaan, hamara gaurav. Gaon ki jaankari, gallery aur community updates.">
-<title>Shiv Nagar Butbherwa | Official Website</title>
+<meta name="description" content="Wyndhamganj Butbherwa - Gram Portal, Samachar, Jankari aur Panchayat Sewaen.">
+<title>Shiv Nagar Butbherwa | Official Portal</title>
 
 <style>
 :root {
@@ -12,10 +12,23 @@
   --panel: #081f2d;
   --panel2: #0b2938;
   --gold: #ffc32c;
+  --gold-hover: #e0a81d;
   --text: #f4f7fa;
   --muted: #b8c8d2;
   --line: #214253;
   --teal: #2dd4bf;
+  --success: #22c55e;
+  --danger: #ef4444;
+}
+
+/* Light Theme Variables */
+body.light-theme {
+  --bg: #f3f6fa;
+  --panel: #ffffff;
+  --panel2: #e8f0f8;
+  --text: #111e28;
+  --muted: #4e6578;
+  --line: #cfdce6;
 }
 
 * {
@@ -27,8 +40,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -49,13 +63,48 @@ img {
   margin: auto;
 }
 
+/* 1. TOP TICKER & LIVE CLOCK */
+.top-bar {
+  background: #020c13;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+  padding: 8px 0;
+}
+body.light-theme .top-bar {
+  background: #dfe8f0;
+}
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.live-clock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--panel2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* 2. NAVBAR */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(2,15,24,.97);
+  background: rgba(4, 19, 29, 0.95);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
+  transition: background 0.3s ease;
+}
+body.light-theme header {
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .nav {
@@ -63,14 +112,14 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  min-height: 76px;
+  min-height: 72px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 800;
   line-height: 1.2;
 }
@@ -78,12 +127,13 @@ header {
 .brand-icon {
   display: grid;
   place-items: center;
-  width: 45px;
-  height: 45px;
+  width: 44px;
+  height: 44px;
   color: var(--gold);
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   border: 1px solid #71591b;
-  border-radius: 13px;
+  border-radius: 12px;
+  background: var(--panel);
 }
 
 .brand em {
@@ -93,67 +143,90 @@ header {
 
 .brand small {
   display: block;
-  margin-top: 5px;
+  margin-top: 4px;
   color: var(--muted);
-  font-size: .65rem;
+  font-size: 0.65rem;
   font-weight: 400;
 }
 
 .navlinks {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .navlinks a {
-  padding: 9px 10px;
-  border-radius: 9px;
-  font-size: .88rem;
-  transition: .25s;
+  padding: 8px 11px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: 0.25s;
 }
 
 .navlinks a:hover,
 .navlinks a.active {
   background: var(--gold);
-  color: #15202a;
+  color: #121c24;
+}
+
+.theme-selector-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: var(--panel2);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.theme-selector-box select {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
 }
 
 .menu-btn {
   display: none;
-  padding: 8px 12px;
-  color: white;
+  padding: 8px 14px;
+  color: var(--text);
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
   cursor: pointer;
+  font-weight: 700;
 }
 
+/* 3. HERO SECTION */
 .hero {
-  min-height: 510px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   position: relative;
   background:
-    linear-gradient(90deg,rgba(2,15,23,.96),rgba(2,15,23,.66) 55%,rgba(2,15,23,.2)),
+    linear-gradient(90deg, rgba(2,15,23,0.95), rgba(2,15,23,0.7) 60%, rgba(2,15,23,0.3)),
     url('IMG_20250929_062521.jpg') center/cover;
 }
 
 .hero-content {
-  padding: 65px 0;
+  padding: 60px 0;
   max-width: 720px;
 }
 
 .kicker {
   color: var(--gold);
-  font-size: .82rem;
+  font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 h1 {
-  margin: 14px 0;
-  font-size: clamp(2.5rem,7vw,5rem);
+  margin: 12px 0;
+  font-size: clamp(2.3rem, 6vw, 4.5rem);
   line-height: 1.05;
 }
 
@@ -164,7 +237,7 @@ h1 span, .gold {
 .hero p {
   max-width: 620px;
   color: #e1eaf0;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
 }
 
 .btn {
@@ -173,89 +246,96 @@ h1 span, .gold {
   align-items: center;
   gap: 8px;
   margin: 8px 6px 8px 0;
-  padding: 12px 20px;
+  padding: 11px 20px;
   border: 1px solid var(--gold);
   border-radius: 999px;
   background: var(--gold);
   color: #14202a;
   font-weight: 800;
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
+  background: var(--gold-hover);
+  transform: translateY(-2px);
 }
 
 .btn-outline {
   background: transparent;
   color: white;
 }
+body.light-theme .btn-outline {
+  color: #ffffff;
+}
 
 .pill-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
-  margin: 24px 0;
+  gap: 8px;
+  margin: 20px 0;
 }
 
 .pill {
-  padding: 7px 12px;
-  border: 1px solid #ffffff32;
+  padding: 6px 12px;
+  border: 1px solid #ffffff33;
   border-radius: 999px;
   background: #051722b8;
-  font-size: .88rem;
+  font-size: 0.84rem;
 }
 
+/* 4. QUICK LINKS */
 .quicklinks {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 12px;
-  margin-top: -22px;
+  margin-top: -24px;
 }
 
 .quick {
-  padding: 17px 8px;
+  padding: 16px 8px;
   text-align: center;
-  background: linear-gradient(145deg,#092435,#061721);
+  background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 15px;
-  transition: .25s;
+  border-radius: 14px;
+  transition: 0.25s;
 }
 
 .quick:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--gold);
 }
 
 .quick b {
   display: block;
-  color: var(--gold);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 4px;
 }
 
 .quick span {
-  font-size: .84rem;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
+/* 5. COMMON SECTIONS & CARDS */
 section {
   padding: 70px 0;
-  scroll-margin-top: 75px;
+  scroll-margin-top: 80px;
 }
 
 .section-head {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   gap: 18px;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
 .section-head h2 {
   margin: 0;
-  font-size: clamp(1.8rem,4vw,2.6rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   line-height: 1.2;
 }
 
@@ -265,15 +345,15 @@ section {
 }
 
 .card {
-  padding: 25px;
-  background: linear-gradient(145deg,var(--panel),#061923);
+  padding: 24px;
+  background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: .8fr 1.2fr;
+  grid-template-columns: 0.85fr 1.15fr;
   gap: 24px;
   align-items: stretch;
 }
@@ -284,28 +364,23 @@ section {
 
 .profile-photo {
   display: block;
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 170px;
   margin: 15px auto;
   object-fit: cover;
   border: 4px solid var(--gold);
   border-radius: 50%;
 }
 
-.profile-card p,
-.muted {
-  color: var(--muted);
-}
-
 .info-list {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-top: 20px;
 }
 
 .info-item {
-  padding: 14px;
+  padding: 12px;
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -318,25 +393,31 @@ section {
 
 .info-item span {
   color: var(--muted);
-  font-size: .9rem;
+  font-size: 0.88rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .feature {
-  padding: 22px;
+  padding: 20px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  transition: .25s;
+  border-radius: 15px;
+  transition: 0.25s;
 }
 
 .feature:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--gold);
 }
 
@@ -351,18 +432,19 @@ section {
 .feature p {
   margin-bottom: 0;
   color: var(--muted);
-  font-size: .93rem;
+  font-size: 0.92rem;
 }
 
+/* 6. GALLERY & FULL PHOTO MODAL */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
-  gap: 13px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .gallery figure {
   position: relative;
-  height: 190px;
+  height: 200px;
   overflow: hidden;
   margin: 0;
   background: var(--panel2);
@@ -376,116 +458,172 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .4s;
+  transition: transform 0.4s;
 }
 
 .gallery figure:hover img {
-  transform: scale(1.07);
+  transform: scale(1.08);
 }
 
 .gallery figcaption {
   position: absolute;
   inset: auto 0 0;
-  padding: 30px 12px 10px;
-  background: linear-gradient(transparent,#001019e8);
+  padding: 30px 10px 10px;
+  background: linear-gradient(transparent, rgba(0, 14, 23, 0.9));
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #ffffff;
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid var(--gold);
+}
+
+.lightbox-title {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  background: #1f3644;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+/* 7. EVENTS & NOTICES */
 .notice {
   display: flex;
   gap: 15px;
   align-items: flex-start;
-  margin-bottom: 13px;
+  margin-bottom: 14px;
   padding: 16px;
-  background: var(--panel2);
+  background: var(--panel);
   border: 1px solid var(--line);
   border-left: 4px solid var(--gold);
   border-radius: 12px;
 }
 
 .notice .date {
-  min-width: 65px;
-  padding: 7px;
+  min-width: 70px;
+  padding: 6px;
   text-align: center;
   color: var(--gold);
-  background: #153e50;
-  border-radius: 9px;
+  background: var(--panel2);
+  border-radius: 8px;
   font-weight: 800;
+  font-size: 0.8rem;
 }
 
-.notice p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: .93rem;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-.contact-line {
-  display: flex;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  overflow-wrap: anywhere;
-}
-
-.contact-line:last-child {
-  border-bottom: 0;
-}
-
-.contact-line .symbol {
-  font-size: 1.4rem;
-  color: var(--gold);
-}
-
-.contact-line small {
+/* 8. SUBMIT INFORMATION & OTP WORKFLOW */
+.form-step {
   display: block;
-  color: var(--muted);
 }
 
-.contact-line a:hover {
+.otp-box {
+  display: none;
+  margin-top: 15px;
+  padding: 16px;
+  background: var(--panel2);
+  border: 1px dashed var(--gold);
+  border-radius: 12px;
+}
+
+.otp-box.active {
+  display: block;
+}
+
+.demo-otp-banner {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(255, 195, 44, 0.15);
   color: var(--gold);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 10px;
 }
 
-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+.locked-step {
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.locked-step.unlocked {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 form label {
   display: block;
   color: var(--muted);
-  font-size: .88rem;
+  font-size: 0.88rem;
+  margin-top: 10px;
 }
 
 form input, form textarea, form select {
   width: 100%;
-  margin-top: 6px;
-  padding: 12px;
-  color: white;
-  background: #041722;
-  border: 1px solid #315061;
-  border-radius: 10px;
+  margin-top: 5px;
+  padding: 11px;
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
 }
 
-form .full {
-  grid-column: 1/-1;
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
 }
 
-form textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
+/* 9. FOOTER & BACK TO TOP */
 footer {
-  padding: 27px 0;
-  background: #020d14;
+  padding: 30px 0;
+  background: #020c13;
   border-top: 1px solid var(--line);
+}
+body.light-theme footer {
+  background: #dfe8f0;
 }
 
 .footer-row {
@@ -496,70 +634,26 @@ footer {
   flex-wrap: wrap;
 }
 
-footer p, footer small {
-  color: var(--muted);
-  margin: 4px 0;
-}
-
-.footer-links {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
 .top {
   position: fixed;
-  right: 17px;
-  bottom: 17px;
-  z-index: 30;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
   display: grid;
   place-items: center;
-  width: 45px;
-  height: 45px;
+  width: 44px;
+  height: 44px;
   background: var(--gold);
   color: #15202a;
   border-radius: 50%;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 900;
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: #000e;
-}
-
-.lightbox.open {
-  display: flex;
-}
-
-.lightbox img {
-  max-width: 95%;
-  max-height: 82vh;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  color: white;
-  background: #263b48;
-  border: 0;
-  border-radius: 50%;
-  font-size: 1.5rem;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
 }
 
-@media(max-width:900px) {
+/* 10. RESPONSIVE DESIGN (MOBILE / TABLET) */
+@media (max-width: 900px) {
   .menu-btn {
     display: block;
   }
@@ -567,15 +661,16 @@ footer p, footer small {
   .navlinks {
     display: none;
     position: absolute;
-    top: 76px;
+    top: 72px;
     left: 4%;
     right: 4%;
-    padding: 12px;
+    padding: 16px;
     flex-direction: column;
     align-items: stretch;
-    background: #041721;
+    background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   }
 
   .navlinks.open {
@@ -586,304 +681,183 @@ footer p, footer small {
     padding: 12px;
   }
 
-  .quicklinks {
-    grid-template-columns: repeat(3,1fr);
+  .theme-selector-box {
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 8px 12px;
   }
 
-  .about-grid, .contact-grid {
-    grid-template-columns: 1fr;
+  .quicklinks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-grid, .grid-4 {
+    grid-template-columns: 1fr 1fr;
   }
 
   .grid-3 {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .gallery {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media(max-width:560px) {
-  .brand {
-    font-size: .92rem;
-  }
-
-  .brand-icon {
-    width: 39px;
-    height: 39px;
-  }
-
-  .hero {
-    min-height: 540px;
-    background-position: 58% center;
-  }
-
+@media (max-width: 600px) {
   .quicklinks {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  section {
-    padding: 52px 0;
-  }
-
-  .section-head {
-    display: block;
-  }
-
-  .grid-3, .info-list {
+  .about-grid, .grid-4, .grid-3 {
     grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
   }
 
   .gallery figure {
-    height: 155px;
+    height: 150px;
   }
 
-  .card {
-    padding: 18px;
-  }
-
-  form {
+  .info-list {
     grid-template-columns: 1fr;
   }
-
-  form .full {
-    grid-column: auto;
-  }
-}
-  /* Theme selector */
-.theme-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
-  color: var(--text);
-}
-
-.theme-option select {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  color: var(--text);
-}
-
-/* Light theme colors */
-body.light-theme {
-  --bg: #f4f7fb;
-  --panel: #ffffff;
-  --panel2: #eaf1f7;
-  --text: #172b3a;
-  --muted: #526779;
-  --line: #d5e0e9;
-}
-
-body.light-theme header {
-  background: rgba(255, 255, 255, 0.97);
-}
-
-body.light-theme .navlinks {
-  background: var(--panel);
-}
-
-body.light-theme .card {
-  background: var(--panel);
-  color: var(--text);
-}
-
-body.light-theme .feature,
-body.light-theme .quick {
-  background: var(--panel);
-  color: var(--text);
-}
-
-body.light-theme .hero p {
-  color: #ffffff;
-}
-
-body.light-theme .btn-outline {
-  color: var(--text);
-}
-
-body.light-theme .menu-btn {
-  color: var(--text);
-  background: var(--panel);
-}
-
-body.light-theme footer {
-  background: #eaf1f7;
-}
-  /* LIGHT THEME */
-body.light-theme {
---bg: #f4f7fb;
---panel: #ffffff;
---panel2: #eaf1f7;
---text: #172b3a;
---muted: #526779;
---line: #d5e0e9;
-}
-
-body.light-theme header {
-background: #ffffff;
-}
-
-body.light-theme .navlinks {
-background: #ffffff;
-}
-
-body.light-theme .card,
-body.light-theme .feature,
-body.light-theme .quick {
-background: #ffffff;
-color: #172b3a;
-}
-
-body.light-theme .menu-btn {
-background: #ffffff;
-color: #172b3a;
-}
-
-body.light-theme footer {
-background: #eaf1f7;
-}
-
-.theme-option {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 10px;
-padding: 10px;
-color: var(--text);
-}
-
-.theme-option select {
-padding: 8px;
-border-radius: 8px;
-border: 1px solid var(--line);
-background: var(--panel);
-color: var(--text);
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= 1. TOP TICKER & LIVE CLOCK ================= -->
+<div class="top-bar">
+  <div class="container top-bar-content">
+    <div>
+      <span>📢 <b>Live Update:</b> Wyndhamganj Butbherwa gaon ki portal me aapka swagat hai.</span>
+    </div>
+    <div class="live-clock-badge" id="liveClock">
+      🕒 Samay load ho raha hai...
+    </div>
+  </div>
+</div>
+
+<!-- ================= 2. NAVBAR WITH MENU & THEME SELECTOR ================= -->
 <header>
   <div class="container nav">
     <a class="brand" href="#home">
       <span class="brand-icon">ॐ</span>
-      <span>Wyndhamganj <em>Butberwa</em>
-        <small>WDM Updatea Here• By -the host </small>
+      <span>Wyndhamganj <em>Butbherwa</em>
+        <small>Portal Updates • By The Host</small>
       </span>
     </a>
 
-    <button class="menu-btn" id="menuBtn"
-      aria-expanded="false" aria-controls="navlinks">
+    <!-- Mobile Hamburger Toggle Button -->
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle Navigation">
       ☰ Menu
     </button>
 
     <nav class="navlinks" id="navlinks">
       <a href="#home">⌂ Home</a>
       <a href="#about">About</a>
+      <a href="#panchayat">Panchayat</a>
       <a href="#information">Information</a>
       <a href="#gallery">Gallery</a>
       <a href="#events">Events</a>
-      <a href="#more">More</a>
+      <a href="#submit-info">Suchna Dein ✍️</a>
       <a href="#contact">Contact</a>
-<a href="theme">
-<div class="theme-option">
-  <label for="themeSelect">🎨 Theme</label>
-  <select id="themeSelect">
-    <option value="dark">🌙 Dark Theme</option>
-    <option value="light">☀️ Light Theme</option>
-  </select>
-</div>
-<a/>
+      
+      <!-- Theme Option inside the menu itself -->
+      <div class="theme-selector-box">
+        <span>🎨 Theme:</span>
+        <select id="themeSelect">
+          <option value="dark">🌙 Dark</option>
+          <option value="light">☀️ Light</option>
+        </select>
+      </div>
     </nav>
-
-
+  </div>
 </header>
 
 <main>
 
+<!-- ================= 3. HERO SECTION ================= -->
 <section class="hero" id="home">
   <div class="container hero-content">
-    <div class="kicker">Welcome to our Wyndhamganj</div>
+    <div class="kicker">Gram Panchayat Wyndhamganj</div>
     <h1>WDM <span>Butbherwa</span></h1>
     <p>
-      Swagat Hai 🙏 Ham Wyndhamganj Butbherwa gramwasi
-      aapka hardik swagat karte hain.
+      Swagat Hai 🙏 Ham Wyndhamganj Butbherwa nagarwasi aapka hardik swagat karte hain. Gaon ki har nayi jankari aur updates ab ek hi jagah.
     </p>
 
     <div class="pill-row">
       <span class="pill">📚 Shiksha</span>
       <span class="pill">🌿 Sanskriti</span>
       <span class="pill">🤝 Ekta aur Vikas</span>
-      <small>updates here</small>
     </div>
 
-    <a class="btn" href="#information">Explore Information ↗</a>
-    <a class="btn btn-outline" href="#gallery">View Gallery 📸</a>
+    <div>
+      <a class="btn" href="#information">Explore Information ↗</a>
+      <a class="btn btn-outline" href="#gallery">Poori Gallery Dekhein 📸</a>
+    </div>
   </div>
 </section>
 
+<!-- ================= 4. QUICK ICONS ================= -->
 <div class="container quicklinks">
   <a class="quick" href="#about"><b>👥</b><span>About Us</span></a>
-  <a class="quick" href="#information"><b>ℹ️</b><span>Information</span></a>
+  <a class="quick" href="#panchayat"><b>🏛️</b><span>Panchayat</span></a>
   <a class="quick" href="#gallery"><b>🖼️</b><span>Gallery</span></a>
   <a class="quick" href="#events"><b>📅</b><span>Events</span></a>
-  <a class="quick" href="#more"><b>🔗</b><span>Useful Links</span></a>
+  <a class="quick" href="#submit-info"><b>📝</b><span>Jankari Bhejein</span></a>
   <a class="quick" href="#contact"><b>✉️</b><span>Contact</span></a>
 </div>
 
+<!-- ================= 5. ABOUT SECTION ================= -->
 <section id="about">
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="kicker">Wyndhamganj Updates By Host</div>
-        <h2>About <span class="gold">Host</span></h2>
-        
+        <div class="kicker">Wyndhamganj Updates</div>
+        <h2>Hamara <span class="gold">Gaon & Host</span></h2>
       </div>
     </div>
 
     <div class="about-grid">
+      <!-- Profile Card (Yahan Host details change karein) -->
       <div class="card profile-card">
         <h3>The Host</h3>
         <img
           src="942fe674faf2ef24f01fc8b726c5222a.jpg"
           class="profile-photo"
-          alt="Shiv Nagar Butbherwa profile photo">
-        <p>About Me - Unavailable ☺️</p>
+          alt="The Host photo">
+        <p><b>Creator & Village Contributor</b></p>
+        <p class="muted">Wyndhamganj Butbherwa ke vikas aur suvidha ke liye digital pehal.</p>
       </div>
 
       <div class="card">
-        <div class="kicker">Hamara Nagar</div>
+        <div class="kicker">Parichay</div>
         <h2>Wyndhamganj <span class="gold">Butbherwa</span></h2>
         <p>
-          Wyndhamganj Butbherwa Ke log aur yha ki vadiya Ham Nagar vasiyo ko psnd hai . 
-        
-        </p>
-        <p>
-          Is website ka maksad gaon ki upyogi jaankari, tasveerein,
-          announcements, events aur zaroori links ko ek jagah lana hai.
+          Wyndhamganj Butbherwa prakritik sundarta, shant vatavaran aur apnepan se bhara hua hai. Is portal ka mukhya uddeshya gaonwasiyon tak sarkari yojnaayein, zaroori suchnaayein aur aapas ke samachar aasaani se pahunchana hai.
         </p>
 
         <div class="info-list">
           <div class="info-item">
             <strong>📍 Location</strong>
-            <span>Wyndhamganj, Butbherwa, Uttar Pradesh, India</span>
+            <span>Wyndhamganj, Butbherwa, Sonbhadra (U.P.)</span>
           </div>
           <div class="info-item">
-            <strong>🤝 Akta</strong>
-            <span>Ekta, sahyog aur vikas</span>
+            <strong>🤝 Sahyog</strong>
+            <span>Ekta, safai aur naye vikas karya</span>
           </div>
           <div class="info-item">
-            <strong>📸 Gallery</strong>
-            <span>Gaon ki yaadein aur tasveerein</span>
+            <strong>📸 Sanskriti</strong>
+            <span>Parampara, mele aur tyohar</span>
           </div>
           <div class="info-item">
-            <strong>📢 Updates</strong>
-            <span>Local information aur announcements</span>
+            <strong>📢 Digital Seva</strong>
+            <span>Online suchna aur shikayat panjikaran</span>
           </div>
         </div>
       </div>
@@ -891,11 +865,63 @@ color: var(--text);
   </div>
 </section>
 
-<section id="information" style="background:#061923">
+<!-- ================= 6. GRAM PANCHAYAT REPRESENTATIVES (YAHAN BADLEIN) ================= -->
+<section id="panchayat" style="background:var(--panel2)">
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="kicker">Useful resources</div>
+        <div class="kicker">Pratinidhi & Karmi</div>
+        <h2>Gram Panchayat <span class="gold">Padadhikari</span></h2>
+        <p>Aapke gaon ke pratinidhi aur sahayak karmchari.</p>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <!-- Gram Pradhan -->
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:8px;">🎖️</div>
+        <h3>Shyam Kumar</h3>
+        <p class="gold"><b>Gram Pradhan</b></p>
+        <p class="muted">Wyndhamganj Panchayat</p>
+        <p>📞 +91 94526 96410</p>
+      </div>
+
+      <!-- Gram Sachiv (Secretary) - Ram -->
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:8px;">📜</div>
+        <h3>Ram</h3>
+        <p class="gold"><b>Gram Sachiv (Secretary)</b></p>
+        <p class="muted">Panchayat Vikas Adhikari</p>
+        <p>📞 +91 98765 43210</p>
+      </div>
+
+      <!-- Rojgar Sevak -->
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:8px;">💼</div>
+        <h3>Mohan Singh</h3>
+        <p class="gold"><b>Gram Rojgar Sevak</b></p>
+        <p class="muted">MGNREGA & Shramik Karyakram</p>
+        <p>📞 +91 91234 56789</p>
+      </div>
+
+      <!-- ASHA Worker -->
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:8px;">🩺</div>
+        <h3>Geeta Devi</h3>
+        <p class="gold"><b>ASHA Bahu</b></p>
+        <p class="muted">Swasthya & Prathmik Seva</p>
+        <p>📞 +91 93456 78901</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. INFORMATION CENTER ================= -->
+<section id="information">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Suvidha & Helpline</div>
         <h2>Information <span class="gold">Center</span></h2>
         <p>Gaon aur aas-paas ki upyogi jaankari.</p>
       </div>
@@ -904,216 +930,41 @@ color: var(--text);
     <div class="grid-3">
       <article class="feature">
         <div class="icon">🎓</div>
-        <h3>Education</h3>
-        <p>Schools, colleges, coaching ki jaankari.</p>
+        <h3>Shiksha (Education)</h3>
+        <p>Prathmik vidyalaya, uchha madhyamik school aur coaching kendra.</p>
       </article>
 
       <article class="feature">
         <div class="icon">🏥</div>
-        <h3>Health Services</h3>
-        <p>Hospital, clinic aur health services ki details.</p>
+        <h3>Swasthya Sewa (Health)</h3>
+        <p>Primary Health Centre (PHC), dawaiyan aur emergency helpline.</p>
       </article>
 
       <article class="feature">
-        <div class="icon">🚌</div>
-        <h3>Transport</h3>
-        <p>Bus, railway station aur local routes ki jaankari.</p>
+        <div class="icon">🚆</div>
+        <h3>Railway & Parivahan</h3>
+        <p>Wyndhamganj Railway Station time table aur bus service route.</p>
       </article>
 
       <article class="feature">
-        <div class="icon">🏛️</div>
-        <h3>Government Services</h3>
-        <p>Sarkari yojanaon aur public services ke links.</p>
+        <div class="icon">🌾</div>
+        <h3>Kisan Samman Nidhi</h3>
+        <p>Kisan kist status, khatauni aur beej vitran kendra ki details.</p>
       </article>
 
       <article class="feature">
-        <div class="icon">📢</div>
-        <h3>Local Updates</h3>
-        <p>Gaon ki announcements aur zaroori notices.</p>
+        <div class="icon">💡</div>
+        <h3>Bijli & Paani (UPPCL)</h3>
+        <p>Rural electricity bill inquiry aur jal nigam pipeline complaints.</p>
       </article>
 
       <article class="feature">
         <div class="icon">☎️</div>
-        <h3>Important Contacts</h3>
-        <p>Public services aur useful contact information.</p>
-        <p>The Host      - +919214360582</p>
-        <p>Gram Pardhan  - +919452696410</p>
-        <p>Active Person - +917394894882 </p>
+        <h3>Helpline Numbers</h3>
+        <p>Police: 112 | Ambulance: 108 | Mahila Helpline: 1090</p>
       </article>
     </div>
   </div>
 </section>
 
-<section id="gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="kicker">Memories and moments</div>
-        <h2>Our <span class="gold">Gallery 📸</span></h2>
-        <p>Photo par click karke use bade size mein dekhein.</p>
-      </div>
-    </div>
-
-    <div class="gallery">
-      <figure>
-        <img src="IMG_20250930_164330.jpg"
-          alt="Shiv Nagar Butbherwa ki photo">
-        <figcaption>Railway Bridge</figcaption>
-      </figure>
-
-      <figure>
-        <img src="IMG_20250929_062521.jpg"
-          alt="Gaon ki tasveer">
-        <figcaption>Piprahava Bandh </figcaption>
-      </figure>
-
-      <figure>
-        <img src="942fe674faf2ef24f01fc8b726c5222a.jpg"
-          alt="Hamari community photo">
-        <figcaption>The Host</figcaption>
-      </figure>
-
-      <figure>
-        <img loading="lazy"
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80"
-          alt="Green fields">
-        <figcaption>Green Fields</figcaption>
-      </figure>
-
-      <figure>
-        <img loading="lazy"
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
-          alt="Nature landscape">
-        <figcaption>Beautiful Nature</figcaption>
-      </figure>
-
-      <figure>
-        <img loading="lazy"
-          src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80"
-          alt="Sunset sky">
-        <figcaption>Golden Moments</figcaption>
-      </figure>
-
-      <figure>
-        <img loading="lazy"
-          src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=80"
-          alt="Buildings">
-        <figcaption>Our Place</figcaption>
-      </figure>
-
-      <figure>
-        <img loading="lazy"
-          src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80"
-          alt="Sunrise">
-        <figcaption>New Beginnings</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section id="events" style="background:#061923">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="kicker">What's happening</div>
-        <h2>Events & <span class="gold">Announcements</span></h2>
-        <p>Gaon ke events aur updates yahan dekhein.</p>
-      </div>
-    </div>
-
-    <div class="notice">
-      <div class="date">UPDATE</div>
-      <div>
-        <strong>Local Announcements</strong>
-        <p>Yahan gaon ki verified announcements aur public notices add karein.</p>
-      </div>
-    </div>
-
-    <div class="notice">
-      <div class="date">EVENT</div>
-      <div>
-        <strong>Festival & Community Events</strong>
-        <p>Events ki date, time aur venue ki jaankari yahan add karein.</p>
-      </div>
-    </div>
-
-    <div class="notice">
-      <div class="date">INFO</div>
-      <div>
-        <strong>Education & Public Services</strong>
-        <p>Admission, scholarship aur public service updates share karein.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="more">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="kicker">Explore more</div>
-        <h2>Useful <span class="gold">Links</span></h2>
-        <p>Official websites aur community resources.</p>
-      </div>
-    </div>
-
-    <div class="grid-3">
-      <a class="feature" href="#contact">
-        <div class="icon">📝</div>
-        <h3>Submit Information →</h3>
-        <p>Local information share karne ke liye contact karein.</p>
-      </a>
-
-      <a class="feature" href="#gallery">
-        <div class="icon">📸</div>
-        <h3>Share a Memory →</h3>
-        <p>Gaon ki photos Gallery mein add karne ke liye contact karein.</p>
-      </a>
-
-      <a class="feature" href="#contact">
-        <div class="card" style="margin-top:2px">
-        <h3>Join the Community →</h3>
-        <p>
-          <a class="gold" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" targer="_blank" rel="noopener">Whatsapp Group:-</a>
-      </a>
-    </p>
-        
-    </div>
-    
-
-    <div class="card" style="margin-top:18px">
-      <h3>Government Links</h3>
-      <p>
-        <a class="gold" href="https://www.india.gov.in/" target="_blank" rel="noopener">India Government Portal ↗</a>
-        &nbsp; • &nbsp;
-        <a class="gold" href="https://up.gov.in/" target="_blank" rel="noopener">Uttar Pradesh Government ↗</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" style="background:#061923">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="kicker">Get in touch</div>
-        <h2>Contact <span class="gold">Us</span></h2>
-        <p>Jaankari, sujhav ya correction ke liye sampark karein.</p>
-      </div>
-    </div>
-
-    <div class="contact-grid">
-      <div class="card">
-        <h3>Contact Details</h3>
-
-        <div class="contact-line">
-          <span class="symbol">✉️</span>
-          <div>
-            <strong>Email</strong>
-            <small>
-              <a href="mailto:thehostwost@gmail.com">thehostwost@gmail.com</a>
-              <br>
-              <a href="mobile number: +919214360582 "> Mobile number : +919214360582 </a>
-            </small>
-          </div>
-    
+<!-- ======
