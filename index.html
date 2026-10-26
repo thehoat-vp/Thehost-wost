@@ -1166,3 +1166,421 @@ body.light-theme .gallery-tab.active {
   justify-content: space-between;
   z-index: 2;
 }
+
+   /* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(12px);
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+.lightbox-modal.active { display: grid; }
+
+.lightbox-content {
+  position: relative;
+  max-width: 880px;
+  width: 100%;
+  text-align: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 74vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gold);
+}
+
+.lightbox-title {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -42px;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--gold);
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+.lightbox-prev { left: -18px; }
+.lightbox-next { right: -18px; }
+
+/* Photo Upload Modal */
+.upload-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+.upload-modal.active { display: grid; }
+
+.upload-modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--teal);
+  border-radius: var(--radius-lg);
+  max-width: 520px;
+  width: 100%;
+  padding: 26px;
+  box-shadow: 0 10px 40px rgba(45, 212, 191, 0.35);
+  position: relative;
+}
+
+/* ==========================================================================
+   10. SMART FORM & VERIFICATION ENGINE
+   ========================================================================== */
+.form-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-main);
+  position: relative;
+}
+
+.step-indicator-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  position: relative;
+}
+.step-indicator-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-color);
+  z-index: 1;
+}
+
+.step-node {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+.step-node.active {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #04121a;
+}
+.step-node.completed {
+  border-color: var(--success);
+  background: var(--success);
+  color: #fff;
+}
+
+.otp-interactive-box {
+  display: none;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.otp-smart-banner {
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid var(--whatsapp);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.otp-smart-banner b {
+  color: var(--whatsapp);
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+body.light-theme .form-label {
+  color: #334155;
+}
+
+.form-control {
+  width: 100%;
+  padding: 11px 13px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  transition: var(--transition);
+}
+body.light-theme .form-control {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 195, 44, 0.15);
+}
+
+.receipt-card {
+  display: none;
+  background: var(--bg-secondary);
+  border: 1px solid var(--success);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  margin-top: 18px;
+  text-align: center;
+}
+.receipt-token {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  background: rgba(255, 195, 44, 0.1);
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin: 10px 0;
+  letter-spacing: 2px;
+  border: 1px dashed var(--gold);
+}
+
+/* ==========================================================================
+   11. EMERGENCY SOS MODAL & TOAST
+   ========================================================================== */
+.floating-actions-bar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 99;
+}
+
+.float-sos-btn {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.5);
+  animation: sosPulse 2s infinite;
+}
+
+@keyframes sosPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.back-to-top-btn {
+  background: var(--gold);
+  color: #04121a;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--gold-glow);
+  transition: var(--transition);
+  opacity: 0;
+  visibility: hidden;
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sos-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+.sos-modal.active { display: grid; }
+
+.sos-modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-lg);
+  max-width: 480px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+}
+
+.sos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+.sos-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.sos-item a {
+  background: var(--danger);
+  color: white;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* Toast Notification */
+.portal-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: rgba(3, 13, 20, 0.95);
+  border: 1px solid var(--gold);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  z-index: 10005;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.portal-toast.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+footer {
+  background: rgba(2, 8, 13, 0.98);
+  border-top: 1px solid var(--border-color);
+  padding: 35px 0 20px;
+  font-size: 0.84rem;
+}
+body.light-theme footer {
+  background: #e2e8f0;
+  border-top-color: #cbd5e1;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 992px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .quicklinks-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 66px;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-bottom: 2px solid var(--border-color);
+    flex-direction: column;
+    padding: 16px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+    gap: 6px;
+  }
+  .nav-links.open { display: flex; }
+  .quicklinks-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .village-stats-grid { grid-template-columns: 1fr; }
+  .sos-grid { grid-template-columns: 1fr; }
+  .top-bar-inner { flex-direction: column; align-items: stretch; gap: 4px; }
+  .top-tools { justify-content: space-between; }
+}
