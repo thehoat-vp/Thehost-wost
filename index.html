@@ -1,1586 +1,656 @@
-0<!DOCTYPE html>
-<html lang="hi" data-font="normal">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wyndhamganj Butbherwa (Shiv Nagar) - Official Gram Suchna, Vikas & Digital Panchayat Portal.">
-<title>Shiv Nagar Butbherwa | Official Digital Gram Portal</title>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Shiv Nagar Butbherwa | The Host</title>
+<meta name="description" content="Shiv Nagar Butbherwa - Village Information, Gallery, Events and Important Contacts">
 
 <style>
-/* ==========================================================================
-   1. CSS VARIABLES & THEME ENGINE
-   ========================================================================== */
-:root {
-  --bg-primary: #030d14;
-  --bg-secondary: #071926;
-  --bg-card: rgba(11, 33, 49, 0.78);
-  --bg-card-hover: rgba(16, 46, 68, 0.92);
-  --border-color: rgba(45, 95, 126, 0.35);
-  --border-highlight: rgba(255, 195, 44, 0.5);
-  
-  --gold: #ffc32c;
-  --gold-glow: rgba(255, 195, 44, 0.35);
-  --gold-hover: #e0a81d;
-  --teal: #2dd4bf;
-  --teal-glow: rgba(45, 212, 191, 0.3);
-  --whatsapp: #25D366;
-  --whatsapp-glow: rgba(37, 211, 102, 0.35);
-  
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  
-  --danger: #ef4444;
-  --success: #10b981;
-  --shadow-main: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-full: 9999px;
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-base: 16px;
-}
-
-/* Light Theme Variables (High Contrast & Clear Readability) */
-body.light-theme {
-  --bg-primary: #f1f5f9;
-  --bg-secondary: #e2e8f0;
-  --bg-card: rgba(255, 255, 255, 0.95);
-  --bg-card-hover: #ffffff;
-  --border-color: rgba(148, 163, 184, 0.45);
-  --border-highlight: rgba(180, 83, 9, 0.6);
-  
-  --gold: #b45309;
-  --gold-glow: rgba(180, 83, 9, 0.25);
-  --gold-hover: #92400e;
-  --teal: #0f766e;
-  --teal-glow: rgba(15, 118, 110, 0.25);
-  
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-dim: #64748b;
-  --shadow-main: 0 10px 25px -8px rgba(100, 116, 139, 0.22);
-}
-
-/* Font Resizing Controls */
-html[data-font="small"] { --font-base: 14px; }
-html[data-font="normal"] { --font-base: 16px; }
-html[data-font="large"] { --font-base: 18px; }
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: var(--font-base);
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg-primary);
-  color: var(--text-main);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-/* Background Animated Gradient Mesh */
-.vfx-mesh-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.mesh-ball {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(85px);
-  opacity: 0.14;
-  animation: floatBall 22s infinite alternate ease-in-out;
-}
-.mesh-ball-1 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, var(--gold), transparent);
-  top: -60px;
-  left: -60px;
-}
-.mesh-ball-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--teal), transparent);
-  bottom: 8%;
-  right: -80px;
-  animation-duration: 28s;
-}
-
-@keyframes floatBall {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, 35px) scale(1.08); }
-  100% { transform: translate(-25px, 60px) scale(0.96); }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-button, input, textarea, select {
-  font: inherit;
-}
-
-.container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-/* ==========================================================================
-   2. ULTRA-COMPACT TOP UTILITY BAR (LESS SPACE, HIGH FUNCTIONALITY)
-   ========================================================================== */
-.top-bar {
-  background: rgba(2, 9, 14, 0.98);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.74rem;
-  padding: 3px 0;
-  position: relative;
-  z-index: 105;
-}
-body.light-theme .top-bar {
-  background: rgba(241, 245, 249, 0.98);
-  border-bottom-color: #cbd5e1;
-}
-
-.top-bar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-/* Compact Ticker */
-.ticker-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  min-width: 220px;
-  overflow: hidden;
-  height: 22px;
-}
-
-.ticker-badge {
-  background: #dc2626;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 1px 6px;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
-  letter-spacing: 0.4px;
-}
-
-.ticker-marquee {
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.ticker-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 25s linear infinite;
-  font-weight: 500;
-  font-size: 0.74rem;
-  color: var(--text-muted);
-}
-body.light-theme .ticker-content {
-  color: #334155;
-  font-weight: 600;
-}
-.ticker-wrap:hover .ticker-content {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Ultra-Compact Weather, Clock & Font Bar */
-.top-tools {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-.compact-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 1px 7px;
-  border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  line-height: 1.4;
-}
-
-.weather-badge {
-  color: var(--teal);
-  font-weight: 600;
-}
-body.light-theme .weather-badge {
-  color: #0f766e;
-}
-
-.clock-badge {
-  color: var(--gold);
-  font-weight: 700;
-}
-body.light-theme .clock-badge {
-  color: #b45309;
-}
-
-.font-resizer {
-  display: inline-flex;
-  align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
-  padding: 1px 4px;
-  gap: 2px;
-}
-
-.font-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0 4px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-.font-btn:hover, .font-btn.active {
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.15);
-}
-
-/* ==========================================================================
-   3. GLASSMORPHIC NAVBAR (LIGHT THEME CONTRAST BUG FIXED)
-   ========================================================================== */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(3, 13, 20, 0.9);
-  border-bottom: 1px solid var(--border-color);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: var(--transition);
-}
-
-body.light-theme header {
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #cbd5e1;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 66px;
-  gap: 15px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand-symbol {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, rgba(255, 195, 44, 0.2), rgba(45, 212, 191, 0.2));
-  border: 1px solid var(--border-highlight);
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  font-size: 1.4rem;
-  color: var(--gold);
-  box-shadow: 0 0 12px var(--gold-glow);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Perfect Light Theme Brand Contrast */
-body.light-theme .brand-symbol {
-  background: #fef3c7;
-  border-color: #f59e0b;
-  color: #b45309;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
-}
-
-.brand-text h1 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.15;
-  color: var(--text-main);
-}
-body.light-theme .brand-text h1 {
-  color: #0f172a !important;
-}
-
-.brand-text em {
-  font-style: normal;
-  color: var(--gold);
-}
-body.light-theme .brand-text em {
-  color: #b45309 !important;
-  font-weight: 900;
-}
-
-.brand-text span {
-  display: block;
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-body.light-theme .brand-text span {
-  color: #475569 !important;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nav-links a {
-  padding: 7px 11px;
-  border-radius: var(--radius-sm);
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: var(--transition);
-}
-
-body.light-theme .nav-links a {
-  color: #1e293b;
-}
-
-.nav-links a:hover, .nav-links a.active {
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.08);
-}
-body.light-theme .nav-links a:hover {
-  background: rgba(180, 83, 9, 0.08);
-  color: #b45309;
-}
-
-.theme-toggle-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  border-radius: var(--radius-full);
-  padding: 5px 12px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-body.light-theme .theme-toggle-btn {
-  background: #f1f5f9;
-  color: #0f172a;
-  border-color: #cbd5e1;
-}
-
-.theme-toggle-btn:hover {
-  border-color: var(--gold);
-  transform: scale(1.03);
-}
-
-.menu-toggle {
-  display: none;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 7px 11px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-weight: 700;
-}
-body.light-theme .menu-toggle {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-/* ==========================================================================
-   4. HERO SECTION (HIGH-CONTRAST LIGHT MODE READY)
-   ========================================================================== */
-.hero {
-  min-height: 540px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 50px 0;
-}
-
-#heroVfxCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(90deg, var(--bg-primary) 0%, rgba(3, 13, 20, 0.82) 55%, rgba(3, 13, 20, 0.35) 100%),
-    radial-gradient(ellipse at 80% 50%, rgba(45, 212, 191, 0.12), transparent 70%);
-  z-index: 1;
-}
-body.light-theme .hero-overlay {
-  background: 
-    linear-gradient(90deg, rgba(241, 245, 249, 0.96) 0%, rgba(241, 245, 249, 0.85) 60%, rgba(241, 245, 249, 0.4) 100%),
-    radial-gradient(ellipse at 80% 50%, rgba(15, 118, 110, 0.08), transparent 70%);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  align-items: center;
-  gap: 36px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content {
-  max-width: 650px;
-}
-
-.hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(255, 195, 44, 0.12);
-  border: 1px solid rgba(255, 195, 44, 0.35);
-  color: var(--gold);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-body.light-theme .hero-kicker {
-  background: #fef3c7;
-  border-color: #f59e0b;
-  color: #b45309;
-}
-
-.hero-title {
-  font-size: clamp(2.3rem, 5vw, 4rem);
-  font-weight: 900;
-  line-height: 1.08;
-  margin-bottom: 16px;
-  letter-spacing: -0.03em;
-  color: var(--text-main);
-}
-body.light-theme .hero-title {
-  color: #0f172a;
-}
-
-.hero-title .gradient-text {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffffff 50%, var(--teal) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-body.light-theme .hero-title .gradient-text {
-  background: linear-gradient(135deg, #b45309 0%, #0f172a 60%, #0f766e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  margin-bottom: 22px;
-  line-height: 1.65;
-}
-body.light-theme .hero-description {
-  color: #334155;
-  font-weight: 500;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 26px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 11px 22px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition);
-  border: 1px solid transparent;
-  text-decoration: none;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-  color: #04121a;
-  box-shadow: 0 4px 18px var(--gold-glow);
-}
-body.light-theme .btn-primary {
-  color: #ffffff;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 195, 44, 0.45);
-}
-
-.btn-secondary {
-  background: var(--bg-card);
-  color: var(--text-main);
-  border-color: var(--border-color);
-  backdrop-filter: blur(8px);
-}
-.btn-secondary:hover {
-  border-color: var(--gold);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-.hero-stats-row {
-  display: flex;
-  gap: 20px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-color);
-}
-
-.stat-item h3 {
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: var(--gold);
-  margin: 0;
-}
-.stat-item p {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-body.light-theme .stat-item p {
-  color: #475569;
-}
-
-/* Hero Right Floating Status Card */
-.hero-card-widget {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-main);
-  backdrop-filter: blur(14px);
-  position: relative;
-  overflow: hidden;
-}
-
-.widget-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.widget-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.live-indicator {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
-  color: var(--success);
-  font-weight: 700;
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--success);
-  border-radius: 50%;
-  animation: blink 1.5s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.8); }
-}
-
-.widget-content-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.widget-row {
-  background: rgba(2, 12, 19, 0.4);
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.84rem;
-}
-body.light-theme .widget-row {
-  background: rgba(248, 250, 252, 0.8);
-}
-
-/* ==========================================================================
-   5. QUICK ACCESS TILES
-   ========================================================================== */
-.quicklinks-section {
-  margin-top: -26px;
-  position: relative;
-  z-index: 10;
-}
-
-.quicklinks-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-}
-
-.quick-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 16px 8px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-}
-
-.quick-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
-  box-shadow: 0 8px 20px var(--gold-glow);
-  background: var(--bg-card-hover);
-}
-
-.quick-card-icon {
-  font-size: 1.5rem;
-}
-.quick-card span {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-/* ==========================================================================
-   6. SECTIONS COMMON
-   ========================================================================== */
-section {
-  padding: 65px 0;
-  scroll-margin-top: 75px;
-  position: relative;
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 30px;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.section-kicker {
-  color: var(--gold);
-  font-size: 0.8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 4px;
-}
-
-.section-title {
-  font-size: clamp(1.7rem, 3.2vw, 2.3rem);
-  font-weight: 800;
-  line-height: 1.2;
-}
-.section-title span {
-  color: var(--gold);
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  max-width: 580px;
-  font-size: 0.92rem;
-}
-body.light-theme .section-subtitle {
-  color: #475569;
-}
-
-/* ==========================================================================
-   7. ABOUT THE HOST & VILLAGE
-   ========================================================================== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 26px;
-}
-
-.host-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 26px 20px;
-  text-align: center;
-  backdrop-filter: blur(14px);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-main);
-}
-
-.host-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(255, 195, 44, 0.18), rgba(45, 212, 191, 0.1));
-}
-
-.host-avatar-wrap {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  margin: 10px auto 14px;
-}
-
-.host-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--gold);
-  box-shadow: 0 0 20px var(--gold-glow);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.3s ease;
-}
-.host-card:hover .host-photo {
-  transform: scale(1.03);
-}
-
-.host-badge-creator {
-  position: absolute;
-  bottom: 0;
-  right: 4px;
-  background: var(--gold);
-  color: #04121a;
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
-  z-index: 3;
-}
-
-.host-name {
-  font-size: 1.35rem;
-  font-weight: 800;
-  margin-bottom: 2px;
-}
-
-.host-role {
-  color: var(--teal);
-  font-weight: 700;
-  font-size: 0.86rem;
-  margin-bottom: 6px;
-}
-
-.host-bio {
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  margin-bottom: 18px;
-}
-body.light-theme .host-bio {
-  color: #475569;
-}
-
-.btn-whatsapp-community {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px 18px;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #ffffff !important;
-  font-weight: 800;
-  font-size: 0.9rem;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 18px var(--whatsapp-glow);
-  transition: var(--transition);
-}
-.btn-whatsapp-community:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
-}
-
-.village-info-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-main);
-}
-
-.village-info-card p {
-  color: var(--text-muted);
-  font-size: 0.96rem;
-  line-height: 1.65;
-  margin-bottom: 20px;
-}
-body.light-theme .village-info-card p {
-  color: #334155;
-}
-
-.village-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.stat-feature-box {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 14px;
-  border-radius: var(--radius-md);
-  transition: var(--transition);
-}
-.stat-feature-box strong {
-  display: block;
-  color: var(--gold);
-  font-size: 0.94rem;
-  margin-bottom: 3px;
-}
-.stat-feature-box span {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-body.light-theme .stat-feature-box span {
-  color: #475569;
-}
-
-/* ==========================================================================
-   8. COMPACT GRAM PRATINIDHI DIRECTORY
-========================================================================== */
-.pratinidhi-wrapper {
-  max-width: 920px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: var(--shadow-main);
-  backdrop-filter: blur(14px);
-}
-
-.pratinidhi-filter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 14px;
-  margin-bottom: 16px;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.pratinidhi-search {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 7px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  min-width: 220px;
-}
-body.light-theme .pratinidhi-search {
-  background: #ffffff;
-  border-color: #cbd5e1;
-}
-
-.pratinidhi-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.pratinidhi-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  gap: 12px;
-  flex-wrap: wrap;
-  transition: var(--transition);
-}
-.pratinidhi-item:hover {
-  border-color: var(--gold);
-  transform: scale(1.008);
-}
-
-.pratinidhi-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.pratinidhi-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: rgba(255, 195, 44, 0.1);
-  color: var(--gold);
-  display: grid;
-  place-items: center;
-  font-size: 1.15rem;
-  border: 1px solid rgba(255, 195, 44, 0.2);
-}
-
-.pratinidhi-role {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.pratinidhi-name {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.pratinidhi-call-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  background: rgba(255, 195, 44, 0.12);
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 0.84rem;
-  transition: var(--transition);
-}
-.pratinidhi-call-btn:hover {
-  background: var(--gold);
-  color: #04121a;
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   9. GALLERY & COMMUNITY PHOTO UPLOAD ENGINE
-   ========================================================================== */
-.gallery-header-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.gallery-filter-tabs {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.gallery-tab {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--transition);
-}
-body.light-theme .gallery-tab {
-  color: #475569;
-}
-.gallery-tab:hover, .gallery-tab.active {
-  background: var(--gold);
-  color: #04121a;
-  border-color: var(--gold);
-}
-body.light-theme .gallery-tab.active {
-  color: #ffffff;
-}
-
-.btn-upload-trigger {
-  background: linear-gradient(135deg, var(--teal), #0f766e);
-  color: #ffffff !important;
-  font-weight: 800;
-  font-size: 0.85rem;
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 14px var(--teal-glow);
-  transition: var(--transition);
-}
-.btn-upload-trigger:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.gallery-card {
-  position: relative;
-  height: 210px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  background: var(--bg-card);
-  transition: var(--transition);
-}
-.gallery-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-}
-
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.gallery-card:hover img {
-  transform: scale(1.06);
-}
-
-.gallery-card-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: rgba(3, 13, 20, 0.85);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--border-color);
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--gold);
-  z-index: 2;
-}
-
-.gallery-card-badge.community {
-  background: rgba(45, 212, 191, 0.9);
-  color: #04121a;
-  border-color: var(--teal);
-}
-
-.gallery-card-caption {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 25px 12px 8px;
-  background: linear-gradient(to top, rgba(3, 13, 20, 0.95), transparent);
-  color: #ffffff;
-  font-size: 0.86rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-}
-
-   /* Lightbox Modal */
-.lightbox-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.94);
-  backdrop-filter: blur(12px);
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.lightbox-modal.active { display: grid; }
-
-.lightbox-content {
-  position: relative;
-  max-width: 880px;
-  width: 100%;
-  text-align: center;
-}
-
-.lightbox-img {
-  max-width: 100%;
-  max-height: 74vh;
-  object-fit: contain;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--gold);
-}
-
-.lightbox-title {
-  margin-top: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: -42px;
-  right: 0;
-  width: 38px;
-  height: 38px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid var(--gold);
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.3rem;
-  display: grid;
-  place-items: center;
-}
-
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--border-color);
-  color: #fff;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-}
-.lightbox-prev { left: -18px; }
-.lightbox-next { right: -18px; }
-
-/* Photo Upload Modal */
-.upload-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(10px);
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.upload-modal.active { display: grid; }
-
-.upload-modal-card {
-  background: var(--bg-card);
-  border: 1px solid var(--teal);
-  border-radius: var(--radius-lg);
-  max-width: 520px;
-  width: 100%;
-  padding: 26px;
-  box-shadow: 0 10px 40px rgba(45, 212, 191, 0.35);
-  position: relative;
-}
-
-/* ==========================================================================
-   10. SMART FORM & VERIFICATION ENGINE
-   ========================================================================== */
-.form-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 30px;
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-main);
-  position: relative;
-}
-
-.step-indicator-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
-  position: relative;
-}
-.step-indicator-bar::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--border-color);
-  z-index: 1;
-}
-
-.step-node {
-  position: relative;
-  z-index: 2;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.86rem;
-  color: var(--text-muted);
-}
-.step-node.active {
-  border-color: var(--gold);
-  background: var(--gold);
-  color: #04121a;
-}
-.step-node.completed {
-  border-color: var(--success);
-  background: var(--success);
-  color: #fff;
-}
-
-.otp-interactive-box {
-  display: none;
-  background: var(--bg-secondary);
-  border: 1px dashed var(--gold);
-  border-radius: var(--radius-md);
-  padding: 18px;
-  margin-top: 16px;
-}
-
-.otp-smart-banner {
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid var(--whatsapp);
-  border-radius: var(--radius-sm);
-  padding: 9px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.otp-smart-banner b {
-  color: var(--whatsapp);
-  font-size: 1.05rem;
-  letter-spacing: 2px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-.form-label {
-  display: block;
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-}
-body.light-theme .form-label {
-  color: #334155;
-}
-
-.form-control {
-  width: 100%;
-  padding: 11px 13px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
-  transition: var(--transition);
-}
-body.light-theme .form-control {
-  background: #ffffff;
-  border-color: #cbd5e1;
-  color: #0f172a;
-}
-.form-control:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(255, 195, 44, 0.15);
-}
-
-.receipt-card {
-  display: none;
-  background: var(--bg-secondary);
-  border: 1px solid var(--success);
-  border-radius: var(--radius-md);
-  padding: 22px;
-  margin-top: 18px;
-  text-align: center;
-}
-.receipt-token {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.1);
-  padding: 6px 16px;
-  border-radius: var(--radius-sm);
-  display: inline-block;
-  margin: 10px 0;
-  letter-spacing: 2px;
-  border: 1px dashed var(--gold);
-}
-
-/* ==========================================================================
-   11. EMERGENCY SOS MODAL & TOAST
-   ========================================================================== */
-.floating-actions-bar {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 99;
-}
-
-.float-sos-btn {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
-  color: white;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.2rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.5);
-  animation: sosPulse 2s infinite;
-}
-
-@keyframes sosPulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-
-.back-to-top-btn {
-  background: var(--gold);
-  color: #04121a;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.2rem;
-  font-weight: 800;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 14px var(--gold-glow);
-  transition: var(--transition);
-  opacity: 0;
-  visibility: hidden;
-}
-.back-to-top-btn.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.sos-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 10000;
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.sos-modal.active { display: grid; }
-
-.sos-modal-card {
-  background: var(--bg-card);
-  border: 1px solid var(--danger);
-  border-radius: var(--radius-lg);
-  max-width: 480px;
-  width: 100%;
-  padding: 24px;
-  position: relative;
-}
-
-.sos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 16px;
-}
-.sos-item {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-.sos-item a {
-  background: var(--danger);
-  color: white;
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-}
-
-#confettiCanvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 99999;
-}
-
-/* Toast Notification */
-.portal-toast {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%) translateY(30px);
-  background: rgba(3, 13, 20, 0.95);
-  border: 1px solid var(--gold);
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: var(--radius-full);
-  font-size: 0.88rem;
-  font-weight: 700;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  z-index: 10005;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-.portal-toast.active {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-footer {
-  background: rgba(2, 8, 13, 0.98);
-  border-top: 1px solid var(--border-color);
-  padding: 35px 0 20px;
-  font-size: 0.84rem;
-}
-body.light-theme footer {
-  background: #e2e8f0;
-  border-top-color: #cbd5e1;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-@media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; }
-  .quicklinks-grid { grid-template-columns: repeat(3, 1fr); }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .menu-toggle { display: block; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 66px;
-    left: 0;
-    right: 0;
-    background: var(--bg-primary);
-    border-bottom: 2px solid var(--border-color);
-    flex-direction: column;
-    padding: 16px;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.7);
-    gap: 6px;
-  }
-  .nav-links.open { display: flex; }
-  .quicklinks-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .village-stats-grid { grid-template-columns: 1fr; }
-  .sos-grid { grid-template-columns: 1fr; }
-  .top-bar-inner { flex-direction: column; align-items: stretch; gap: 4px; }
-  .top-tools { justify-content: space-between; }
-}
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ scroll-behavior:smooth;
+}
+:root{
+ --bg:#07111f;
+ --card:#101f32;
+ --text:#f4f7ff;
+ --muted:#b7c5d8;
+ --accent:#00d9ff;
+ --second:#8b5cf6;
+}
+body{
+ font-family:Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ line-height:1.6;
+}
+body.light{
+ --bg:#f1f5fb;
+ --card:#ffffff;
+ --text:#142033;
+ --muted:#526176;
+}
+a{
+ color:inherit;
+ text-decoration:none;
+}
+button{
+ cursor:pointer;
+}
+header{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(5,15,29,.95);
+ backdrop-filter:blur(12px);
+ border-bottom:1px solid #263c55;
+}
+.navbar{
+ max-width:1200px;
+ margin:auto;
+ padding:14px 20px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+}
+.logo{
+ font-size:20px;
+ font-weight:bold;
+ color:var(--accent);
+}
+.logo small{
+ display:block;
+ font-size:10px;
+ color:#fff;
+ letter-spacing:2px;
+}
+.navlinks{
+ display:flex;
+ align-items:center;
+ gap:17px;
+}
+.navlinks a{
+ font-size:13px;
+ color:white;
+}
+.navlinks a:hover{
+ color:var(--accent);
+}
+.menu-btn{
+ display:none;
+ background:var(--accent);
+ border:0;
+ padding:8px 12px;
+ border-radius:7px;
+}
+.theme-btn{
+ border:1px solid var(--accent);
+ color:var(--accent);
+ background:transparent;
+ padding:7px 10px;
+ border-radius:20px;
+}
+section{
+ max-width:1200px;
+ margin:auto;
+ padding:75px 20px;
+}
+.hero{
+ max-width:none;
+ min-height:570px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:80px 20px;
+ background:
+ linear-gradient(90deg,rgba(3,10,22,.9),rgba(3,10,22,.55)),
+ url('IMG_20250929_062521.jpg') center/cover no-repeat;
+}
+.hero-content{
+ max-width:850px;
+}
+.hero h1{
+ font-size:clamp(35px,7vw,68px);
+ line-height:1.15;
+ margin-bottom:18px;
+}
+.hero h1 span{
+ color:var(--accent);
+}
+.hero p{
+ color:#e1e9f5;
+ font-size:17px;
+ margin-bottom:25px;
+}
+.btn{
+ display:inline-block;
+ background:linear-gradient(90deg,var(--accent),#0ea5e9);
+ color:#04111d;
+ font-weight:bold;
+ padding:12px 22px;
+ border-radius:30px;
+ margin:5px;
+ border:0;
+}
+.btn.secondary{
+ background:transparent;
+ color:var(--accent);
+ border:1px solid var(--accent);
+}
+.section-title{
+ text-align:center;
+ font-size:32px;
+ margin-bottom:12px;
+}
+.section-title span{
+ color:var(--accent);
+}
+.section-sub{
+ text-align:center;
+ color:var(--muted);
+ margin-bottom:35px;
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:20px;
+}
+.card{
+ background:var(--card);
+ border:1px solid #263d58;
+ border-radius:15px;
+ padding:22px;
+ transition:.3s;
+}
+.card:hover{
+ transform:translateY(-6px);
+ border-color:var(--accent);
+ box-shadow:0 10px 30px #00d9ff18;
+}
+.card h3{
+ color:var(--accent);
+ margin-bottom:10px;
+}
+.card p{
+ color:var(--muted);
+ font-size:14px;
+}
+.quicklinks{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:12px;
+ margin-top:-35px;
+ position:relative;
+ z-index:2;
+ padding:0 20px;
+ max-width:1100px;
+ margin-left:auto;
+ margin-right:auto;
+}
+.quicklinks a{
+ background:var(--card);
+ padding:18px 10px;
+ border-radius:12px;
+ text-align:center;
+ border:1px solid #29445f;
+ font-weight:bold;
+}
+.quicklinks a:hover{
+ color:var(--accent);
+ border-color:var(--accent);
+}
+.about-box{
+ display:grid;
+ grid-template-columns:1fr 1.4fr;
+ gap:30px;
+ align-items:center;
+}
+.about-box img{
+ width:100%;
+ max-height:360px;
+ object-fit:cover;
+ border-radius:18px;
+ border:2px solid var(--accent);
+}
+.about-box p{
+ color:var(--muted);
+ margin:12px 0;
+}
+.info-list{
+ padding-left:20px;
+ color:var(--muted);
+}
+.info-list li{
+ margin:8px 0;
+}
+   .gallery{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:17px;
+}
+.gallery-item{
+ background:var(--card);
+ border-radius:13px;
+ overflow:hidden;
+ border:1px solid #29445f;
+ cursor:pointer;
+}
+.gallery-item img{
+ width:100%;
+ height:210px;
+ object-fit:cover;
+ display:block;
+ transition:.4s;
+}
+.gallery-item:hover img{
+ transform:scale(1.07);
+}
+.gallery-item p{
+ padding:12px;
+ text-align:center;
+ color:var(--muted);
+}
+.contact-card{
+ text-align:center;
+}
+.contact-card .icon{
+ font-size:32px;
+ margin-bottom:10px;
+}
+.contact-card a{
+ color:var(--accent);
+ font-weight:bold;
+ display:inline-block;
+ margin-top:10px;
+}
+.share-box{
+ text-align:center;
+ background:linear-gradient(135deg,#10243c,#172d4a);
+ border:1px solid var(--accent);
+ border-radius:18px;
+ padding:35px 20px;
+}
+.share-box p{
+ color:#d0dbea;
+ max-width:650px;
+ margin:12px auto 20px;
+}
+.event-date{
+ color:var(--accent);
+ font-size:13px;
+ font-weight:bold;
+}
+footer{
+ background:#030914;
+ padding:30px 20px;
+ text-align:center;
+ color:#aabbd0;
+}
+footer a{
+ color:var(--accent);
+}
+.social-links{
+ margin:15px;
+}
+.social-links a{
+ margin:8px;
+ color:var(--accent);
+}
+.lightbox{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:9999;
+ background:rgba(0,0,0,.95);
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+}
+.lightbox.show{
+ display:flex;
+}
+.lightbox img{
+ max-width:95%;
+ max-height:85vh;
+ object-fit:contain;
+ border-radius:10px;
+}
+.close-lightbox{
+ position:absolute;
+ top:15px;
+ right:25px;
+ color:white;
+ font-size:38px;
+ background:none;
+ border:0;
+}
+@media(max-width:850px){
+ .menu-btn{display:block}
+ .navlinks{
+  display:none;
+  position:absolute;
+  top:65px;
+  left:0;
+  width:100%;
+  background:#07111f;
+  padding:20px;
+  flex-direction:column;
+  align-items:flex-start;
+ }
+ .navlinks.open{display:flex}
+ .about-box{grid-template-columns:1fr}
+ .hero{min-height:480px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <nav class="navbar">
+  <a href="#home" class="logo">
+   SHIV NAGAR BUTBHERWA
+   <small>THE HOST • VILLAGE INFORMATION</small>
+  </a>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="navlinks" id="navlinks">
+   <a href="#home">Home</a>
+   <a href="#about">About</a>
+   <a href="#information">Information</a>
+   <a href="#gallery">Gallery</a>
+   <a href="#events">Events</a>
+   <a href="#community">More</a>
+   <a href="#contact">Contact</a>
+   <button class="theme-btn" onclick="toggleTheme()">☀ Theme</button>
+  </div>
+ </nav>
+</header>
+
+<section class="hero" id="home">
+ <div class="hero-content">
+  <h1>Welcome To<br><span>Shiv Nagar Butbherwa</span></h1>
+  <p>
+   हमारे गाँव की पहचान, हमारी संस्कृति और हमारी एकता।
+   Shiv Nagar Butbherwa के सूचना पोर्टल पर आपका स्वागत है।
+  </p>
+  <a href="#about" class="btn">Explore Village</a>
+  <a href="#gallery" class="btn secondary">View Gallery</a>
+ </div>
+</section>
+
+<div class="quicklinks">
+ <a href="#about">🏡 About Village</a>
+ <a href="#information">📚 Information</a>
+ <a href="#gallery">📸 Gallery</a>
+ <a href="#events">🎉 Events</a>
+ <a href="#contact">📞 Contacts</a>
+</div>
+
+<section id="about">
+ <h2 class="section-title">About <span>Our Village</span></h2>
+ <p class="section-sub">हमारा गाँव, हमारी पहचान</p>
+
+ <div class="about-box">
+  <img src="images/942fe674faf2ef24f01fc8b726c5222a.jpg"
+       alt="Shiv Nagar Butbherwa">
+  <div>
+   <h2>हमारे गाँव में आपका स्वागत है!</h2>
+   <p>
+    Shiv Nagar Butbherwa हमारी प्यारी मातृभूमि है।
+    यह वेबसाइट गाँव की जानकारी, महत्वपूर्ण संपर्क,
+    फोटो, कार्यक्रम और स्थानीय अपडेट साझा करने के लिए बनाई गई है।
+   </p>
+   <p>
+    हमारा उद्देश्य गाँव के लोगों को एक डिजिटल मंच से जोड़ना
+    और गाँव की अच्छी यादों को सुरक्षित रखना है।
+   </p>
+   <p><b>Website By: The Host</b></p>
+  </div>
+ </div>
+</section>
+
+<section id="information">
+ <h2 class="section-title">Village <span>Information</span></h2>
+ <p class="section-sub">गाँव से जुड़ी महत्वपूर्ण जानकारी</p>
+
+ <div class="grid">
+  <div class="card">
+   <h3>📚 Education</h3>
+   <p>गाँव और आसपास की शिक्षा, स्कूल तथा पढ़ाई से जुड़ी जानकारी।</p>
+  </div>
+  <div class="card">
+   <h3>🏥 Health Services</h3>
+   <p>स्वास्थ्य सेवाओं और चिकित्सा सुविधाओं से संबंधित जानकारी।</p>
+  </div>
+  <div class="card">
+   <h3>🚌 Transport</h3>
+   <p>आवागमन और परिवहन से संबंधित स्थानीय जानकारी।</p>
+  </div>
+  <div class="card">
+   <h3>🏛 Government Services</h3>
+   <p>सरकारी योजनाओं और उपयोगी सरकारी सेवाओं की जानकारी।</p>
+   <a href="https://www.india.gov.in/" target="_blank" class="btn">India Portal</a>
+  </div>
+ </div>
+</section>
+
+<section id="gallery">
+ <h2 class="section-title">Village <span>Gallery</span></h2>
+ <p class="section-sub">हमारे गाँव की खूबसूरत तस्वीरें — बड़ी करके देखने के लिए फोटो पर क्लिक करें।</p>
+
+ <div class="gallery">
+  <div class="gallery-item" onclick="openPhoto(this)">
+   <img src="IMG_20250930_164330.jpg" alt="Railway Bridge">
+   <p>Railway Bridge</p>
+  </div>
+
+  <div class="gallery-item" onclick="openPhoto(this)">
+   <img src="IMG_20250929_062521.jpg" alt="Piprahava Bandh">
+   <p>Piprahava Bandh</p>
+  </div>
+
+  <div class="gallery-item" onclick="openPhoto(this)">
+   <img src="images/942fe674faf2ef24f01fc8b726c5222a.jpg" alt="Village Memories">
+   <p>Village Memories</p>
+  </div>
+
+  <div class="gallery-item" onclick="openPhoto(this)">
+   <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900" alt="Nature">
+   <p>Nature & Village Life</p>
+  </div>
+ </div>
+</section>
+
+<section id="events">
+ <h2 class="section-title">Events & <span>Updates</span></h2>
+ <p class="section-sub">गाँव के कार्यक्रम और घोषणाएँ</p>
+
+ <div class="grid">
+  <div class="card">
+   <div class="event-date">VILLAGE UPDATE</div>
+   <h3>📢 Local Announcements</h3>
+   <p>गाँव की नई घोषणाएँ और महत्वपूर्ण सूचनाएँ यहाँ साझा की जा सकती हैं।</p>
+  </div>
+
+  <div class="card">
+   <div class="event-date">FESTIVALS</div>
+   <h3>🎉 त्योहार एवं उत्सव</h3>
+   <p>त्योहारों, सांस्कृतिक कार्यक्रमों और गाँव के आयोजनों की तस्वीरें।</p>
+  </div>
+
+  <div class="card">
+   <div class="event-date">COMMUNITY</div>
+   <h3>🤝 Community News</h3>
+   <p>गाँव से जुड़ी सकारात्मक खबरें और सामुदायिक गतिविधियाँ।</p>
+  </div>
+ </div>
+</section>
+
+<section id="community">
+ <h2 class="section-title">More <span>Features</span></h2>
+ <p class="section-sub">हमारे डिजिटल गाँव से जुड़ें</p>
+
+ <div class="grid">
+  <div class="card">
+   <h3>📸 Share Village Photo</h3>
+   <p>आप भी अपने गाँव की फोटो और यादें हमारे साथ साझा कर सकते हैं।</p>
+   <a class="btn" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">
+    Share Photo
+   </a>
+  </div>
+
+  <div class="card">
+   <h3>💬 Join Community</h3>
+   <p>गाँव के लोगों से जुड़ें और महत्वपूर्ण अपडेट प्राप्त करें।</p>
+   <a class="btn" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">
+    Join WhatsApp
+   </a>
+  </div>
+
+  <div class="card">
+   <h3>🌐 Government Portal</h3>
+   <p>सरकारी जानकारी और सेवाओं के लिए आधिकारिक वेबसाइट।</p>
+   <a class="btn" href="https://up.gov.in/" target="_blank">Visit Portal</a>
+  </div>
+ </div>
+</section>
+<section id="contact">
+ <h2 class="section-title">Important <span>Contacts</span></h2>
+ <p class="section-sub">किसी भी संपर्क पर क्लिक करें — फोन का Dialer खुल जाएगा।</p>
+
+ <div class="grid">
+
+  <div class="card contact-card">
+   <div class="icon">🌐</div>
+   <h3>The Host</h3>
+   <p>Website & Digital Information</p>
+   <a href="tel:+919214360582">📞 +91 92143 60582</a>
+  </div>
+
+  <div class="card contact-card">
+   <div class="icon">🏡</div>
+   <h3>Gram Pradhan</h3>
+   <p>ग्राम प्रधान संपर्क</p>
+   <a href="tel:+919452696410">📞 +91 94526 96410</a>
+  </div>
+
+  <div class="card contact-card">
+   <div class="icon">🤝</div>
+   <h3>Active Person</h3>
+   <p>Village Community Contact</p>
+   <a href="tel:+917394894882">📞 +91 73948 94882</a>
+  </div>
+
+  <div class="card contact-card">
+   <div class="icon">✉️</div>
+   <h3>Email</h3>
+   <p>For Information & Suggestions</p>
+   <a href="mailto:thehostwost@gmail.com">
+    thehostwost@gmail.com
+   </a>
+  </div>
+
+ </div>
+
+ <div class="share-box" style="margin-top:35px">
+  <h2>Have Something To Share?</h2>
+  <p>
+   गाँव से जुड़ी कोई अच्छी फोटो, जानकारी या सुझाव है?
+   हमारे WhatsApp Community में जुड़कर साझा करें।
+  </p>
+  <a class="btn"
+   href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4"
+   target="_blank">
+   Share With Village
+  </a>
+ </div>
+</section>
+
+<footer>
+ <h2>Shiv Nagar Butbherwa</h2>
+ <p>हमारा गाँव • हमारी पहचान • हमारा परिवार</p>
+
+ <div class="social-links">
+  <a href="mailto:thehostwost@gmail.com">Email</a>
+  |
+  <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">WhatsApp</a>
+ </div>
+
+ <p>© <span id="year"></span> The Host. All Rights Reserved.</p>
+</footer>
+
+<!-- PHOTO FULL SCREEN VIEWER -->
+<div class="lightbox" id="lightbox" onclick="closePhoto()">
+ <button class="close-lightbox" onclick="closePhoto()">×</button>
+ <img id="lightbox-img" src="" alt="Full Size Photo">
+</div>
+
+<script>
+// MOBILE MENU
+function toggleMenu(){
+ document.getElementById("navlinks").classList.toggle("open");
+}
+
+// MENU CLOSE AFTER CLICK
+document.querySelectorAll(".navlinks a").forEach(function(link){
+ link.addEventListener("click",function(){
+  document.getElementById("navlinks").classList.remove("open");
+ });
+});
+
+// DARK AND LIGHT THEME
+function toggleTheme(){
+ document.body.classList.toggle("light");
+
+ try{
+  localStorage.setItem(
+   "villageTheme",
+   document.body.classList.contains("light") ? "light" : "dark"
+  );
+ }catch(e){}
+}
+
+// SAVE THEME
+try{
+ if(localStorage.getItem("villageTheme")==="light"){
+  document.body.classList.add("light");
+ }
+}catch(e){}
+
+// GALLERY FULL SCREEN
+function openPhoto(element){
+ let image = element.querySelector("img");
+
+ document.getElementById("lightbox-img").src = image.src;
+ document.getElementById("lightbox-img").alt = image.alt;
+
+ document.getElementById("lightbox").classList.add("show");
+}
+
+// CLOSE PHOTO
+function closePhoto(){
+ document.getElementById("lightbox").classList.remove("show");
+}
+
+// ESCAPE KEY TO CLOSE PHOTO
+document.addEventListener("keydown",function(event){
+ if(event.key==="Escape"){
+  closePhoto();
+ }
+});
+
+// CURRENT YEAR
+document.getElementById("year").textContent =
+ new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
