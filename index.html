@@ -1,3026 +1,2102 @@
 <!DOCTYPE html>
-<html lang="hi" data-font="normal">
+<html lang="hi" data-font="md">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wyndhamganj Butbherwa (Shiv Nagar) - Official Gram Suchna, Vikas & Digital Panchayat Portal.">
-<title>WDM | Official Digital Gram Portal</title>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-/* ==========================================================================
-   1. CSS VARIABLES & THEME ENGINE
-   ========================================================================== */
-:root {
-  --bg-primary: #030d14;
-  --bg-secondary: #071926;
-  --bg-card: rgba(11, 33, 49, 0.82);
-  --bg-card-hover: rgba(16, 46, 68, 0.95);
-  --border-color: rgba(45, 95, 126, 0.35);
-  --border-highlight: rgba(255, 195, 44, 0.5);
-  
-  --gold: #ffc32c;
-  --gold-glow: rgba(255, 195, 44, 0.35);
-  --gold-hover: #e0a81d;
-  --teal: #2dd4bf;
-  --teal-glow: rgba(45, 212, 191, 0.3);
-  --whatsapp: #25D366;
-  --whatsapp-glow: rgba(37, 211, 102, 0.35);
-  
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  
-  --danger: #ef4444;
-  --success: #10b981;
-  --shadow-main: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-full: 9999px;
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-base: 16px;
-}
-
-/* Light Theme Variables (Ultra-High Contrast & Clarity) */
-body.light-theme {
-  --bg-primary: #f1f5f9;
-  --bg-secondary: #e2e8f0;
-  --bg-card: rgba(255, 255, 255, 0.96);
-  --bg-card-hover: #ffffff;
-  --border-color: #cbd5e1;
-  --border-highlight: rgba(180, 83, 9, 0.6);
-  
-  --gold: #b45309;
-  --gold-glow: rgba(180, 83, 9, 0.2);
-  --gold-hover: #92400e;
-  --teal: #0f766e;
-  --teal-glow: rgba(15, 118, 110, 0.2);
-  
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-dim: #64748b;
-  --shadow-main: 0 10px 25px -8px rgba(100, 116, 139, 0.2);
-}
-
-/* Font Resizing Controls */
-html[data-font="small"] { --font-base: 14px; }
-html[data-font="normal"] { --font-base: 16px; }
-html[data-font="large"] { --font-base: 18px; }
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: var(--font-base);
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg-primary);
-  color: var(--text-main);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-/* Background Animated Gradient Mesh */
-.vfx-mesh-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.mesh-ball {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(85px);
-  opacity: 0.14;
-  animation: floatBall 22s infinite alternate ease-in-out;
-}
-.mesh-ball-1 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, var(--gold), transparent);
-  top: -60px;
-  left: -60px;
-}
-.mesh-ball-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--teal), transparent);
-  bottom: 8%;
-  right: -80px;
-  animation-duration: 28s;
-}
-
-@keyframes floatBall {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, 35px) scale(1.08); }
-  100% { transform: translate(-25px, 60px) scale(0.96); }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-button, input, textarea, select {
-  font: inherit;
-}
-
-.container {
-  width: min(1200px, 92%);
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-/* ==========================================================================
-   2. ULTRA-COMPACT TOP UTILITY BAR WITH AUDIO SPEAKER
-   ========================================================================== */
-.top-bar {
-  background: rgba(2, 9, 14, 0.98);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.74rem;
-  padding: 3px 0;
-  position: relative;
-  z-index: 105;
-}
-body.light-theme .top-bar {
-  background: rgba(241, 245, 249, 0.98);
-  border-bottom-color: #cbd5e1;
-}
-
-.top-bar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.ticker-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  min-width: 220px;
-  overflow: hidden;
-  height: 22px;
-}
-
-.ticker-badge {
-  background: #dc2626;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 1px 6px;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
-  letter-spacing: 0.4px;
-}
-
-.ticker-marquee {
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.ticker-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 25s linear infinite;
-  font-weight: 500;
-  font-size: 0.74rem;
-  color: var(--text-muted);
-}
-body.light-theme .ticker-content {
-  color: #334155;
-  font-weight: 600;
-}
-.ticker-wrap:hover .ticker-content {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Audio Suchna Button (Text to Speech) */
-.btn-speaker {
-  background: rgba(255, 195, 44, 0.15);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 1px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.7rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-body.light-theme .btn-speaker {
-  background: #fef3c7;
-  color: #b45309;
-}
-.btn-speaker:hover {
-  background: var(--gold);
-  color: #04121a;
-}
-
-.top-tools {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-.compact-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 1px 7px;
-  border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  line-height: 1.4;
-}
-
-.weather-badge {
-  color: var(--teal);
-  font-weight: 600;
-}
-body.light-theme .weather-badge {
-  color: #0f766e;
-}
-
-.clock-badge {
-  color: var(--gold);
-  font-weight: 700;
-}
-body.light-theme .clock-badge {
-  color: #b45309;
-}
-
-.font-resizer {
-  display: inline-flex;
-  align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
-  padding: 1px 4px;
-  gap: 2px;
-}
-
-.font-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0 4px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-.font-btn:hover, .font-btn.active {
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.15);
-}
-
-/* ==========================================================================
-   3. GLASSMORPHIC NAVBAR (LIGHT THEME BUG FIX)
-   ========================================================================== */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(3, 13, 20, 0.9);
-  border-bottom: 1px solid var(--border-color);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: var(--transition);
-}
-
-body.light-theme header {
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid #cbd5e1;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 64px;
-  gap: 15px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand-symbol {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, rgba(255, 195, 44, 0.2), rgba(45, 212, 191, 0.2));
-  border: 1px solid var(--border-highlight);
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  font-size: 1.35rem;
-  color: var(--gold);
-  box-shadow: 0 0 12px var(--gold-glow);
-  position: relative;
-  overflow: hidden;
-}
-
-body.light-theme .brand-symbol {
-  background: #fef3c7;
-  border-color: #f59e0b;
-  color: #b45309;
-}
-
-.brand-text h1 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.15;
-  color: var(--text-main);
-}
-body.light-theme .brand-text h1 {
-  color: #0f172a !important;
-}
-
-.brand-text em {
-  font-style: normal;
-  color: var(--gold);
-}
-body.light-theme .brand-text em {
-  color: #b45309 !important;
-  font-weight: 900;
-}
-
-.brand-text span {
-  display: block;
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-body.light-theme .brand-text span {
-  color: #475569 !important;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nav-links a {
-  padding: 6px 11px;
-  border-radius: var(--radius-sm);
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: var(--transition);
-}
-
-body.light-theme .nav-links a {
-  color: #1e293b;
-}
-
-.nav-links a:hover, .nav-links a.active {
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.08);
-}
-body.light-theme .nav-links a:hover {
-  background: rgba(180, 83, 9, 0.08);
-  color: #b45309;
-}
-
-.theme-toggle-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  border-radius: var(--radius-full);
-  padding: 5px 12px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-body.light-theme .theme-toggle-btn {
-  background: #f1f5f9;
-  color: #0f172a;
-  border-color: #cbd5e1;
-}
-
-.menu-toggle {
-  display: none;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 7px 11px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-weight: 700;
-}
-body.light-theme .menu-toggle {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-/* ==========================================================================
-   4. HERO SECTION WITH EVENT COUNTDOWN
-   ========================================================================== */
-.hero {
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 48px 0;
-  background: url('IMG_20250929_062521.jpg') center/cover no-repeat;
-}
-   #heroVfxCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-   }
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(3, 13, 20, 0.82) 0%, rgba(3, 13, 20, 0.45) 55%, rgba(3, 13, 20, 0.15) 100%);
-  z-index: 1;
-}
-   
-    linear-gradient(90deg, var(--bg-primary) 0%, rgba(3, 13, 20, 0.82) 55%, rgba(3, 13, 20, 0.35) 100%),
-    radial-gradient(ellipse at 80% 50%, rgba(45, 212, 191, 0.12), transparent 70%);
-  z-index: 1;
-}
-body.light-theme .hero-overlay {
-  background: 
-    linear-gradient(90deg, rgba(241, 245, 249, 0.96) 0%, rgba(241, 245, 249, 0.85) 60%, rgba(241, 245, 249, 0.4) 100%),
-    radial-gradient(ellipse at 80% 50%, rgba(15, 118, 110, 0.08), transparent 70%);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  align-items: center;
-  gap: 36px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content {
-  max-width: 650px;
-}
-
-.hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(255, 195, 44, 0.12);
-  border: 1px solid rgba(255, 195, 44, 0.35);
-  color: var(--gold);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-body.light-theme .hero-kicker {
-  background: #fef3c7;
-  border-color: #f59e0b;
-  color: #b45309;
-}
-
-.hero-title {
-  font-size: clamp(2.3rem, 5vw, 3.8rem);
-  font-weight: 900;
-  line-height: 1.08;
-  margin-bottom: 14px;
-  letter-spacing: -0.03em;
-  color: var(--text-main);
-}
-body.light-theme .hero-title {
-  color: #0f172a;
-}
-
-.hero-title .gradient-text {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffffff 50%, var(--teal) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-body.light-theme .hero-title .gradient-text {
-  background: linear-gradient(135deg, #b45309 0%, #0f172a 60%, #0f766e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-  font-size: 1.02rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-body.light-theme .hero-description {
-  color: #334155;
-  font-weight: 500;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 20px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition);
-  border: 1px solid transparent;
-  text-decoration: none;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-  color: #04121a;
-  box-shadow: 0 4px 18px var(--gold-glow);
-}
-body.light-theme .btn-primary {
-  color: #ffffff;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 195, 44, 0.45);
-}
-
-.btn-secondary {
-  background: var(--bg-card);
-  color: var(--text-main);
-  border-color: var(--border-color);
-  backdrop-filter: blur(8px);
-}
-.btn-secondary:hover {
-  border-color: var(--gold);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-.btn-share {
-  background: #25D366;
-  color: #ffffff;
-  border-color: #25D366;
-}
-.btn-share:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
-}
-
-.hero-stats-row {
-  display: flex;
-  gap: 20px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-color);
-}
-
-.stat-item h3 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--gold);
-  margin: 0;
-}
-.stat-item p {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-body.light-theme .stat-item p {
-  color: #475569;
-}
-
-/* Hero Right: Live Bulletin & Countdown Card */
-.hero-card-widget {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-main);
-  backdrop-filter: blur(14px);
-  position: relative;
-  overflow: hidden;
-}
-
-.widget-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.widget-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.live-indicator {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.72rem;
-  color: var(--success);
-  font-weight: 700;
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--success);
-  border-radius: 50%;
-  animation: blink 1.5s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.8); }
-}
-
-/* Event Countdown Timer */
-.countdown-box {
-  background: rgba(255, 195, 44, 0.08);
-  border: 1px dashed var(--gold);
-  border-radius: var(--radius-md);
-  padding: 10px;
-  margin-bottom: 12px;
-  text-align: center;
-}
-.countdown-title {
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-.countdown-grid {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-.countdown-item {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  min-width: 48px;
-}
-.countdown-item b {
-  font-size: 1rem;
-  color: var(--text-main);
-  display: block;
-  line-height: 1.1;
-}
-.countdown-item span {
-  font-size: 0.62rem;
-  color: var(--text-muted);
-}
-
-.widget-content-list {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.widget-row {
-  background: rgba(2, 12, 19, 0.4);
-  padding: 7px 12px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.82rem;
-}
-body.light-theme .widget-row {
-  background: rgba(248, 250, 252, 0.85);
-}
-
-/* ==========================================================================
-   5. QUICK ACCESS TILES
-   ========================================================================== */
-.quicklinks-section {
-  margin-top: -24px;
-  position: relative;
-  z-index: 10;
-}
-
-.quicklinks-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-}
-
-.quick-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 15px 8px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-}
-
-.quick-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
-  box-shadow: 0 8px 20px var(--gold-glow);
-  background: var(--bg-card-hover);
-}
-
-.quick-card-icon {
-  font-size: 1.45rem;
-}
-.quick-card span {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-/* ==========================================================================
-   6. SECTIONS COMMON
-   ========================================================================== */
-section {
-  padding: 60px 0;
-  scroll-margin-top: 70px;
-  position: relative;
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 28px;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.section-kicker {
-  color: var(--gold);
-  font-size: 0.8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 4px;
-}
-
-.section-title {
-  font-size: clamp(1.65rem, 3.2vw, 2.3rem);
-  font-weight: 800;
-  line-height: 1.2;
-}
-.section-title span {
-  color: var(--gold);
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  max-width: 580px;
-  font-size: 0.92rem;
-}
-body.light-theme .section-subtitle {
-  color: #475569;
-}
-
-/* ==========================================================================
-   7. ABOUT THE HOST & VILLAGE
-   ========================================================================== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 24px;
-}
-
-.host-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 24px 20px;
-  text-align: center;
-  backdrop-filter: blur(14px);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-main);
-}
-
-.host-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(255, 195, 44, 0.18), rgba(45, 212, 191, 0.1));
-}
-
-.host-avatar-wrap {
-  position: relative;
-  width: 125px;
-  height: 125px;
-  margin: 10px auto 14px;
-}
-
-.host-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--gold);
-  box-shadow: 0 0 20px var(--gold-glow);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.3s ease;
-}
-.host-card:hover .host-photo {
-  transform: scale(1.03);
-}
-
-.host-badge-creator {
-  position: absolute;
-  bottom: 0;
-  right: 4px;
-  background: var(--gold);
-  color: #04121a;
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
-  z-index: 3;
-}
-
-.host-name {
-  font-size: 1.35rem;
-  font-weight: 800;
-  margin-bottom: 2px;
-}
-
-.host-role {
-  color: var(--teal);
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-bottom: 6px;
-}
-
-.host-bio {
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-body.light-theme .host-bio {
-  color: #475569;
-}
-
-.btn-whatsapp-community {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 11px 18px;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #ffffff !important;
-  font-weight: 800;
-  font-size: 0.88rem;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 18px var(--whatsapp-glow);
-  transition: var(--transition);
-}
-.btn-whatsapp-community:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
-}
-
-.village-info-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 26px;
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-main);
-}
-
-.village-info-card p {
-  color: var(--text-muted);
-  font-size: 0.94rem;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-body.light-theme .village-info-card p {
-  color: #334155;
-}
-
-.village-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.stat-feature-box {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 12px;
-  border-radius: var(--radius-md);
-  transition: var(--transition);
-}
-.stat-feature-box strong {
-  display: block;
-  color: var(--gold);
-  font-size: 0.92rem;
-  margin-bottom: 2px;
-}
-.stat-feature-box span {
-  font-size: 0.84rem;
-  color: var(--text-muted);
-}
-body.light-theme .stat-feature-box span {
-  color: #475569;
-}
-
-/* ==========================================================================
-   8. GRAM VIKAS PROGRESS TRACKER
-   ========================================================================== */
-.progress-section-wrap {
-  margin-top: 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-main);
-}
-
-.progress-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.progress-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-.progress-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-}
-.progress-card-top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.84rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.progress-bar-bg {
-  width: 100%;
-  height: 7px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-body.light-theme .progress-bar-bg {
-  background: #cbd5e1;
-}
-.progress-bar-fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  transition: width 1s ease;
-}
-
-/* ==========================================================================
-   9. COMPACT GRAM PRATINIDHI DIRECTORY
-   ========================================================================== */
-.pratinidhi-wrapper {
-  max-width: 920px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-main);
-  backdrop-filter: blur(14px);
-}
-
-.pratinidhi-filter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 12px;
-  margin-bottom: 14px;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.pratinidhi-search {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  min-width: 210px;
-}
-body.light-theme .pratinidhi-search {
-  background: #ffffff;
-  border-color: #cbd5e1;
-}
-
-.pratinidhi-list {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.pratinidhi-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 11px 15px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  gap: 10px;
-  flex-wrap: wrap;
-  transition: var(--transition);
-}
-.pratinidhi-item:hover {
-  border-color: var(--gold);
-  transform: scale(1.008);
-}
-
-.pratinidhi-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.pratinidhi-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: rgba(255, 195, 44, 0.1);
-  color: var(--gold);
-  display: grid;
-  place-items: center;
-  font-size: 1.15rem;
-  border: 1px solid rgba(255, 195, 44, 0.2);
-}
-
-.pratinidhi-role {
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.pratinidhi-name {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.pratinidhi-call-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(255, 195, 44, 0.12);
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 0.82rem;
-  transition: var(--transition);
-}
-.pratinidhi-call-btn:hover {
-  background: var(--gold);
-  color: #04121a;
-  transform: translateY(-2px);
-}
-  /* ==========================================================================
-   10. GALLERY & GOOGLE FORM PHOTO UPLOAD SYSTEM
-   ========================================================================== */
-.gallery-header-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.gallery-filter-tabs {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.gallery-tab {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  padding: 6px 13px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--transition);
-}
-body.light-theme .gallery-tab {
-  color: #475569;
-}
-.gallery-tab:hover, .gallery-tab.active {
-  background: var(--gold);
-  color: #04121a;
-  border-color: var(--gold);
-}
-body.light-theme .gallery-tab.active {
-  color: #ffffff;
-}
-
-/* Upload Action Group */
-.gallery-action-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.btn-upload-gform {
-  background: linear-gradient(135deg, #4285F4, #1a73e8);
-  color: #ffffff !important;
-  font-weight: 800;
-  font-size: 0.84rem;
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 14px rgba(66, 133, 244, 0.35);
-  transition: var(--transition);
-}
-.btn-upload-gform:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-
-.btn-upload-local {
-  background: linear-gradient(135deg, var(--teal), #0f766e);
-  color: #ffffff !important;
-  font-weight: 800;
-  font-size: 0.84rem;
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 14px var(--teal-glow);
-  transition: var(--transition);
-}
-.btn-upload-local:hover {
-  transform: translateY(-2px);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.gallery-card {
-  position: relative;
-  height: 210px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  background: var(--bg-card);
-  transition: var(--transition);
-}
-.gallery-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-}
-
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.gallery-card:hover img {
-  transform: scale(1.06);
-}
-
-.gallery-card-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: rgba(3, 13, 20, 0.85);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--border-color);
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--gold);
-  z-index: 2;
-}
-
-.gallery-card-badge.community {
-  background: rgba(45, 212, 191, 0.95);
-  color: #04121a;
-  border-color: var(--teal);
-}
-
-.gallery-card-caption {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 25px 12px 8px;
-  background: linear-gradient(to top, rgba(3, 13, 20, 0.95), transparent);
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-}
-
-/* Lightbox Modal */
-.lightbox-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.94);
-  backdrop-filter: blur(12px);
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.lightbox-modal.active { display: grid; }
-
-.lightbox-content {
-  position: relative;
-  max-width: 880px;
-  width: 100%;
-  text-align: center;
-}
-
-.lightbox-img {
-  max-width: 100%;
-  max-height: 74vh;
-  object-fit: contain;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--gold);
-}
-
-.lightbox-title {
-  margin-top: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: -42px;
-  right: 0;
-  width: 38px;
-  height: 38px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid var(--gold);
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.3rem;
-  display: grid;
-  place-items: center;
-}
-
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--border-color);
-  color: #fff;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-}
-.lightbox-prev { left: -18px; }
-.lightbox-next { right: -18px; }
-
-/* Upload Modal (Dual: Google Form + Direct Upload) */
-.upload-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(10px);
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.upload-modal.active { display: grid; }
-
-.upload-modal-card {
-  background: var(--bg-card);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-lg);
-  max-width: 540px;
-  width: 100%;
-  padding: 24px;
-  box-shadow: 0 10px 40px var(--gold-glow);
-  position: relative;
-}
-
-.upload-choice-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-}
-.upload-choice-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-weight: 700;
-  font-size: 0.88rem;
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-.upload-choice-btn.active {
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.15);
-}
-
-/* ==========================================================================
-   11. SMART FORM & ZERO-COST VERIFICATION
-   ========================================================================== */
-.form-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-main);
-  position: relative;
-}
-
-.step-indicator-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  position: relative;
-}
-.step-indicator-bar::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--border-color);
-  z-index: 1;
-}
-
-.step-node {
-  position: relative;
-  z-index: 2;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.86rem;
-  color: var(--text-muted);
-}
-.step-node.active {
-  border-color: var(--gold);
-  background: var(--gold);
-  color: #04121a;
-}
-.step-node.completed {
-  border-color: var(--success);
-  background: var(--success);
-  color: #fff;
-}
-
-.otp-interactive-box {
-  display: none;
-  background: var(--bg-secondary);
-  border: 1px dashed var(--gold);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  margin-top: 14px;
-}
-
-.otp-smart-banner {
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid var(--whatsapp);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.otp-smart-banner b {
-  color: var(--whatsapp);
-  font-size: 1.05rem;
-  letter-spacing: 2px;
-}
-
-.form-group {
-  margin-bottom: 14px;
-}
-.form-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-body.light-theme .form-label {
-  color: #334155;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px 12px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
-  transition: var(--transition);
-}
-body.light-theme .form-control {
-  background: #ffffff;
-  border-color: #cbd5e1;
-  color: #0f172a;
-}
-.form-control:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(255, 195, 44, 0.15);
-}
-
-.receipt-card {
-  display: none;
-  background: var(--bg-secondary);
-  border: 1px solid var(--success);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  margin-top: 16px;
-  text-align: center;
-}
-.receipt-token {
-  font-size: 1.45rem;
-  font-weight: 900;
-  color: var(--gold);
-  background: rgba(255, 195, 44, 0.1);
-  padding: 6px 16px;
-  border-radius: var(--radius-sm);
-  display: inline-block;
-  margin: 10px 0;
-  letter-spacing: 2px;
-  border: 1px dashed var(--gold);
-  }
-  /* ==========================================================================
-   12. EMERGENCY SOS MODAL & TOAST
-   ========================================================================== */
-.floating-actions-bar {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 99;
-}
-
-.float-sos-btn {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
-  color: white;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.2rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.5);
-  animation: sosPulse 2s infinite;
-}
-
-@keyframes sosPulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-
-.back-to-top-btn {
-  background: var(--gold);
-  color: #04121a;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.2rem;
-  font-weight: 800;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 14px var(--gold-glow);
-  transition: var(--transition);
-  opacity: 0;
-  visibility: hidden;
-}
-.back-to-top-btn.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.sos-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 10000;
-  display: none;
-  place-items: center;
-  padding: 20px;
-}
-.sos-modal.active { display: grid; }
-
-.sos-modal-card {
-  background: var(--bg-card);
-  border: 1px solid var(--danger);
-  border-radius: var(--radius-lg);
-  max-width: 480px;
-  width: 100%;
-  padding: 24px;
-  position: relative;
-}
-
-.sos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 14px;
-}
-.sos-item {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 0.88rem;
-}
-.sos-item a {
-  background: var(--danger);
-  color: white;
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-}
-
-#confettiCanvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 99999;
-}
-
-/* Toast Notification */
-.portal-toast {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%) translateY(30px);
-  background: rgba(3, 13, 20, 0.95);
-  border: 1px solid var(--gold);
-  color: #ffffff;
-  padding: 9px 18px;
-  border-radius: var(--radius-full);
-  font-size: 0.86rem;
-  font-weight: 700;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  z-index: 10005;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-.portal-toast.active {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-footer {
-  background: rgba(2, 8, 13, 0.98);
-  border-top: 1px solid var(--border-color);
-  padding: 32px 0 18px;
-  font-size: 0.84rem;
-}
-body.light-theme footer {
-  background: #e2e8f0;
-  border-top-color: #cbd5e1;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-@media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; }
-  .quicklinks-grid { grid-template-columns: repeat(3, 1fr); }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .progress-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 768px) {
-  .menu-toggle { display: block; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: var(--bg-primary);
-    border-bottom: 2px solid var(--border-color);
-    flex-direction: column;
-    padding: 16px;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.7);
-    gap: 6px;
-  }
-  .nav-links.open { display: flex; }
-  .quicklinks-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .village-stats-grid { grid-template-columns: 1fr; }
-  .sos-grid { grid-template-columns: 1fr; }
-  .top-bar-inner { flex-direction: column; align-items: stretch; gap: 4px; }
-  .top-tools { justify-content: space-between; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wyndhamganj Butbherwa (Shiv Nagar) - Digital Gram Portal</title>
+  <meta name="description" content="Official Digital Portal for Gram Panchayat Wyndhamganj Butbherwa. Real-time announcements, representative contacts, gallery, and grievance lodging.">
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Firebase Modular Compat SDKs (App, Auth, and Firestore) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CSS SYSTEM VARIABLES & ROOT PALETTE
+       ========================================================================== */
+    :root {
+      --bg-primary: #030d14;
+      --bg-secondary: #071926;
+      --bg-card: rgba(11, 35, 53, 0.65);
+      --bg-card-hover: rgba(16, 48, 72, 0.85);
+      --border-color: rgba(45, 212, 191, 0.18);
+      --border-gold: rgba(255, 195, 44, 0.35);
+
+      --gold: #ffc32c;
+      --gold-hover: #e0a71b;
+      --teal: #2dd4bf;
+      --whatsapp: #25D366;
+      --danger: #ef4444;
+      --success: #10b981;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dark: #0f172a;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-glow: 0 0 25px rgba(255, 195, 44, 0.18);
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-hindi: 'Tiro Devanagari Hindi', serif;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Light Theme Adaptation */
+    body.light-theme {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --bg-card-hover: #ffffff;
+      --border-color: rgba(15, 23, 42, 0.12);
+      --border-gold: rgba(224, 167, 27, 0.5);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Accessibility Font Scalers */
+    html[data-font="sm"] { font-size: 14px; }
+    html[data-font="md"] { font-size: 16px; }
+    html[data-font="lg"] { font-size: 18px; }
+
+    /* ==========================================================================
+       2. BASE RESET & GLOBAL LAYOUT
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      outline: none;
+    }
+
+    /* ==========================================================================
+       3. TOP UTILITY HEADER & ANNOUNCEMENT BAR
+       ========================================================================== */
+    .top-utility-bar {
+      background: rgba(3, 13, 20, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.82rem;
+      padding: 7px 0;
+      position: relative;
+      z-index: 60;
+    }
+
+    .utility-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .utility-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-muted);
+    }
+
+    .utility-meta b {
+      color: var(--gold);
+    }
+
+    .utility-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .font-btn, .theme-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .font-btn.active, .font-btn:hover, .theme-btn:hover {
+      background: var(--gold);
+      color: var(--text-dark);
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Ticker Announcement */
+    .announcement-bar {
+      background: linear-gradient(90deg, #071926 0%, #0c2d42 50%, #071926 100%);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 8px 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-title {
+      background: var(--gold);
+      color: var(--text-dark);
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      margin-right: 14px;
+      cursor: pointer;
+    }
+
+    .ticker-track {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: marqueeScroll 28s linear infinite;
+      color: #e2e8f0;
+      font-size: 0.88rem;
+    }
+
+    .ticker-content:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ==========================================================================
+       4. MAIN NAVIGATION (STICKY GLASSMORPHIC)
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(3, 13, 20, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 0;
+      transition: var(--transition);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-emblem {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold), #f59e0b);
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      box-shadow: 0 4px 14px rgba(255, 195, 44, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-text span {
+      font-size: 0.76rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn-action {
+      background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+      color: var(--text-dark);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(255, 195, 44, 0.25);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 195, 44, 0.4);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       5. HERO SECTION WITH IMAGE OVERLAY & LIVE EVENT TIMER
+       ========================================================================== */
+    .hero {
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 56px 0;
+      background: url('IMG_20250929_062521.jpg') center/cover no-repeat #04131d;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      /* Balanced gradient to display Piprahava Bandh clearly while keeping text readable */
+      background: linear-gradient(90deg, rgba(3, 13, 20, 0.88) 0%, rgba(3, 13, 20, 0.55) 55%, rgba(3, 13, 20, 0.22) 100%);
+      z-index: 1;
+    }
+
+    #heroVfxCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(45, 212, 191, 0.12);
+      border: 1px solid var(--teal);
+      border-radius: var(--radius-full);
+      color: var(--teal);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold) 0%, #fef08a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 580px;
+      margin-bottom: 26px;
+      line-height: 1.7;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+      color: var(--text-dark);
+      box-shadow: 0 4px 18px rgba(255, 195, 44, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255, 195, 44, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    /* Countdown Card */
+    .countdown-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+    }
+
+    .countdown-card h3 {
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .countdown-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .timer-box {
+      background: rgba(3, 13, 20, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 4px;
+    }
+
+    .timer-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--teal);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .timer-lbl {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+        /* ==========================================================================
+       6. SECTION HEADINGS & CORE COMPONENTS
+       ========================================================================== */
+    .section-pad {
+      padding: 70px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       7. EMERGENCY HELPLINES STRIP
+       ========================================================================== */
+    .emergency-strip {
+      background: rgba(239, 68, 68, 0.08);
+      border-top: 1px solid rgba(239, 68, 68, 0.25);
+      border-bottom: 1px solid rgba(239, 68, 68, 0.25);
+      padding: 20px 0;
+    }
+
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .emergency-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition);
+    }
+
+    .emergency-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--danger);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+    }
+
+    .emergency-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .emergency-info span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .emergency-info b {
+      font-size: 1.05rem;
+      color: #fee2e2;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       8. PANCHAYAT REPRESENTATIVES (LEADERSHIP)
+       ========================================================================== */
+    .rep-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .rep-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 26px 20px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rep-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .rep-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-card);
+    }
+
+    .rep-card:hover::before {
+      opacity: 1;
+    }
+
+    .rep-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      border: 3px solid var(--gold);
+      padding: 3px;
+      background: var(--bg-secondary);
+      object-fit: cover;
+      display: block;
+    }
+
+    .rep-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .rep-designation {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .rep-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid var(--border-color);
+      color: var(--teal);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .rep-contact-btn:hover {
+      background: var(--teal);
+      color: var(--text-dark);
+    }
+
+    /* ==========================================================================
+       9. COMMUNITY GALLERY & LIGHTBOX
+       ========================================================================== */
+    .gallery-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      background: #000;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(3, 13, 20, 0.78);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border-color);
+      font-size: 0.7rem;
+      color: var(--gold);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .gallery-card-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 14px 10px;
+      background: linear-gradient(to top, rgba(3, 13, 20, 0.95), transparent);
+      font-size: 0.85rem;
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 2;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border-color);
+    }
+
+    .lightbox-caption {
+      margin-top: 14px;
+      color: var(--text-main);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       10. GRIEVANCE & DIGITAL SEWA FORM (STEPPER ARCHITECTURE)
+       ========================================================================== */
+    .portal-form-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 34px;
+    }
+
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: var(--border-color);
+      z-index: 1;
+    }
+
+    .step-node {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      margin: 0 auto 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .step-node.active .step-circle {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--text-dark);
+      box-shadow: 0 0 16px rgba(255, 195, 44, 0.4);
+    }
+
+    .step-node.completed .step-circle {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--text-dark);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(3, 13, 20, 0.75);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(255, 195, 44, 0.2);
+    }
+
+    .otp-input-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Status Tracker Container */
+    .tracker-box {
+      background: rgba(7, 25, 38, 0.85);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .tracker-box h4 {
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .tracker-input-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    #statusResultBox {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      min-height: 24px;
+    }
+
+    /* Submission Success Receipt */
+    .receipt-card {
+      display: none;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid var(--success);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .receipt-token {
+      display: inline-block;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+      background: rgba(3, 13, 20, 0.9);
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      margin: 12px 0;
+      border: 1px dashed var(--gold);
+      letter-spacing: 1px;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(3, 13, 20, 0.94);
+      border: 1px solid var(--teal);
+      border-left: 5px solid var(--teal);
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      transform: translateY(120px);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .toast-notification.active {
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .footer {
+      background: #02070b;
+      border-top: 1px solid var(--border-color);
+      padding: 50px 0 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-desc {
+        margin: 0 auto 26px;
+      }
+      .hero-btn-group {
+        justify-content: center;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(3, 13, 20, 0.98);
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+      }
+      .nav-menu.mobile-open {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .portal-form-wrapper {
+        padding: 24px 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Confetti Canvas -->
-<canvas id="confettiCanvas"></canvas>
+  <!-- VFX Particle and Confetti Canvases -->
+  <canvas id="confettiCanvas"></canvas>
 
-<!-- Animated Background Orbs -->
-<div class="vfx-mesh-bg">
-  <div class="mesh-ball mesh-ball-1"></div>
-  <div class="mesh-ball mesh-ball-2"></div>
-</div>
-
-<!-- ================= 1. ULTRA-COMPACT TOP UTILITY BAR ================= -->
-<div class="top-bar">
-  <div class="container top-bar-inner">
-    <!-- Compact Sliding Ticker with Audio Voice Reader -->
-    <div class="ticker-wrap">
-      <span class="ticker-badge">🔴 TAZA</span>
-      <button class="btn-speaker" onclick="speakAnnouncement()" title="Suchna Awaaz Me Suniye">
-        🔊 Suniye
-      </button>
-      <div class="ticker-marquee">
-        <span class="ticker-content" id="liveTickerText">
-          📢 Wyndhamganj Butbherwa (Shiv Nagar) Digital Portal active &bull; Gram Sabha Baithak agle maheene 15 tareekh ko nirdharit &bull; Panchayat Bhawan par E-KYC shivir jari &bull; Jal Nigam handpump marammat abhiyan pragati par &bull; Photo upload suvidha chalu!
-        </span>
+  <!-- 1. Top Utility Bar -->
+  <div class="top-utility-bar">
+    <div class="container utility-wrapper">
+      <div class="utility-meta">
+        <span><i class="fa-solid fa-location-dot"></i> Wyndhamganj Butbherwa (Shiv Nagar), Sonbhadra, UP</span>
+        <span><i class="fa-regular fa-clock"></i> <span id="portalLiveClock">--:--:--</span></span>
+        <span><i class="fa-solid fa-cloud-sun"></i> Wyndhamganj: <b>28°C</b></span>
       </div>
-    </div>
-
-    <!-- Weather, Live Clock & Font Resizer -->
-    <div class="top-tools">
-      <div class="compact-badge weather-badge" id="liveWeather">
-        ☀️ Wyndhamganj 28°C
-      </div>
-
-      <div class="compact-badge clock-badge" id="liveClock">
-        🕒 Ghadi...
-      </div>
-
-      <div class="font-resizer" title="Akshar Ka Aakar">
-        <button class="font-btn" onclick="setFontSize('small')">A-</button>
-        <button class="font-btn active" onclick="setFontSize('normal')">A</button>
-        <button class="font-btn" onclick="setFontSize('large')">A+</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= 2. NAVBAR (LIGHT THEME CONTRAST BUG FIXED) ================= -->
-<header>
-  <div class="container nav">
-    <a class="brand" href="#home">
-      <div class="brand-symbol">ॐ</div>
-      <div class="brand-text">
-        <h1>Wyndhamganj <em>Butbherwa</em></h1>
-        <span>Official Digital Gram Portal &bull; Shiv Nagar</span>
-      </div>
-    </a>
-
-    <button class="menu-toggle" onclick="toggleNavMenu()" aria-label="Toggle Navigation">☰ Menu</button>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="#home" onclick="closeNavMenu()">⌂ Home</a>
-      <a href="#about" onclick="closeNavMenu()">About & Host</a>
-      <a href="#pratinidhi" onclick="closeNavMenu()">Pratinidhi</a>
-      <a href="#gallery" onclick="closeNavMenu()">Gallery 📸</a>
-      <a href="#submit-info" onclick="closeNavMenu()">Suchna / Shikayat ✍️</a>
-      <a href="#contact" onclick="closeNavMenu()">Contact</a>
-
-      <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
-        🌙 Dark
-      </button>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<!-- ================= 3. HERO SECTION ================= -->
-<section class="hero" id="home">
-  <canvas id="heroVfxCanvas"></canvas>
-  <div class="hero-overlay"></div>
-
-  <div class="container hero-grid">
-    <div class="hero-content">
-      <div class="hero-kicker">🌿 Gram Panchayat Wyndhamganj</div>
-      <h1 class="hero-title">
-        WDM <span class="gradient-text">Butbherwa</span><br>
-        Digital Sewa Portal
-      </h1>
-      <p class="hero-description">
-        Swagat Hai 🙏 Wyndhamganj Butbherwa (Shiv Nagar) ke official digital portal par aapka hardik swagat hai. Gaon ki har suchna, pratinidhiyo ke sampark, photo gallery aur sarkari yojanaayein ab ek hi jagah uplabdh hain.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#submit-info">Suchna / Shikayat Darj Karein ↗</a>
-        <a class="btn btn-secondary" href="#gallery">Gaon Ki Gallery 📸</a>
-        <!-- WhatsApp Share Portal Button -->
-        <button class="btn btn-share" onclick="sharePortalOnWhatsApp()">
-          📲 WhatsApp Share
-        </button>
-      </div>
-
-      <div class="hero-stats-row">
-        <div class="stat-item">
-          <h3>2,400+</h3>
-          <p>Gaonwasi (Jan-Sankhya)</p>
-        </div>
-        <div class="stat-item">
-          <h3>100%</h3>
-          <p>Digital Panchayat Pehal</p>
-        </div>
-        <div class="stat-item">
-          <h3>24x7</h3>
-          <p>Online Portal Suvidha</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Live Bulletin & Meeting Countdown -->
-    <div class="hero-card-widget">
-      <div class="widget-header">
-        <div class="widget-title">📌 Live Gram Bulletin</div>
-        <div class="live-indicator"><span class="live-dot"></span> Active</div>
-      </div>
-
-      <!-- Live Event Countdown -->
-      <div class="countdown-box">
-        <div class="countdown-title">⏳ Agli Gram Sabha Baithak Mein Bacha Samay:</div>
-        <div class="countdown-grid">
-          <div class="countdown-item"><b id="cdDays">14</b><span>Din</span></div>
-          <div class="countdown-item"><b id="cdHours">08</b><span>Ghante</span></div>
-          <div class="countdown-item"><b id="cdMins">30</b><span>Min</span></div>
-          <div class="countdown-item"><b id="cdSecs">00</b><span>Sec</span></div>
-        </div>
-      </div>
-
-      <div class="widget-content-list">
-        <div class="widget-row">
-          <span>🌾 <b>Panchayat Bhawan:</b></span>
-          <span style="color:var(--teal); font-weight:700;">Pratidin 10AM - 5PM</span>
-        </div>
-        <div class="widget-row">
-          <span>🩺 <b>Health Upkendra:</b></span>
-          <span style="color:var(--success); font-weight:700;">Doctor & ASHA Active</span>
-        </div>
-        <div class="widget-row">
-          <span>⚡ <b>Bijli Helpline:</b></span>
-          <span>Dial 1912</span>
-        </div>
-        <div class="widget-row">
-          <span>🚰 <b>Nal Jal Sewa:</b></span>
-          <span>Suvidha Chaloo</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 4. QUICK ACCESS TILES ================= -->
-<div class="container quicklinks-section">
-  <div class="quicklinks-grid">
-    <a class="quick-card" href="#about">
-      <span class="quick-card-icon">👥</span>
-      <span>About Gaon</span>
-    </a>
-    <a class="quick-card" href="#pratinidhi">
-      <span class="quick-card-icon">🏛️</span>
-      <span>Pratinidhi</span>
-    </a>
-    <a class="quick-card" href="#gallery">
-      <span class="quick-card-icon">🖼️</span>
-      <span>Photo Gallery</span>
-    </a>
-    <a class="quick-card" href="#submit-info">
-      <span class="quick-card-icon">✍️</span>
-      <span>Shikayat Darj</span>
-    </a>
-    <a class="quick-card" href="javascript:void(0)" onclick="openSosModal()">
-      <span class="quick-card-icon">🚨</span>
-      <span>Helpline SOS</span>
-    </a>
-    <a class="quick-card" href="#contact">
-      <span class="quick-card-icon">📞</span>
-      <span>Direct Sampark</span>
-    </a>
-  </div>
-</div>
-
-<!-- ================= 5. ABOUT SECTION & THE HOST ================= -->
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Gram Parichay & Pehal</div>
-        <h2 class="section-title">Hamara <span>Gaon & The Host</span></h2>
-      </div>
-      <p class="section-subtitle">Prakritik sundarta, shanti aur digital pragati ka anokha sangam.</p>
-    </div>
-
-    <div class="about-grid">
-      <!-- THE HOST CARD -->
-      <div class="host-card">
-        <div class="host-avatar-wrap">
-          <img src="942fe674faf2ef24f01fc8b726c5222a.jpg" alt="The Host" class="host-photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'">
-          <span class="host-badge-creator">Developer</span>
-        </div>
-        <h3 class="host-name">The Host</h3>
-        <p class="host-role">Creator & Village Contributor</p>
-        <p class="host-bio">
-          Wyndhamganj Butbherwa ko digital banane aur gaonwasiyon tak har zaroori suchna pahunchane ke liye ye portal banaya gaya hai.
-        </p>
-
-        <!-- WHATSAPP GROUP LINK -->
-        <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-community">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.115-.515-1.815-.749-2.986-2.595-3.077-2.716-.09-.12-1.442-1.921-1.442-3.664 0-1.743.914-2.6 1.239-2.955.325-.355.709-.444.945-.444.236 0 .473.002.68.012.219.01.513-.083.803.613.297.712 1.012 2.471 1.102 2.651.09.182.15.395.03.636-.12.241-.18.39-.356.596-.177.206-.372.46-.532.618-.178.175-.363.366-.156.722.207.355.918 1.516 1.97 2.455 1.353 1.208 2.493 1.583 2.848 1.761.355.177.562.148.772-.09.21-.24.89-1.036 1.127-1.392.237-.355.474-.296.799-.177.325.12 2.063.974 2.418 1.152.355.177.592.266.68.414.088.148.088.858-.056 1.263zM12.004 2C6.479 2 2 6.48 2 12.008c0 1.968.57 3.805 1.558 5.362L2 22l4.789-1.527C8.293 21.378 10.091 22 12.004 22 17.526 22 22 17.52 22 12.008 22 6.48 17.526 2 12.004 2z"/>
-          </svg>
-          Gaon WhatsApp Group se Judein
-        </a>
-      </div>
-
-      <!-- VILLAGE DETAILS -->
-      <div class="village-info-card">
-        <div class="section-kicker">Prakriti & Sanskriti</div>
-        <h3 style="font-size:1.5rem; margin-bottom:10px;">Wyndhamganj <span style="color:var(--gold);">Butbherwa (Shiv Nagar)</span></h3>
-        <p>
-          Hamara gaon Sonbhadra zila ke antargat prakritik sundarta, shant van-kshetra aur Piprahava bandh ke aas-paas sthit hai. Yahan ke log apnepan aur pragati ki bhavna se jude hain. Is portal ka udeshya har nagrik ko sidhe gram prashasan se jodna hai.
-        </p>
-
-        <div class="village-stats-grid">
-          <div class="stat-feature-box">
-            <strong>📍 Bhugol & Sthiti</strong>
-            <span>Wyndhamganj, Butbherwa, Sonbhadra (U.P.)</span>
-          </div>
-          <div class="stat-feature-box">
-            <strong>🤝 Sahyogi Vikas</strong>
-            <span>Panchayat bhawan, jal shivir aur safai abhiyan</span>
-          </div>
-          <div class="stat-feature-box">
-            <strong>🛕 Sanskritik Dharohar</strong>
-            <span>Shiv Mandir aayojan aur paramparik mele</span>
-          </div>
-          <div class="stat-feature-box">
-            <strong>📶 Digital Gram</strong>
-            <span>Online suchna, e-shikayat aur 24x7 helpline</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GRAM VIKAS PROGRESS TRACKER -->
-    <div class="progress-section-wrap">
-      <div class="progress-header">
-        <h4 style="margin:0; font-size:1.05rem; color:var(--gold);">🏗️ Gram Vikas Yojna Progress Tracker</h4>
-        <span style="font-size:0.78rem; color:var(--text-muted);">Satra 2025-2026</span>
-      </div>
-      <div class="progress-grid">
-        <div class="progress-card">
-          <div class="progress-card-top">
-            <span>🚰 Har Ghar Jal (Nal)</span>
-            <span style="color:var(--teal)">92%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:92%; background:var(--teal);"></div></div>
-        </div>
-        <div class="progress-card">
-          <div class="progress-card-top">
-            <span>💡 Solar Street Lights</span>
-            <span style="color:var(--gold)">85%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:85%; background:var(--gold);"></div></div>
-        </div>
-        <div class="progress-card">
-          <div class="progress-card-top">
-            <span>🛣️ Sadak wa Nali Marammat</span>
-            <span style="color:var(--success)">78%</span>
-          </div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:78%; background:var(--success);"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ================= 6. GRAM PRATINIDHI DIRECTORY ================= -->
-<section id="pratinidhi" style="background: rgba(7, 25, 38, 0.45);">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Shasan & Prashasan</div>
-        <h2 class="section-title">Gram <span>Pratinidhi Directory</span></h2>
-      </div>
-      <p class="section-subtitle">Kisi bhi zaroori karya ya samasya ke liye seedhe sampark karein.</p>
-    </div>
-
-    <div class="pratinidhi-wrapper">
-      <div class="pratinidhi-filter-bar">
-        <div style="font-weight:700; color:var(--gold); display:flex; align-items:center; gap:6px; font-size:0.95rem;">
-          🏛️ Suchi: Wyndhamganj Butbherwa
-        </div>
-        <input type="text" id="pratinidhiSearchInput" class="pratinidhi-search" placeholder="🔍 Naam ya Pad se khojein..." onkeyup="filterPratinidhi()">
-      </div>
-
-      <div class="pratinidhi-list" id="pratinidhiList">
-        <!-- 1. Gram Pradhan -->
-        <div class="pratinidhi-item">
-          <div class="pratinidhi-meta">
-            <div class="pratinidhi-icon">🎖️</div>
-            <div>
-              <div class="pratinidhi-role">Gram Pradhan</div>
-              <div class="pratinidhi-name">Shri Shyam Kumar</div>
-            </div>
-          </div>
-          <a class="pratinidhi-call-btn" href="tel:+919452696410">📞 +91 94526 96410</a>
-        </div>
-
-        <!-- 2. Gram Sachiv -->
-        <div class="pratinidhi-item">
-          <div class="pratinidhi-meta">
-            <div class="pratinidhi-icon">📜</div>
-            <div>
-              <div class="pratinidhi-role">Gram Sachiv (Panchayat Adhikari)</div>
-              <div class="pratinidhi-name">Shri Ram</div>
-            </div>
-          </div>
-          <a class="pratinidhi-call-btn" href="tel:+919876543210">📞 +91 98765 43210</a>
-        </div>
-
-        <!-- 3. Rojgar Sevak -->
-        <div class="pratinidhi-item">
-          <div class="pratinidhi-meta">
-            <div class="pratinidhi-icon">💼</div>
-            <div>
-              <div class="pratinidhi-role">Gram Rojgar Sevak</div>
-              <div class="pratinidhi-name">Mohan Singh</div>
-            </div>
-          </div>
-          <a class="pratinidhi-call-btn" href="tel:+919123456789">📞 +91 91234 56789</a>
-        </div>
-
-        <!-- 4. ASHA Karyakarti -->
-        <div class="pratinidhi-item">
-          <div class="pratinidhi-meta">
-            <div class="pratinidhi-icon">🩺</div>
-            <div>
-              <div class="pratinidhi-role">ASHA Swasthya Karyakarti</div>
-              <div class="pratinidhi-name">Geeta Devi</div>
-            </div>
-          </div>
-          <a class="pratinidhi-call-btn" href="tel:+919345678901">📞 +91 93456 78901</a>
-        </div>
-
-        <!-- 5. Portal Host -->
-        <div class="pratinidhi-item">
-          <div class="pratinidhi-meta">
-            <div class="pratinidhi-icon">💻</div>
-            <div>
-              <div class="pratinidhi-role">Portal Admin & Host</div>
-              <div class="pratinidhi-name">The Host</div>
-            </div>
-          </div>
-          <a class="pratinidhi-call-btn" href="tel:+919214360582">📞 +91 92143 60582</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 7. GALLERY & GOOGLE FORM UPLOAD ================= -->
-<section id="gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Chitrashala</div>
-        <h2 class="section-title">village <span>Gallery 📸</span></h2>
-      </div>
-      <p class="section-subtitle">Wyndhamganj ke prakritik nazare aur aapke dwara jodi gayi tasveerein.</p>
-    </div>
-
-    <!-- Gallery Controls: Filters + Dual Upload Options -->
-    <div class="gallery-header-controls">
-      <div class="gallery-filter-tabs">
-        <button class="gallery-tab active" onclick="filterGallery('all', this)">Sabhi Photos</button>
-        <button class="gallery-tab" onclick="filterGallery('community', this)">🌟 Gaonwasi Uploads</button>
-        <button class="gallery-tab" onclick="filterGallery('prakriti', this)">🌿 Prakriti & Bandh</button>
-        <button class="gallery-tab" onclick="filterGallery('dharohar', this)">🚂 Railway & Pul</button>
-        <button class="gallery-tab" onclick="filterGallery('host', this)">💻 Developer</button>
-      </div>
-
-      <div class="gallery-action-group">
-        <!-- GOOGLE FORM INTEGRATION BUTTON -->
-        <a href="https://forms.gle/UPPjJSzL97rZ4bQd9" target="_blank" rel="noopener noreferrer" class="btn-upload-gform" title="Google Form dwara Photo bhejein">
-          📤 Google Form se Photo Bhejein
-        </a>
-
-        <!-- POPUP OPTION MODAL BUTTON -->
-        <button class="btn-upload-local" onclick="openUploadModal()">
-          📸 Photo Upload Dialog
+      <div class="utility-controls">
+        <span style="font-size:0.75rem; color:var(--text-muted); margin-right:4px;">Font:</span>
+        <button class="font-btn" onclick="setFontSize('sm')">A-</button>
+        <button class="font-btn active" onclick="setFontSize('md')">A</button>
+        <button class="font-btn" onclick="setFontSize('lg')">A+</button>
+        <button class="theme-btn" onclick="togglePortalTheme()" title="Toggle Theme" style="margin-left:6px;">
+          <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
       </div>
     </div>
+  </div>
 
-    <!-- Dynamic Gallery Grid -->
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Photos populated by JS -->
+  <!-- 2. Sliding Announcements Ticker -->
+  <div class="announcement-bar">
+    <div class="container" style="display:flex; align-items:center;">
+      <div class="ticker-title">
+        <i class="fa-solid fa-bullhorn"></i> ग्राम सूचना
+      </div>
+      <div class="ticker-track">
+        <div class="ticker-content">
+          📢 <b>ग्राम सभा सूचना:</b> आगामी ग्राम सभा बैठक हेतु पिपरहवा बांध एवं पंचायत भवन परिसर में सभी सम्मानित ग्रामवासियों की उपस्थिति सादर प्रार्थनीय है। | 💧 <b>स्वच्छ जल मिशन:</b> वार्ड 2 एवं 4 में पेयजल लाइन का निरीक्षण पूर्ण हो चुका है। | 🌾 <b>पीएम किसान सम्मान निधि:</b> ई-केवाईसी पूर्ण कराने हेतु सीएससी केंद्र से संपर्क करें।
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ================= 8. SMART FORM & VERIFICATION ================= -->
-<section id="submit-info" style="background: rgba(7, 25, 38, 0.45);">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Digital Seva & Shikayat</div>
-        <h2 class="section-title">Suchna / Shikayat <span>Darj Karein ✍️</span></h2>
-      </div>
-      <p class="section-subtitle">Surakshit OTP verification ke sath apni baat gram prashasan tak pahunchayein.</p>
+  <!-- 3. Glassmorphic Navigation -->
+  <nav class="navbar">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo">
+        <div class="brand-emblem"><i class="fa-solid fa-landmark-flag"></i></div>
+        <div class="brand-text">
+          <h1>विंढमगंज बुटबेढ़वा</h1>
+          <span>डिजिटल ग्राम पंचायत पोर्टल</span>
+        </div>
+      </a>
+      <ul class="nav-menu" id="primaryNavMenu">
+        <li><a href="#hero" class="nav-link active">होम</a></li>
+        <li><a href="#emergency" class="nav-link">हेल्पलाइन</a></li>
+        <li><a href="#leadership" class="nav-link">प्रतिनिधि</a></li>
+        <li><a href="#gallery" class="nav-link">फोटो गैलरी</a></li>
+        <li><a href="#grievance" class="nav-btn-action"><i class="fa-solid fa-file-pen"></i> सूचना / शिकायत दर्ज करें</a></li>
+      </ul>
+      <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Open Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
+  </nav>
 
-    <div class="form-card">
-      <div class="step-indicator-bar">
-        <div class="step-node active" id="stepNode1">1</div>
-        <div class="step-node" id="stepNode2">2</div>
-        <div class="step-node" id="stepNode3">3</div>
+  <!-- 4. Hero Section with Live Timer -->
+  <header class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <canvas id="heroVfxCanvas"></canvas>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> आधिकारिक ग्राम पंचायत ई-सेवा</div>
+        <h1 class="hero-title">ग्राम पंचायत विंढमगंज <span>बुटबेढ़वा</span></h1>
+        <p class="hero-desc">
+          शिव नगर, पिपरहवा बांध एवं समस्त वार्डों के सर्वांगीण विकास, पारदर्शी डिजिटल सेवा, त्वरित जनसुनवाई और ग्राम सूचना प्रणाली का एक सुगम डिजिटल मंच।
+        </p>
+        <div class="hero-btn-group">
+          <a href="#grievance" class="btn btn-primary"><i class="fa-solid fa-pen-nib"></i> शिकायत / सुझाव दर्ज करें</a>
+          <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn btn-secondary" style="border-color:var(--whatsapp); color:#4ade80;">
+            <i class="fa-brands fa-whatsapp"></i> आधिकारिक व्हाट्सएप ग्रुप
+          </a>
+        </div>
       </div>
 
-      <form id="gramSevaForm" onsubmit="handleFormSubmission(event)">
-        <!-- STEP 1: MOBILE ENTRY & SMART OTP DISPATCH -->
-        <div id="step1Section">
+      <!-- Live Meeting Countdown Widget -->
+      <div class="countdown-card">
+        <h3><i class="fa-solid fa-calendar-check"></i> आगामी ग्राम सभा बैठक</h3>
+        <p>पंचायत सचिवालय, विंढमगंज बुटबेढ़वा</p>
+        <div class="timer-grid">
+          <div class="timer-box">
+            <span class="timer-num" id="cdDays">00</span>
+            <span class="timer-lbl">दिन</span>
+          </div>
+          <div class="timer-box">
+            <span class="timer-num" id="cdHours">00</span>
+            <span class="timer-lbl">घंटे</span>
+          </div>
+          <div class="timer-box">
+            <span class="timer-num" id="cdMinutes">00</span>
+            <span class="timer-lbl">मिनट</span>
+          </div>
+          <div class="timer-box">
+            <span class="timer-num" id="cdSeconds">00</span>
+            <span class="timer-lbl">सेकंड</span>
+          </div>
+        </div>
+        <a href="#grievance" class="btn btn-secondary" style="width:100%; font-size:0.85rem; padding:9px;">
+          बैठक हेतु प्रस्ताव प्रेषित करें
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5. Emergency Helplines Strip -->
+  <section class="emergency-strip" id="emergency">
+    <div class="container">
+      <div class="emergency-grid">
+        <a href="tel:112" class="emergency-card">
+          <div class="emergency-icon"><i class="fa-solid fa-shield"></i></div>
+          <div class="emergency-info">
+            <span>आपातकालीन पुलिस सेवा</span>
+            <b>डायल 112</b>
+          </div>
+        </a>
+        <a href="tel:108" class="emergency-card">
+          <div class="emergency-icon"><i class="fa-solid fa-truck-medical"></i></div>
+          <div class="emergency-info">
+            <span>एम्बुलेंस सेवा</span>
+            <b>डायल 108 / 102</b>
+          </div>
+        </a>
+        <a href="tel:1090" class="emergency-card">
+          <div class="emergency-icon"><i class="fa-solid fa-person-dress"></i></div>
+          <div class="emergency-info">
+            <span>महिला हेल्पलाइन</span>
+            <b>1090</b>
+          </div>
+        </a>
+        <a href="tel:1912" class="emergency-card">
+          <div class="emergency-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="emergency-info">
+            <span>विद्युत विभाग टोल फ्री</span>
+            <b>1912</b>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Leadership & Representatives -->
+  <section class="section-pad" id="leadership">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">लोक प्रतिनिधि</span>
+        <h2 class="section-title">ग्राम पंचायत नेतृत्व एवं प्रशासन</h2>
+        <p class="section-subtitle">ग्राम के सतत विकास, जनहित एवं प्रशासनिक सहायता हेतु समर्पित जनप्रतिनिधि एवं अधिकारी गण।</p>
+      </div>
+
+      <div class="rep-grid">
+        <div class="rep-card">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="ग्राम प्रधान" class="rep-avatar">
+          <h3 class="rep-name">श्रीमती ग्राम प्रधान</h3>
+          <p class="rep-designation">ग्राम प्रधान (सरपंच)</p>
+          <a href="tel:+919876543210" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+        </div>
+        <div class="rep-card">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="पंचायत सचिव" class="rep-avatar">
+          <h3 class="rep-name">श्री पंचायत सचिव</h3>
+          <p class="rep-designation">ग्राम विकास अधिकारी (VDO)</p>
+          <a href="tel:+919876543211" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+        </div>
+        <div class="rep-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="पंचायत सहायक" class="rep-avatar">
+          <h3 class="rep-name">श्री पंचायत सहायक</h3>
+          <p class="rep-designation">डिजिटल सेवा संचालक</p>
+          <a href="tel:+919876543212" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- 7. Community Photo Gallery -->
+  <section class="section-pad" id="gallery" style="background: rgba(7, 25, 38, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ग्राम दर्शन</span>
+        <h2 class="section-title">पिपरहवा बांध एवं ग्राम छायाचित्र</h2>
+        <p class="section-subtitle">प्राकृतिक छटा, ऐतिहासिक धरोहर एवं ग्राम पंचायत के विकास कार्यों की मनमोहक झलकियां।</p>
+      </div>
+
+      <div class="gallery-actions">
+        <!-- Instant Local/Session Upload -->
+        <label for="communityPhotoFileInput" class="btn btn-primary" style="cursor:pointer; font-size:0.86rem; padding:10px 20px;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> त्वरित फोटो अपलोड करें
+        </label>
+        <input type="file" id="communityPhotoFileInput" accept="image/*" style="display:none;" onchange="handleInstantPhotoUpload(event)">
+
+        <!-- Google Drive / Google Form Upload Integration -->
+        <a href="https://forms.google.com" target="_blank" class="btn btn-secondary" style="font-size:0.86rem; padding:10px 20px;">
+          <i class="fa-brands fa-google-drive"></i> गूगल ड्राइव में सबमिट करें
+        </a>
+
+        <!-- Admin Photo Moderation PIN Trigger -->
+        <button class="btn btn-secondary" onclick="toggleAdminPhotoManagement()" style="font-size:0.86rem; padding:10px 18px;" title="Admin Mode">
+          <i class="fa-solid fa-user-shield"></i> एडमिन कंट्रोल
+        </button>
+      </div>
+
+      <!-- Dynamic Gallery Grid Container -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+      <img src="" alt="Enlarged View" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- 8. Grievance & Public Service Portal (3-Step Architecture) -->
+  <section class="section-pad" id="grievance">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ई-समाधान केंद्र</span>
+        <h2 class="section-title">ऑनलाइन सूचना एवं जनशिकायत निवारण</h2>
+        <p class="section-subtitle">
+          पारदर्शी व्यवस्था हेतु अपनी समस्या, सुझाव अथवा सूचना सीधे ग्राम पंचायत प्रशासन एवं नोडल अधिकारियों तक प्रेषित करें।
+        </p>
+      </div>
+
+      <div class="portal-form-wrapper">
+        <!-- Stepper Indicators -->
+        <div class="stepper">
+          <div class="step-node active" id="stepNode1">
+            <div class="step-circle">1</div>
+            <div class="step-label">मोबाइल सत्यापन</div>
+          </div>
+          <div class="step-node" id="stepNode2">
+            <div class="step-circle">2</div>
+            <div class="step-label">विवरण प्रविष्टि</div>
+          </div>
+          <div class="step-node" id="stepNode3">
+            <div class="step-circle">3</div>
+            <div class="step-label">पावती (टोकन)</div>
+          </div>
+        </div>
+
+        <!-- Hidden Recaptcha Anchor for Firebase Auth -->
+        <div id="recaptcha-container"></div>
+
+        <!-- Step 1: Mobile Verification Box -->
+        <div id="step1PhoneSection">
           <div class="form-group">
-            <label class="form-label" for="userPhoneInput"><b>Enter 10-Digit Mobile Number *</b></label>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <input type="tel" id="userPhoneInput" class="form-control" style="flex:1; min-width:220px;" placeholder="Jaise: 9876543210" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-              <button type="button" class="btn btn-primary" id="requestOtpBtn" onclick="generateSmartOtp()">
-                💬 WhatsApp OTP 
+            <label for="userPhoneInput"><i class="fa-solid fa-mobile-screen"></i> आपका 10 अंकों का मोबाइल नंबर</label>
+            <div class="otp-input-group">
+              <input type="tel" id="userPhoneInput" class="form-control" placeholder="उदा. 9876543210" maxlength="10">
+              <button class="btn btn-primary" id="btnSendOtp" onclick="sendMobileOtp()" style="white-space:nowrap; padding:10px 18px;">
+                OTP भेजें
               </button>
             </div>
-            <small style="color:var(--text-muted); font-size:0.78rem; margin-top:4px; display:block;">
-              💢 Error 
+            <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px; display:block;">
+              * अनधिकृत प्रविष्टियों की रोकथाम हेतु मोबाइल प्रमाणीकरण अनिवार्य है।
             </small>
           </div>
 
-          <!-- Interactive OTP Enter Box -->
-          <div class="otp-interactive-box" id="otpInteractiveBox">
-            <div class="otp-smart-banner">
-              <span>📲 Security OTP Code: <b id="displayedOtpCode">----</b></span>
-              <a href="javascript:void(0)" id="waQuickLink" target="_blank" style="color:var(--whatsapp); font-weight:700; text-decoration:underline;">
-                WhatsApp par bhej kar check karein ↗
-              </a>
+          <!-- Secondary OTP Verification Field (Revealed on Request) -->
+          <div id="otpBox" style="display:none; margin-top:16px;">
+            <div class="form-group">
+              <label for="userOtpInput"><i class="fa-solid fa-key"></i> 6-अंकों का प्राप्त OTP दर्ज करें</label>
+              <div class="otp-input-group">
+                <input type="text" id="userOtpInput" class="form-control" placeholder="उदा. 123456" maxlength="6">
+                <button class="btn btn-secondary" onclick="verifyMobileOtp()" style="white-space:nowrap; padding:10px 18px; border-color:var(--teal); color:var(--teal);">
+                  सत्यापित करें
+                </button>
+              </div>
             </div>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <input type="text" id="enteredOtpInput" class="form-control" style="flex:1; min-width:180px;" placeholder="Yahan 4-digit OTP bharein" maxlength="4">
-              <button type="button" class="btn" style="background:var(--teal); color:#04121a; font-weight:800;" onclick="verifySmartOtp()">
-                ✅ Code Verify please 
-              </button>
-            </div>
-            <div id="otpValidationMsg" style="margin-top:8px; font-weight:700; font-size:0.82rem;"></div>
           </div>
         </div>
 
-        <!-- STEP 2: DETAILS FORM -->
-        <div id="step2DetailsSection" style="display:none; margin-top:18px;">
-          <div style="background:rgba(16, 185, 129, 0.1); border:1px solid var(--success); padding:9px 13px; border-radius:var(--radius-sm); color:var(--success); font-weight:700; margin-bottom:14px; font-size:0.9rem;">
-            ✅ Mobile number verified! Next:
+        <!-- Step 2: Grievance Submission Form (Enabled Post-Verification) -->
+        <form id="step2DetailsSection" style="display:none;" onsubmit="handleFormSubmission(event)">
+          <div style="background:rgba(45, 212, 191, 0.08); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:20px; font-size:0.85rem; color:var(--teal);">
+            <i class="fa-solid fa-check-circle"></i> मोबाइल नंबर सफलतापूर्वक सत्यापित हो गया है। कृपया शिकायत विवरण दर्ज करें।
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="citizenName">Aapka Pura Naam *</label>
-            <input type="text" id="citizenName" class="form-control" placeholder="Apna shubh naam likhein" required>
+            <label for="citizenName"><i class="fa-solid fa-user"></i> आवेदक का पूरा नाम *</label>
+            <input type="text" id="citizenName" class="form-control" required placeholder="उदा. रामेश्वर प्रसाद">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="citizenAddress">Pata (Mohalla / Tola / Gram) *</label>
-            <input type="text" id="citizenAddress" class="form-control" placeholder="Jaise: Purana Bazar, Butbherwa" required>
+            <label for="citizenAddress"><i class="fa-solid fa-map-location-dot"></i> टोला / मोहल्ला / वार्ड संख्या *</label>
+            <input type="text" id="citizenAddress" class="form-control" required placeholder="उदा. शिव नगर, वार्ड 03">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="issueCategory">Suchna ya Shikayat Ka Prakar</label>
-            <select id="issueCategory" class="form-control">
-              <option value="Event">📢 Gaon ki Nayi Khabar / Karyakram</option>
-              <option value="Bijli-Paani">🚰 Bijli / Paani / Handpump Samasya</option>
-              <option value="Sadak-Safai">🛣️ Sadak, Nali ya Safai Shikayat</option>
-              <option value="Kisan">🌾 Kisan Yojna / E-KYC Sahyog</option>
-              <option value="Vikas">💡 Gram Vikas Hetu Naya Sujhav</option>
+            <label for="issueCategory"><i class="fa-solid fa-list-check"></i> शिकायत अथवा सूचना का विषय *</label>
+            <select id="issueCategory" class="form-control" required>
+              <option value="">-- श्रेणी का चयन करें --</option>
+              <option value="पेयजल एवं हैंडपंप मरम्मत">पेयजल एवं हैंडपंप मरम्मत</option>
+              <option value="विद्युत आपूर्ति एवं स्ट्रीट लाइट">विद्युत आपूर्ति एवं स्ट्रीट लाइट</option>
+              <option value="सड़क एवं नाली निर्माण/सफाई">सड़क एवं नाली निर्माण / जलभराव</option>
+              <option value="राशन एवं सार्वजनिक वितरण प्रणाली">राशन एवं सार्वजनिक वितरण प्रणाली (PDS)</option>
+              <option value="प्रधानमंत्री आवास योजना">प्रधानमंत्री आवास योजना</option>
+              <option value="पिपरहवा बांध पर्यटन संवर्धन">पिपरहवा बांध पर्यटन एवं पर्यावरण</option>
+              <option value="अन्य सामान्य सुझाव/शिकायत">अन्य सामान्य सुझाव / शिकायत</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="citizenMessage">your message/ Vivaran *</label>
-            <textarea id="citizenMessage" rows="4" class="form-control" placeholder="Apni baat ya shikayat ka pura vivaran likhein..." required></textarea>
+            <label for="citizenMessage"><i class="fa-solid fa-pen-to-square"></i> समस्या का संपूर्ण विवरण *</label>
+            <textarea id="citizenMessage" class="form-control" rows="4" required placeholder="समस्या का विस्तृत ब्योरा यहां लिखें..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; padding:13px; font-size:1rem;">
-            🚀 Antyatah Suchna Submit Karein
+          <button type="submit" class="btn btn-primary" id="btnSubmitGrievance" style="width:100%; padding:14px; font-size:1rem;">
+            <i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें
+          </button>
+        </form>
+
+        <!-- Step 3: Formal Confirmation Receipt -->
+        <div class="receipt-card" id="submissionReceipt">
+          <div style="font-size:2.8rem; color:var(--success); margin-bottom:8px;">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h3 style="color:var(--text-main); font-size:1.3rem;">आपकी शिकायत सफलतापूर्वक दर्ज कर ली गई है!</h3>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-top:4px;">
+            ग्राम पंचायत प्रशासन एवं एडमिन को तत्काल सूचित कर दिया गया है। आगामी संदर्भ हेतु अपना टोकन नंबर सुरक्षित रखें:
+          </p>
+          <div class="receipt-token" id="receiptTokenBadge">WDM-2026-XXXX</div>
+          <p style="font-size:0.8rem; color:var(--text-muted);">
+            आप नीचे दिए गए स्थिति ट्रैकर में इस टोकन के माध्यम से कार्रवाई की प्रगति देख सकते हैं।
+          </p>
+          <button class="btn btn-secondary" onclick="resetSubmissionWorkflow()" style="margin-top:16px; font-size:0.85rem;">
+            <i class="fa-solid fa-rotate-right"></i> अन्य शिकायत दर्ज करें
           </button>
         </div>
-      </form>
 
-      <!-- STEP 3: OFFICIAL TRACKING RECEIPT -->
-      <div class="receipt-card" id="submissionReceipt">
-        <div style="font-size:2.2rem;">🎉</div>
-        <h3 style="color:var(--success); margin:4px 0; font-size:1.3rem;">your massage sent successfully!</h3>
-        <p style="color:var(--text-muted); font-size:0.86rem;">
-          Aapki baat Gram Pratinidhi tak bhej di gayi hai. Kripya apna Tracking Token note kar lein:
-        </p>
-
-        <div class="receipt-token" id="receiptTokenBadge">WDM-2026-0000</div>
-
-        <div style="display:flex; justify-content:center; gap:10px; margin-top:12px; flex-wrap:wrap;">
-          <button class="btn btn-secondary" onclick="copyReceiptToken()">📋 It will be change soon</button>
-          <button class="btn btn-primary" onclick="resetFormFlow()">💢 EXIT</button>
+        <!-- Real-Time Token Redressal Tracker -->
+        <div class="tracker-box">
+          <h4><i class="fa-solid fa-magnifying-glass-chart"></i> पूर्व में दर्ज शिकायत की स्थिति जानें</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">
+            अपनी शिकायत की प्रगति एवं प्रशासनिक टिप्पणी देखने हेतु आवंटित टोकन नंबर प्रविष्ट करें।
+          </p>
+          <div class="tracker-input-row">
+            <input type="text" id="trackTokenInput" class="form-control" style="max-width:280px; text-transform:uppercase;" placeholder="उदा. WDM-2026-1234">
+            <button class="btn btn-secondary" onclick="trackComplaintStatus()" style="padding:10px 20px;">
+              जांचें
+            </button>
+          </div>
+          <div id="statusResultBox"></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= 9. DIRECT CONTACT SECTION ================= -->
-<section id="contact">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Imp Contact</div>
-        <h2 class="section-title">Direct <span>Contact Karein</span></h2>
-      </div>
-      <p class="section-subtitle"> portal team se direct baat karein.</p>
-    </div>
-
-    <div class="quicklinks-grid" style="grid-template-columns: repeat(3, 1fr);">
-      <div class="host-card" style="padding:22px;">
-        <h4 style="color:var(--gold); font-size:1.15rem; margin-bottom:3px;">The Host</h4>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Portal Developer & Host</p>
-        <a class="pratinidhi-call-btn" href="tel:+919214360582">📞 +91 92143 60582</a>
-      </div>
-
-      <div class="host-card" style="padding:22px;">
-        <h4 style="color:var(--gold); font-size:1.15rem; margin-bottom:3px;">Gram Pradhan</h4>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Shri Sanjay Gupta</p>
-        <a class="pratinidhi-call-btn" href="tel:+919452696410">📞 +91 94526 96410</a>
-      </div>
-
-      <div class="host-card" style="padding:22px;">
-        <h4 style="color:var(--gold); font-size:1.15rem; margin-bottom:3px;">Gram Sachiv</h4>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Unavailable</p>
-        <a class="pratinidhi-call-btn" href="tel:+919876543210">📞 +91 Error</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ================= 10. FOOTER ================= -->
-<footer>
-  <div class="container footer-content">
-    <div>
-      <p style="font-weight:700; color:var(--gold); margin-bottom:3px;">Wyndhamganj Butbherwa (Shiv Nagar) Digital Portal</p>
-      <p style="color:var(--text-muted); margin:0;">Desh ki pragati gaon ke vikas se hai &bull; Designed & Maintained by <b>The Host</b></p>
-    </div>
-    <div style="display:flex; gap:14px; flex-wrap:wrap; font-size:0.84rem;">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#pratinidhi">Pratinidhi</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#submit-info">Shikayat</a>
-      <a href="javascript:void(0)" onclick="openSosModal()" style="color:var(--danger); font-weight:700;">🚨 Helpline</a>
-    </div>
-  </div>
-</footer>
-
-<!-- ================= 11. DUAL UPLOAD MODAL (GOOGLE FORM + DIRECT PREVIEW) ================= -->
-<div class="upload-modal" id="uploadModal" onclick="closeUploadModalOnBackdrop(event)">
-  <div class="upload-modal-card">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <h3 style="color:var(--gold); margin:0; font-size:1.2rem;">📸 Photo Upload Center</h3>
-      <button onclick="closeUploadModal()" style="background:none; border:none; color:var(--text-main); font-size:1.6rem; cursor:pointer;">&times;</button>
-    </div>
-
-    <!-- Choice Tabs -->
-    <div class="upload-choice-tabs">
-      <button class="upload-choice-btn active" id="tabGFormBtn" onclick="switchUploadTab('gform')">
-        🌐 Official Google Form
-      </button>
-      <button class="upload-choice-btn" id="tabLocalBtn" onclick="switchUploadTab('local')">
-        ⚡ Instant Browser Preview
-      </button>
-    </div>
-
-    <!-- TAB 1: GOOGLE FORM DIRECT LINK & INFO -->
-    <div id="tabGFormContent">
-      <div style="background:rgba(66, 133, 244, 0.12); border:1px solid #4285F4; border-radius:var(--radius-md); padding:16px; text-align:center; margin-bottom:16px;">
-        <div style="font-size:2rem; margin-bottom:6px;">☁️</div>
-        <h4 style="color:#4285F4; margin-bottom:6px;">Admin Google Drive Direct Upload</h4>
-        <p style="color:var(--text-muted); font-size:0.84rem; line-height:1.5; margin-bottom:14px;">
-          Aap is Google Form ke dwara original quality me gaon ki tasveerein bhej sakte hain. Ye sidhe portal ke Drive me store ho jayengi aur admin dwara gallery me permanent publish kar di jayengi!
-        </p>
-
-        <a href="https://forms.gle/UPPjJSzL97rZ4bQd9" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#4285F4; border-color:#4285F4; color:#fff; width:100%; font-size:0.95rem;">
-          🚀 Open Google Form  (Upload) ↗
-        </a>
-      </div>
-      <small style="color:var(--text-muted); font-size:0.75rem; display:block; text-align:center;">
-        Form Link: https://forms.gle/UPPjJSzL97rZ4bQd9
-      </small>
-    </div>
-
-    <!-- TAB 2: INSTANT LOCAL PREVIEW FORM -->
-    <div id="tabLocalContent" style="display:none;">
-      <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">
-        choose photos from your phone. it will be showing in gallery!
+  <!-- 9. WhatsApp Community Connect Section -->
+  <section style="background: linear-gradient(135deg, rgba(37,211,102,0.1), rgba(3,13,20,0.9)); border-top:1px solid rgba(37,211,102,0.25); border-bottom:1px solid rgba(37,211,102,0.25); padding:40px 0; text-align:center;">
+    <div class="container">
+      <h3 style="color:#4ade80; font-size:1.45rem; margin-bottom:8px;">
+        <i class="fa-brands fa-whatsapp"></i> विंढमगंज बुटबेढ़वा डिजिटल व्हाट्सएप कम्युनिटी
+      </h3>
+      <p style="color:var(--text-muted); font-size:0.92rem; max-width:650px; margin:0 auto 20px;">
+        ग्राम पंचायत के आधिकारिक व्हाट्सएप ग्रुप से जुड़ें एवं समस्त सरकारी योजनाओं, बैठकों तथा आपातकालीन सूचनाओं का सीधा नोटिफिकेशन प्राप्त करें।
       </p>
+      <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn btn-primary" style="background:#25D366; color:#02150a; font-weight:800;">
+        व्हाट्सएप ग्रुप से तुरंत जुड़ें <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </section>
 
-      <form id="userUploadForm" onsubmit="handleUserPhotoUpload(event)">
-        <div class="form-group">
-          <label class="form-label">Choose Fule*</label>
-          <input type="file" id="userPhotoFileInput" accept="image/*" class="form-control" onchange="previewUserPhoto(event)" required>
-          <div id="imagePreviewContainer" style="display:none; margin-top:8px; text-align:center;">
-            <img id="imagePreview" src="" alt="Preview" style="max-height:120px; border-radius:8px; border:2px solid var(--gold); object-fit:cover;">
+  <!-- 10. Portal Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:14px;">
+            <div class="brand-emblem"><i class="fa-solid fa-landmark-flag"></i></div>
+            <div class="brand-text">
+              <h3 style="font-size:1.15rem; color:var(--text-main);">ग्राम पंचायत विंढमगंज बुटबेढ़वा</h3>
+              <span style="font-size:0.75rem; color:var(--gold);">डिजिटल भारत • सशक्त ग्राम</span>
+            </div>
+          </div>
+          <p style="line-height:1.7; font-size:0.85rem;">
+            यह डिजिटल पोर्टल ग्रामवासियों को पारदर्शी, त्वरित एवं जवाबदेह पंचायत सेवा प्रदान करने के उद्देश्य से संचालित है। पिपरहवा बांध के पर्यावरणीय संरक्षण एवं ग्राम के विकास में सहभागिता सुनिश्चित करें।
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>त्वरित लिंक्स</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">मुख्य पृष्ठ</a></li>
+            <li><a href="#emergency">हेल्पलाइन नंबर</a></li>
+            <li><a href="#leadership">पंचायत प्रतिनिधि</a></li>
+            <li><a href="#gallery">ग्राम गैलरी</a></li>
+            <li><a href="#grievance">शिकायत निवारण</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>प्रशासनिक पता</h4>
+          <p style="font-size:0.85rem; line-height:1.7;">
+            ग्राम पंचायत सचिवालय, विंढमगंज बुटबेढ़वा (शिव नगर),<br>
+            विकास खंड: दुद्धी,<br>
+            जनपद: सोनभद्र, उत्तर प्रदेश - 231226
+          </p>
+          <div style="margin-top:14px; font-size:0.82rem; color:var(--gold);">
+            <i class="fa-solid fa-shield-heart"></i> जनहित में समर्पित ई-गवर्नेंस पोर्टल
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="form-label">Image Name/ Caption *</label>
-          <input type="text" id="userPhotoCaption" class="form-control" placeholder="Jaise: Piprahava Bandh Subah Ka Nazara" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Your Full Name *</label>
-          <input type="text" id="userPhotoAuthor" class="form-control" placeholder="Apna naam likhein" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Category *</label>
-          <select id="userPhotoCategory" class="form-control">
-            <option value="prakriti">🌿 Forest Related</option>
-            <option value="dharohar">🚂 Railway & Pul</option>
-            <option value="community">🌟 WDM Karyakram</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
-          ⚡ Gallery Me Preview Karein
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- ================= 12. PRO LIGHTBOX VIEWER ================= -->
-<div class="lightbox-modal" id="galleryLightbox" onclick="closeLightboxOnBackdrop(event)">
-  <div class="lightbox-content">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">&#10094;</button>
-    <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">&#10095;</button>
-    <img id="lightboxActiveImg" src="" alt="Full view" class="lightbox-img">
-    <div class="lightbox-title" id="lightboxActiveCaption"></div>
-  </div>
-</div>
-
-<!-- ================= 13. EMERGENCY HELPLINE SOS MODAL ================= -->
-<div class="sos-modal" id="sosModal" onclick="closeSosModalOnBackdrop(event)">
-  <div class="sos-modal-card">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h3 style="color:var(--danger); margin:0; font-size:1.15rem;">🚨 Aapatkaalin Seva (SOS)</h3>
-      <button onclick="closeSosModal()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
-    </div>
-    <p style="color:var(--text-muted); font-size:0.82rem; margin-top:5px;">Kisi bhi aapatkaal sthiti mein in numbers par turant dial karein:</p>
-
-    <div class="sos-grid">
-      <div class="sos-item">
-        <span>Police Helpline</span>
-        <a href="tel:112">112</a>
       </div>
-      <div class="sos-item">
-        <span>Ambulance</span>
-        <a href="tel:108">108</a>
-      </div>
-      <div class="sos-item">
-        <span>Bijli Helpline</span>
-        <a href="tel:1912">1912</a>
-      </div>
-      <div class="sos-item">
-        <span>Mahila Helpline</span>
-        <a href="tel:1090">1090</a>
-      </div>
-      <div class="sos-item">
-        <span>Aag / Fire Brigade</span>
-        <a href="tel:101">101</a>
-      </div>
-      <div class="sos-item">
-        <span>CM Helpline U.P.</span>
-        <a href="tel:1076">1076</a>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.78rem;">
+        <div>&copy; 2026 ग्राम पंचायत विंढमगंज बुटबेढ़वा. सर्वाधिकार सुरक्षित।</div>
+        <div>तकनीकी विकास: डिजिटल पंचायत सशक्तिकरण प्रकोष्ठ</div>
       </div>
     </div>
+  </footer>
+
+  <!-- Toast Notification Dynamic Component -->
+  <div class="toast-notification" id="toastNotification">
+    <i class="fa-solid fa-bell" style="color:var(--teal);"></i>
+    <span id="toastMsg">सूचना संदेश</span>
   </div>
-</div>
+    <!-- ==========================================================================
+       JAVASCRIPT APPLICATION ENGINE
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. FIREBASE & TELEGRAM CONFIGURATION
+       -------------------------------------------------------------------------- */
+    // Note: Insert your Firebase project Web App API Key credentials below
+    const firebaseConfig = {
+      apiKey: "YOUR_FIREBASE_API_KEY",
+      authDomain: "testing-project-5df0e.firebaseapp.com",
+      projectId: "testing-project-5df0e",
+      storageBucket: "testing-project-5df0e.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
 
-<!-- ================= 14. FLOATING ACTION CONTROLS ================= -->
-<div class="floating-actions-bar">
-  <button class="float-sos-btn" onclick="openSosModal()" title="Emergency Helplines">
-    🚨
-  </button>
-  <button class="back-to-top-btn" id="backToTopBtn" onclick="scrollToTop()" title="Upar Jayein">
-    ↑
-  </button>
-</div>
-
-<!-- Notification Toast -->
-<div class="portal-toast" id="portalToast">Notification</div>
-  <!-- ================= 15. SCRIPT & DYNAMIC LOGIC ================= -->
-<script>
-/* ==========================================================================
-   A. COMPACT CLOCK & WEATHER
-   ========================================================================== */
-function updateLiveClock() {
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
-  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-  const clockEl = document.getElementById('liveClock');
-  if (clockEl) clockEl.innerHTML = `🕒 <b>${dateStr}</b> ${timeStr}`;
-}
-setInterval(updateLiveClock, 1000);
-updateLiveClock();
-
-function showToast(msg) {
-  const toast = document.getElementById('portalToast');
-  toast.textContent = msg;
-  toast.classList.add('active');
-  setTimeout(() => toast.classList.remove('active'), 3200);
-}
-
-/* ==========================================================================
-   B. VOICE SPEAKER (TEXT-TO-SPEECH FOR ANNOUNCEMENT)
-   ========================================================================== */
-function speakAnnouncement() {
-  if (!('speechSynthesis' in window)) {
-    alert('Aapke browser mein audio bolne ki suvidha uplabdh nahi hai.');
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const text = "Wyndhamganj Butbherwa Shiv Nagar Digital Gram Portal me aapka swagat hai. Taza suchna: Aane wale chhat pooja hetu karykram ke liye jo bhi bhag lena chahta hai . suchna wale box m apna massage fill krke send kre 🙏.";
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'hi-IN';
-  utterance.rate = 0.95;
-  utterance.pitch = 1.0;
-  window.speechSynthesis.speak(utterance);
-  showToast('🔊 important updates here...');
-}
-
-/* ==========================================================================
-   C. EVENT COUNTDOWN TIMER
-   ========================================================================== */
-const targetDate = new Date();
-targetDate.setDate(targetDate.getDate() + 14);
-targetDate.setHours(10, 0, 0, 0);
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const diff = targetDate - now;
-
-  if (diff <= 0) {
-    document.getElementById('cdDays').textContent = "00";
-    document.getElementById('cdHours').textContent = "00";
-    document.getElementById('cdMins').textContent = "00";
-    document.getElementById('cdSecs').textContent = "00";
-    return;
-  }
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-  document.getElementById('cdDays').textContent = d < 10 ? '0' + d : d;
-  document.getElementById('cdHours').textContent = h < 10 ? '0' + h : h;
-  document.getElementById('cdMins').textContent = m < 10 ? '0' + m : m;
-  document.getElementById('cdSecs').textContent = s < 10 ? '0' + s : s;
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-/* ==========================================================================
-   D. WHATSAPP PORTAL SHARING
-   ========================================================================== */
-function sharePortalOnWhatsApp() {
-  const portalUrl = window.location.href;
-  const shareText = encodeURIComponent(`*Wyndhamganj Butbherwa (Shiv Nagar)* ka official Digital Gram Portal dekhein! Gaon ki suchna, pratinidhiyo ke sampark, gallery aur online shikayat suvidha uplabdh hai:\n${portalUrl}`);
-  window.open(`https://api.whatsapp.com/send?text=${shareText}`, '_blank');
-  showToast('📲 WhatsApp par share kiya ja raha hai...');
-}
-
-/* ==========================================================================
-   E. THEME TOGGLE & ACCESSIBILITY
-   ========================================================================== */
-function toggleTheme() {
-  const isLight = document.body.classList.toggle('light-theme');
-  const btn = document.getElementById('themeBtn');
-  if (isLight) {
-    btn.innerHTML = '☀️ Light';
-    localStorage.setItem('wdm_theme', 'light');
-    showToast('☀️ Light Theme Chalu');
-  } else {
-    btn.innerHTML = '🌙 Dark';
-    localStorage.setItem('wdm_theme', 'dark');
-    showToast('🌙 Dark Theme Chalu');
-  }
-}
-
-if (localStorage.getItem('wdm_theme') === 'light') {
-  document.body.classList.add('light-theme');
-  const btn = document.getElementById('themeBtn');
-  if (btn) btn.innerHTML = '☀️ Light';
-}
-
-function setFontSize(size) {
-  document.documentElement.setAttribute('data-font', size);
-  document.querySelectorAll('.font-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-}
-
-function toggleNavMenu() { document.getElementById('navLinks').classList.toggle('open'); }
-function closeNavMenu() { document.getElementById('navLinks').classList.remove('open'); }
-
-/* ==========================================================================
-   F. CANVAS PARTICLE VFX (HERO SECTION)
-   ========================================================================== */
-const heroCanvas = document.getElementById('heroVfxCanvas');
-if (heroCanvas) {
-  const ctx = heroCanvas.getContext('2d');
-  let particles = [];
-  
-  function resizeCanvas() {
-    heroCanvas.width = heroCanvas.parentElement.offsetWidth;
-    heroCanvas.height = heroCanvas.parentElement.offsetHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * heroCanvas.width;
-      this.y = Math.random() * heroCanvas.height;
-      this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.7;
-      this.speedY = (Math.random() - 0.5) * 0.7;
-      this.alpha = Math.random() * 0.5 + 0.2;
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
     }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > heroCanvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > heroCanvas.height) this.speedY *= -1;
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Automated Telegram Notification Dispatch Credentials
+    const TELEGRAM_BOT_TOKEN = "9148416175:AAGHyUUgdsBU3-2dWdrlajV4fLB5g_keVXU";
+    const TELEGRAM_CHAT_ID = "6032430283";
+
+    // Global Workflow State
+    let confirmationResult = null;
+    let isMobileVerified = false;
+    let verifiedPhoneNumber = "";
+    let isAdminModerator = false;
+
+    /* --------------------------------------------------------------------------
+       2. REAL-TIME CLOCK & MEETING COUNTDOWN
+       -------------------------------------------------------------------------- */
+    function initPortalClock() {
+      const clockElement = document.getElementById('portalLiveClock');
+      function update() {
+        const now = new Date();
+        clockElement.textContent = now.toLocaleTimeString('en-IN', { hour12: true });
+      }
+      setInterval(update, 1000);
+      update();
     }
-    draw() {
-      ctx.fillStyle = `rgba(255, 195, 44, ${this.alpha})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
+
+    function initMeetingCountdown() {
+      // Gram Sabha scheduled target date (dynamically shifts to next upcoming meeting)
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 6);
+      targetDate.setHours(10, 0, 0, 0);
+
+      const daysEl = document.getElementById('cdDays');
+      const hoursEl = document.getElementById('cdHours');
+      const minsEl = document.getElementById('cdMinutes');
+      const secsEl = document.getElementById('cdSeconds');
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetDate.getTime() - now;
+
+        if (diff <= 0) {
+          daysEl.textContent = "00";
+          hoursEl.textContent = "00";
+          minsEl.textContent = "00";
+          secsEl.textContent = "00";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minsEl.textContent = String(minutes).padStart(2, '0');
+        secsEl.textContent = String(seconds).padStart(2, '0');
+      }
+      setInterval(updateTimer, 1000);
+      updateTimer();
     }
-  }
 
-  for (let i = 0; i < 40; i++) particles.push(new Particle());
+    /* --------------------------------------------------------------------------
+       3. ACCESSIBILITY, THEME & NAVIGATION
+       -------------------------------------------------------------------------- */
+    function setFontSize(size) {
+      document.documentElement.setAttribute('data-font', size);
+      document.querySelectorAll('.font-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.font-btn')).find(b => b.textContent.trim().toLowerCase() === (size === 'sm' ? 'a-' : size === 'md' ? 'a' : 'a+'));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
 
-  function animateParticles() {
-    ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
+    function togglePortalTheme() {
+      document.body.classList.toggle('light-theme');
+      const isLight = document.body.classList.contains('light-theme');
+      showToast(isLight ? "☀️ Light mode activated" : "🌙 Dark mode activated");
+    }
 
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 85) {
-          ctx.strokeStyle = `rgba(45, 212, 191, ${0.14 - dist / 600})`;
-          ctx.lineWidth = 0.5;
+    function toggleMobileNav() {
+      const menu = document.getElementById('primaryNavMenu');
+      menu.classList.toggle('mobile-open');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMsg');
+      text.textContent = message;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 4000);
+    }
+
+    /* --------------------------------------------------------------------------
+       4. HERO CANVAS VFX (PARTICLE DRIFT)
+       -------------------------------------------------------------------------- */
+    function initHeroVfx() {
+      const canvas = document.getElementById('heroVfxCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width, height;
+
+      function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.radius = Math.random() * 2 + 1;
+          this.speedX = (Math.random() - 0.5) * 0.4;
+          this.speedY = (Math.random() - 0.5) * 0.4;
+          this.color = Math.random() > 0.5 ? 'rgba(255, 195, 44, ' : 'rgba(45, 212, 191, ';
+          this.alpha = Math.random() * 0.5 + 0.2;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0) this.x = width;
+          if (this.x > width) this.x = 0;
+          if (this.y < 0) this.y = height;
+          if (this.y > height) this.y = 0;
+        }
+        draw() {
           ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color + this.alpha + ')';
+          ctx.fill();
         }
       }
+
+      for (let i = 0; i < 40; i++) {
+        particles.push(new Particle());
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(loop);
+      }
+      loop();
     }
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-}
 
-/* ==========================================================================
-   G. PRATINIDHI LIVE SEARCH
-   ========================================================================== */
-function filterPratinidhi() {
-  const query = document.getElementById('pratinidhiSearchInput').value.toLowerCase();
-  const items = document.querySelectorAll('#pratinidhiList .pratinidhi-item');
-  items.forEach(item => {
-    const text = item.innerText.toLowerCase();
-    item.style.display = text.includes(query) ? 'flex' : 'none';
-  });
-}
+    /* --------------------------------------------------------------------------
+       5. COMMUNITY GALLERY, INSTANT UPLOAD & ADMIN MODERATION
+       -------------------------------------------------------------------------- */
+    const initialGalleryItems = [
+      {
+        src: "IMG_20250929_062521.jpg",
+        title: "पिपरहवा बांध - विहंगम दृश्य",
+        badge: "प्राकृतिक धरोहर",
+        isCommunity: false
+      },
+      {
+        src: "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=800&q=80",
+        title: "पंचायत सचिवालय भवन (शिव नगर)",
+        badge: "विकास कार्य",
+        isCommunity: false
+      },
+      {
+        src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
+        title: "ग्राम सभा सार्वजनिक बैठक",
+        badge: "जनसहभागिता",
+        isCommunity: false
+      }
+    ];
 
-/* ==========================================================================
-   H. GALLERY & UPLOAD DATA MANAGEMENT
-   ========================================================================== */
-const defaultGalleryItems = [
-  { src: 'IMG_20250930_164330.jpg', title: 'Railway Bridge - Wyndhamganj', cat: 'dharohar', badge: 'Pul', fallback: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80' },
-  { src: 'IMG_20250929_062521.jpg', title: 'Piprahava Bandh - Wyndhamganj', cat: 'prakriti', badge: 'Bandh', fallback: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80' },
-  { src: '942fe674faf2ef24f01fc8b726c5222a.jpg', title: 'The Host - Developer', cat: 'host', badge: 'Developer', fallback: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80' },
-  { src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80', title: 'Hari Bhari Faslein & Kheti', cat: 'prakriti', badge: 'Kheti', fallback: '' },
-  { src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80', title: 'Prakriti & Shant Vatavaran', cat: 'prakriti', badge: 'Prakriti', fallback: '' },
-  { src: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=80', title: 'Shaam Ka Suraj - Sunset', cat: 'prakriti', badge: 'Sandhya', fallback: '' },
-  { src: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=80', title: 'Gramin Parivesh & Basti', cat: 'prakriti', badge: 'Basti', fallback: '' },
-  { src: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=80', title: 'Subah Ka Naya Savera', cat: 'prakriti', badge: 'Savera', fallback: '' }
-];
+    function renderGalleryGrid() {
+      const container = document.getElementById('galleryGrid');
+      const communityUploads = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
+      const allPhotos = [...communityUploads, ...initialGalleryItems];
 
-let allGalleryItems = [];
-let currentFilter = 'all';
-let activeLightboxIndex = 0;
+      container.innerHTML = '';
+      allPhotos.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        card.onclick = () => openLightbox(item.src, item.title);
 
-function loadGalleryItems() {
-  const community = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
-  allGalleryItems = [...community, ...defaultGalleryItems];
-  renderGalleryGrid();
-}
+        const deleteButton = (item.isCommunity && isAdminModerator) ? `
+          <button onclick="deleteCommunityPhoto(${index}, event)" style="position:absolute; top:8px; right:8px; background:rgba(239,68,68,0.92); color:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; z-index:10; font-size:0.85rem; display:grid; place-items:center;" title="Delete Photo">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        ` : '';
 
-function renderGalleryGrid() {
-  const grid = document.getElementById('galleryGrid');
-  grid.innerHTML = '';
+        card.innerHTML = `
+          ${deleteButton}
+          <img src="${item.src}" alt="${item.title}" loading="lazy">
+          <span class="gallery-card-badge">${item.badge || 'सामुदायिक छायाचित्र'}</span>
+          <div class="gallery-card-caption">
+            <span>${item.title}</span>
+            <i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:0.75rem;"></i>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-  allGalleryItems.forEach((item, index) => {
-    if (currentFilter !== 'all' && item.cat !== currentFilter) return;
+    function handleInstantPhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
 
-    const card = document.createElement('div');
-    card.className = 'gallery-card';
-    card.onclick = () => openLightbox(index);
+      if (!file.type.startsWith('image/')) {
+        alert('कृपया केवल वैध फोटो फाइल (JPG, PNG, WEBP) चुनें!');
+        return;
+      }
 
-    const isComm = item.isCommunity ? 'community' : '';
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const title = prompt('इस फोटो का शीर्षक अथवा स्थान दर्ज करें:', 'पिपरहवा बांध - स्थानीय दृश्य') || 'सामुदायिक छायाचित्र';
+        const newPhoto = {
+          src: e.target.result,
+          title: title,
+          badge: "ग्रामवासी योगदान",
+          isCommunity: true
+        };
 
-    card.innerHTML = `
-      <img src="${item.src}" alt="${item.title}" onerror="this.src='${item.fallback || 'https://placehold.co/600x400/0b2938/ffc32c?text=Wyndhamganj'}'">
-      <span class="gallery-card-badge ${isComm}">${item.badge || 'Photo'}</span>
-      <div class="gallery-card-caption">
-        <span>${item.title}</span>
-        <span>↗</span>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
+        const existing = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
+        existing.unshift(newPhoto);
+        localStorage.setItem('wdm_community_photos', JSON.stringify(existing));
+        renderGalleryGrid();
+        showToast("📸 फोटो सफलतापूर्वक अपलोड एवं प्रकाशित कर दी गई!");
+      };
+      reader.readAsDataURL(file);
+    }
 
-function filterGallery(category, btn) {
-  currentFilter = category;
-  document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderGalleryGrid();
-}
+    function toggleAdminPhotoManagement() {
+      if (isAdminModerator) {
+        isAdminModerator = false;
+        renderGalleryGrid();
+        showToast("🔒 एडमिन मोड बंद किया गया।");
+        return;
+      }
+      const pin = prompt("एडमिन प्रमाणीकरण PIN दर्ज करें:");
+      if (pin === "1234") {
+        isAdminModerator = true;
+        renderGalleryGrid();
+        showToast("🔓 एडमिन मोड सक्रिय! अब आप अवांछित फोटो हटा सकते हैं।");
+      } else if (pin !== null) {
+        alert("❌ अमान्य PIN! केवल अधिकृत पंचायत व्यवस्थापक को अनुमति है।");
+      }
+    }
 
-function openLightbox(index) {
-  activeLightboxIndex = index;
-  const item = allGalleryItems[index];
-  const modal = document.getElementById('galleryLightbox');
-  const img = document.getElementById('lightboxActiveImg');
-  const title = document.getElementById('lightboxActiveCaption');
-  
-  img.src = item.src;
-  img.onerror = () => { if (item.fallback) img.src = item.fallback; };
-  title.textContent = item.title + (item.author ? ` (By: ${item.author})` : '');
-  modal.classList.add('active');
-}
+    function deleteCommunityPhoto(index, event) {
+      event.stopPropagation();
+      if (!confirm("क्या आप निश्चित रूप से इस फोटो को गैलरी से हटाना चाहते हैं?")) return;
+      let communityUploads = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
+      communityUploads.splice(index, 1);
+      localStorage.setItem('wdm_community_photos', JSON.stringify(communityUploads));
+      renderGalleryGrid();
+      showToast("🗑️ फोटो सफलतापूर्वक हटा दी गई!");
+    }
 
-function closeLightbox() { document.getElementById('galleryLightbox').classList.remove('active'); }
-function closeLightboxOnBackdrop(e) { if (e.target.id === 'galleryLightbox') closeLightbox(); }
-function nextLightboxImage() {
-  activeLightboxIndex = (activeLightboxIndex + 1) % allGalleryItems.length;
-  openLightbox(activeLightboxIndex);
-}
-function prevLightboxImage() {
-  activeLightboxIndex = (activeLightboxIndex - 1 + allGalleryItems.length) % allGalleryItems.length;
-  openLightbox(activeLightboxIndex);
-}
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('lightboxModal');
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      modal.classList.add('active');
+    }
 
-/* Upload Modal & Tabs */
-function openUploadModal() { document.getElementById('uploadModal').classList.add('active'); }
-function closeUploadModal() {
-  document.getElementById('uploadModal').classList.remove('active');
-  document.getElementById('userUploadForm').reset();
-  document.getElementById('imagePreviewContainer').style.display = 'none';
-}
-function closeUploadModalOnBackdrop(e) { if (e.target.id === 'uploadModal') closeUploadModal(); }
+    function closeLightbox(event) {
+      if (event.target.id === 'lightboxModal' || event.target.className === 'lightbox-close') {
+        document.getElementById('lightboxModal').classList.remove('active');
+      }
+    }
 
-function switchUploadTab(tab) {
-  const gBtn = document.getElementById('tabGFormBtn');
-  const lBtn = document.getElementById('tabLocalBtn');
-  const gCont = document.getElementById('tabGFormContent');
-  const lCont = document.getElementById('tabLocalContent');
+    /* --------------------------------------------------------------------------
+       6. FIREBASE RECAPTCHA & MOBILE PHONE AUTHENTICATION
+       -------------------------------------------------------------------------- */
+    function initRecaptcha() {
+      if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+          size: 'invisible',
+          callback: () => {}
+        });
+      }
+    }
 
-  if (tab === 'gform') {
-    gBtn.classList.add('active');
-    lBtn.classList.remove('active');
-    gCont.style.display = 'block';
-    lCont.style.display = 'none';
-  } else {
-    lBtn.classList.add('active');
-    gBtn.classList.remove('active');
-    lCont.style.display = 'block';
-    gCont.style.display = 'none';
-  }
-}
+    function sendMobileOtp() {
+      const phoneInput = document.getElementById('userPhoneInput');
+      const phone = phoneInput.value.trim();
 
-let compressedImageDataUrl = null;
+      if (!/^[6-9]\d{9}$/.test(phone)) {
+        alert("कृपया वैध 10-अंकों का भारतीय मोबाइल नंबर दर्ज करें!");
+        return;
+      }
 
-function previewUserPhoto(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+      initRecaptcha();
+      const formattedPhone = "+91" + phone;
+      const appVerifier = window.recaptchaVerifier;
+      const btn = document.getElementById('btnSendOtp');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> प्रेषित हो रहा है...';
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = new Image();
-    img.src = e.target.result;
-    img.onload = function() {
-      const canvas = document.createElement('canvas');
-      const maxW = 900;
-      const scale = Math.min(maxW / img.width, 1);
-      canvas.width = img.width * scale;
-      canvas.height = img.height * scale;
+      auth.signInWithPhoneNumber(formattedPhone, appVerifier)
+        .then((res) => {
+          confirmationResult = res;
+          verifiedPhoneNumber = formattedPhone;
+          document.getElementById('otpBox').style.display = 'block';
+          btn.textContent = 'पुनः भेजें';
+          btn.disabled = false;
+          showToast(`📩 6-अंकों का OTP ${formattedPhone} पर भेज दिया गया है!`);
+        })
+        .catch((error) => {
+          btn.disabled = false;
+          btn.textContent = 'OTP भेजें';
+          if (window.recaptchaVerifier) {
+            window.recaptchaVerifier.render().then(widgetId => grecaptcha.reset(widgetId));
+          }
+          alert("OTP प्रेषण में त्रुटि: " + error.message);
+        });
+    }
+
+    function verifyMobileOtp() {
+      const otpInput = document.getElementById('userOtpInput');
+      const otp = otpInput.value.trim();
+
+      if (otp.length !== 6) {
+        alert("कृपया 6-अंकों का पूर्ण OTP दर्ज करें!");
+        return;
+      }
+
+      if (!confirmationResult) {
+        alert("कृपया पहले OTP प्रेषित करें!");
+        return;
+      }
+
+      confirmationResult.confirm(otp)
+        .then(() => {
+          isMobileVerified = true;
+          document.getElementById('step1PhoneSection').style.display = 'none';
+          document.getElementById('step2DetailsSection').style.display = 'block';
+          document.getElementById('stepNode1').classList.remove('active');
+          document.getElementById('stepNode1').classList.add('completed');
+          document.getElementById('stepNode2').classList.add('active');
+          showToast("✅ मोबाइल नंबर सफलतापूर्वक सत्यापित हुआ!");
+        })
+        .catch((err) => {
+          alert("❌ अमान्य अथवा समाप्त OTP! कृपया पुनः प्रयास करें: " + err.message);
+        });
+    }
+
+    /* --------------------------------------------------------------------------
+       7. FIRESTORE DATABASE STORAGE & INSTANT TELEGRAM BOT DISPATCH
+       -------------------------------------------------------------------------- */
+    function handleFormSubmission(e) {
+      e.preventDefault();
+
+      if (!isMobileVerified) {
+        alert("कृपया शिकायत दर्ज करने से पूर्व अपना मोबाइल नंबर सत्यापित करें!");
+        return;
+      }
+
+      const submitBtn = document.getElementById('btnSubmitGrievance');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> सुरक्षित प्रेषण जारी है...';
+
+      const applicantName = document.getElementById('citizenName').value.trim();
+      const applicantAddress = document.getElementById('citizenAddress').value.trim();
+      const category = document.getElementById('issueCategory').value;
+      const description = document.getElementById('citizenMessage').value.trim();
+      const tokenNumber = 'WDM-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+      const currentTime = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' });
+
+      // 1. Cloud Storage: Save directly into Firestore 'complaints' collection
+      db.collection("complaints").add({
+        token: tokenNumber,
+        name: applicantName,
+        phone: verifiedPhoneNumber,
+        address: applicantAddress,
+        category: category,
+        description: description,
+        status: "लंबित (Pending)",
+        adminRemark: "समीक्षा जारी",
+        submittedAt: currentTime,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        // 2. Real-Time Admin Alert: Dispatch Instant Message via Telegram Bot API
+        const alertMessage = 
+          `🚨 *नई जनशिकायत / सूचना प्रविष्टि*\n` +
+          `━━━━━━━━━━━━━━━━━━━\n` +
+          `🎫 *टोकन संख्या:* \`${tokenNumber}\`\n` +
+          `👤 *आवेदक:* ${applicantName}\n` +
+          `📞 *मोबाइल:* ${verifiedPhoneNumber}\n` +
+          `📍 *स्थान:* ${applicantAddress}\n` +
+          `📂 *श्रेणी:* ${category}\n` +
+          `🕒 *समय:* ${currentTime}\n\n` +
+          `📝 *विवरण:*\n${description}\n` +
+          `━━━━━━━━━━━━━━━━━━━\n` +
+          `🌐 *पोर्टल:* विंढमगंज बुटबेढ़वा डिजिटल सेवा`;
+
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: alertMessage,
+            parse_mode: 'Markdown'
+          })
+        }).catch(err => console.error("Telegram Webhook Error:", err));
+
+        // 3. UI State Transitions & Confetti Trigger
+        triggerConfetti();
+        document.getElementById('step2DetailsSection').style.display = 'none';
+        document.getElementById('stepNode2').classList.remove('active');
+        document.getElementById('stepNode2').classList.add('completed');
+        document.getElementById('stepNode3').classList.add('active', 'completed');
+
+        document.getElementById('receiptTokenBadge').textContent = tokenNumber;
+        document.getElementById('submissionReceipt').style.display = 'block';
+
+        showToast("🚀 शिकायत सुरक्षित रूप से दर्ज हुई एवं एडमिन को अलर्ट प्रेषित कर दिया गया!");
+      })
+      .catch((error) => {
+        alert("डेटाबेस में प्रविष्टि सहेजने में विफलता: " + error.message);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें';
+      });
+    }
+
+    /* --------------------------------------------------------------------------
+       8. COMPLAINT STATUS TRACKER
+       -------------------------------------------------------------------------- */
+    function trackComplaintStatus() {
+      const input = document.getElementById('trackTokenInput');
+      const token = input.value.trim().toUpperCase();
+      const output = document.getElementById('statusResultBox');
+
+      if (!token) {
+        output.innerHTML = '<span style="color:var(--danger);">कृपया जांच हेतु मान्य टोकन नंबर दर्ज करें!</span>';
+        return;
+      }
+
+      output.innerHTML = '<span style="color:var(--teal);"><i class="fa-solid fa-spinner fa-spin"></i> रिकॉर्ड खोजा जा रहा है...</span>';
+
+      db.collection("complaints").where("token", "==", token).get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            output.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> टोकन नंबर "${token}" का कोई रिकॉर्ड प्राप्त नहीं हुआ। कृपया सही नंबर दर्ज करें।</span>`;
+          } else {
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const isResolved = data.status.includes("पूर्ण") || data.status.includes("Resolved");
+              const badgeColor = isResolved ? "var(--success)" : "var(--gold)";
+
+              output.innerHTML = `
+                <div style="background:rgba(3,13,20,0.85); border:1px solid ${badgeColor}; border-radius:var(--radius-sm); padding:12px; margin-top:8px;">
+                  <div style="color:${badgeColor}; font-weight:800; margin-bottom:4px;">
+                    स्थिति: ${data.status}
+                  </div>
+                  <div style="font-size:0.84rem; color:var(--text-main);">
+                    <b>आवेदक:</b> ${data.name} | <b>विषय:</b> ${data.category}<br>
+                    <b>प्रशासनिक टिप्पणी:</b> ${data.adminRemark || 'आवेदन समीक्षाधीन है।'}
+                  </div>
+                </div>
+              `;
+            });
+          }
+        })
+        .catch((err) => {
+          output.innerHTML = `<span style="color:var(--danger);">जांच प्रक्रिया में त्रुटि: ${err.message}</span>`;
+        });
+    }
+
+    function resetSubmissionWorkflow() {
+      document.getElementById('submissionReceipt').style.display = 'none';
+      document.getElementById('step1PhoneSection').style.display = 'block';
+      document.getElementById('otpBox').style.display = 'none';
+      document.getElementById('userPhoneInput').value = '';
+      document.getElementById('userOtpInput').value = '';
+      document.getElementById('citizenName').value = '';
+      document.getElementById('citizenAddress').value = '';
+      document.getElementById('citizenMessage').value = '';
+
+      document.getElementById('stepNode1').className = 'step-node active';
+      document.getElementById('stepNode2').className = 'step-node';
+      document.getElementById('stepNode3').className = 'step-node';
+
+      const submitBtn = document.getElementById('btnSubmitGrievance');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें';
+
+      isMobileVerified = false;
+      confirmationResult = null;
+    }
+
+    /* --------------------------------------------------------------------------
+       9. SUCCESS CONFETTI ANIMATION ENGINE
+       -------------------------------------------------------------------------- */
+    function triggerConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      compressedImageDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-      document.getElementById('imagePreview').src = compressedImageDataUrl;
-      document.getElementById('imagePreviewContainer').style.display = 'block';
-    };
-  };
-  reader.readAsDataURL(file);
-}
+      const particles = [];
+      const colors = ['#ffc32c', '#2dd4bf', '#ffffff', '#10b981', '#38bdf8'];
 
-function handleUserPhotoUpload(e) {
-  e.preventDefault();
-  if (!compressedImageDataUrl) {
-    alert('please choose photo!');
-    return;
-  }
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.5) * 14 - 3,
+          gravity: 0.28,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 8
+        });
+      }
 
-  const caption = document.getElementById('userPhotoCaption').value.trim();
-  const author = document.getElementById('userPhotoAuthor').value.trim();
-  const cat = document.getElementById('userPhotoCategory').value;
+      let frames = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += p.gravity;
+          p.rotation += p.rotSpeed;
 
-  const newPhoto = {
-    src: compressedImageDataUrl,
-    title: caption,
-    cat: 'community',
-    badge: 'public Upload',
-    author: author,
-    isCommunity: true
-  };
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
 
-  try {
-    const community = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
-    community.unshift(newPhoto);
-    localStorage.setItem('wdm_community_photos', JSON.stringify(community));
-
-    closeUploadModal();
-    loadGalleryItems();
-    triggerConfetti();
-    showToast('🎉 added successfully!');
-  } catch (err) {
-    alert('Memory limit reaced ; please try again later.');
-  }
-}
-
-loadGalleryItems();
-
-/* ==========================================================================
-   I. SMART OTP & FORM ENGINE
-   ========================================================================== */
-let activeGeneratedOtp = null;
-let isMobileVerified = false;
-
-function generateSmartOtp() {
-  const phone = document.getElementById('userPhoneInput').value.trim();
-  if (phone.length !== 10) {
-    alert('Kripya 10-digit ka sahi mobile number daalein!');
-    document.getElementById('userPhoneInput').focus();
-    return;
-  }
-
-  activeGeneratedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-
-  document.getElementById('otpInteractiveBox').style.display = 'block';
-  document.getElementById('displayedOtpCode').textContent = activeGeneratedOtp;
-  
-  const msg = encodeURIComponent(`WDM verification OTP: ${activeGeneratedOtp} (Valid for Verification)`);
-  document.getElementById('waQuickLink').href = `https://wa.me/91${phone}?text=${msg}`;
-
-  document.getElementById('stepNode1').classList.add('active');
-  showToast(`✅ OTP generated: ${activeGeneratedOtp}`);
-}
-
-function verifySmartOtp() {
-  const entered = document.getElementById('enteredOtpInput').value.trim();
-  const statusEl = document.getElementById('otpValidationMsg');
-
-  if (!entered) {
-    statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = '❌ please enter OTP!';
-    return;
-  }
-
-  if (entered === activeGeneratedOtp) {
-    isMobileVerified = true;
-    statusEl.style.color = 'var(--success)';
-    statusEl.textContent = '✅ Mobile number verified!';
-
-    document.getElementById('userPhoneInput').disabled = true;
-    document.getElementById('requestOtpBtn').disabled = true;
-    document.getElementById('requestOtpBtn').textContent = '✅ Verified';
-    document.getElementById('otpInteractiveBox').style.display = 'none';
-
-    document.getElementById('stepNode1').classList.remove('active');
-    document.getElementById('stepNode1').classList.add('completed');
-    document.getElementById('stepNode2').classList.add('active');
-    document.getElementById('step2DetailsSection').style.display = 'block';
-    document.getElementById('citizenName').focus();
-    showToast('✅ Verification successful! fill form');
-  } else {
-    statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = '❌ wrong OTP! write 4-digit code.';
-  }
-}
-
-function handleFormSubmission(e) {
-  e.preventDefault();
-  if (!isMobileVerified) {
-    alert('Kripya pehle mobile OTP verify karein!');
-    return;
-  }
-
-  const phone = document.getElementById('userPhoneInput').value.trim();
-  const name = document.getElementById('citizenName').value.trim();
-  const address = document.getElementById('citizenAddress').value.trim();
-  const cat = document.getElementById('issueCategory').value;
-  const message = document.getElementById('citizenMessage').value.trim();
-  const token = 'WDM-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
-
-  // Aapke WhatsApp par sandesh bhejega
-  const adminPhone = "919214360582";
-  const textMsg = `📌 *Nayi Gram Suchna / Shikayat*%0A%0A` +
-                  `👤 *Naam:* ${encodeURIComponent(name)}%0A` +
-                  `📞 *Phone:* ${phone} (Verified)%0A` +
-                  `📍 *Pata:* ${encodeURIComponent(address)}%0A` +
-                  `📂 *Prakar:* ${encodeURIComponent(cat)}%0A` +
-                  `📝 *Vivaran:* ${encodeURIComponent(message)}%0A` +
-                  `🎫 *Token No:* ${token}`;
-
-  window.open(`https://wa.me/${adminPhone}?text=${textMsg}`, '_blank');
-
-  triggerConfetti();
-  document.getElementById('step2DetailsSection').style.display = 'none';
-  document.getElementById('stepNode2').classList.remove('active');
-  document.getElementById('stepNode2').classList.add('completed');
-  document.getElementById('stepNode3').classList.add('completed');
-  
-  const receipt = document.getElementById('submissionReceipt');
-  document.getElementById('receiptTokenBadge').textContent = token;
-  receipt.style.display = 'block';
-
-  showToast('🚀 Shikayat WhatsApp par bhej di gayi hai!');
-}
-   
-
-function copyReceiptToken() {
-  const token = document.getElementById('receiptTokenBadge').textContent;
-  navigator.clipboard.writeText(token);
-  showToast('📋 Token copy ho gaya: ' + token);
-}
-
-function resetFormFlow() {
-  document.getElementById('gramSevaForm').reset();
-  document.getElementById('submissionReceipt').style.display = 'none';
-  document.getElementById('step2DetailsSection').style.display = 'none';
-  document.getElementById('userPhoneInput').disabled = false;
-  document.getElementById('requestOtpBtn').disabled = false;
-  document.getElementById('requestOtpBtn').textContent = '💬 WhatsApp OTP Paayein';
-  
-  document.getElementById('stepNode1').className = 'step-node active';
-  document.getElementById('stepNode2').className = 'step-node';
-  document.getElementById('stepNode3').className = 'step-node';
-  isMobileVerified = false;
-  activeGeneratedOtp = null;
-}
-
-/* ==========================================================================
-   J. CONFETTI CELEBRATION VFX
-   ========================================================================== */
-function triggerConfetti() {
-  const canvas = document.getElementById('confettiCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let pieces = [];
-  const colors = ['#ffc32c', '#2dd4bf', '#25D366', '#ef4444', '#ffffff'];
-
-  for (let i = 0; i < 110; i++) {
-    pieces.push({
-      x: canvas.width / 2,
-      y: canvas.height / 2,
-      w: Math.random() * 8 + 4,
-      h: Math.random() * 8 + 4,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      vx: (Math.random() - 0.5) * 15,
-      vy: (Math.random() - 0.5) * 15 - 3,
-      gravity: 0.28,
-      rotation: Math.random() * 360,
-      vRot: (Math.random() - 0.5) * 10
-    });
-  }
-
-  let frames = 0;
-  function render() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    pieces.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += p.gravity;
-      p.rotation += p.vRot;
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate((p.rotation * Math.PI) / 180);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
-    });
-
-    frames++;
-    if (frames < 130) {
-      requestAnimationFrame(render);
-    } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        frames++;
+        if (frames < 120) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      animate();
     }
-  }
-  render();
-}
 
-/* ==========================================================================
-   K. SOS MODAL & SCROLL
-   ========================================================================== */
-function openSosModal() { document.getElementById('sosModal').classList.add('active'); }
-function closeSosModal() { document.getElementById('sosModal').classList.remove('active'); }
-function closeSosModalOnBackdrop(e) { if (e.target.id === 'sosModal') closeSosModal(); }
-
-const backToTopBtn = document.getElementById('backToTopBtn');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) backToTopBtn.classList.add('visible');
-  else backToTopBtn.classList.remove('visible');
-});
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeLightbox();
-    closeSosModal();
-    closeNavMenu();
-    closeUploadModal();
-  }
-});
-</script>
-
+    /* --------------------------------------------------------------------------
+       10. BOOTSTRAP INITIALIZATION
+       -------------------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      initPortalClock();
+      initMeetingCountdown();
+      initHeroVfx();
+      renderGalleryGrid();
+    });
+  </script>
 </body>
 </html>
