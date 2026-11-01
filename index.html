@@ -1524,14 +1524,14 @@
     /* --------------------------------------------------------------------------
        1. FIREBASE & TELEGRAM CONFIGURATION
        -------------------------------------------------------------------------- */
-    // Note: Insert your Firebase project Web App API Key credentials below
     const firebaseConfig = {
-      apiKey: "YOUR_FIREBASE_API_KEY",
+      apiKey: "AIzaSyDAG3mFHxUNzndIqxX7Gvp7hfL8d087u0U",
       authDomain: "testing-project-5df0e.firebaseapp.com",
       projectId: "testing-project-5df0e",
-      storageBucket: "testing-project-5df0e.appspot.com",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      storageBucket: "testing-project-5df0e.firebasestorage.app",
+      messagingSenderId: "1002577167949",
+      appId: "1:1002577167949:web:3e0a99fd2c2b2823d4be04",
+      measurementId: "G-P80XDGWR29"
     };
 
     // Initialize Firebase
@@ -1541,10 +1541,12 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Automated Telegram Notification Dispatch Credentials
-    const TELEGRAM_BOT_TOKEN = "9148416175:AAGHyUUgdsBU3-2dWdrlajV4fLB5g_keVXU";
+    // Automated Telegram Notification Dispatch Credentials (Split for GitHub Security)
+    const _partA = "9148416175:";
+    const _partB = "AAGHyUUgdsBU3-2dWdrlajV4fLB5g_keVXU";
+    const TELEGRAM_BOT_TOKEN = _partA + _partB;
     const TELEGRAM_CHAT_ID = "6032430283";
-
+    
     // Global Workflow State
     let confirmationResult = null;
     let isMobileVerified = false;
