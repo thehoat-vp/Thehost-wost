@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Wyndhamganj Butbherwa (Shiv Nagar) - Official Gram Suchna, Vikas & Digital Panchayat Portal.">
-<title>Shiv Nagar Butbherwa | Official Digital Gram Portal</title>
+<title>WDM | Official Digital Gram Portal</title>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -467,25 +467,22 @@ body.light-theme .menu-toggle {
   padding: 48px 0;
   background: url('IMG_20250929_062521.jpg') center/cover no-repeat;
 }
-
-
-   
-
-#heroVfxCanvas {
+   #heroVfxCanvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
-}
+   }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(3, 13, 20, 0.82) 0%, rgba(3, 13, 20, 0.45) 55%, rgba(3, 13, 20, 0.15) 100%);
   z-index: 1;
-} 
+}
+   
     linear-gradient(90deg, var(--bg-primary) 0%, rgba(3, 13, 20, 0.82) 55%, rgba(3, 13, 20, 0.35) 100%),
     radial-gradient(ellipse at 80% 50%, rgba(45, 212, 191, 0.12), transparent 70%);
   z-index: 1;
@@ -2129,7 +2126,7 @@ body.light-theme footer {
     <div class="section-head">
       <div>
         <div class="section-kicker">Chitrashala</div>
-        <h2 class="section-title">Gaon Ki <span>Gallery 📸</span></h2>
+        <h2 class="section-title">village <span>Gallery 📸</span></h2>
       </div>
       <p class="section-subtitle">Wyndhamganj ke prakritik nazare aur aapke dwara jodi gayi tasveerein.</p>
     </div>
@@ -2186,15 +2183,15 @@ body.light-theme footer {
         <!-- STEP 1: MOBILE ENTRY & SMART OTP DISPATCH -->
         <div id="step1Section">
           <div class="form-group">
-            <label class="form-label" for="userPhoneInput"><b>Apna 10-Digit Mobile Number *</b></label>
+            <label class="form-label" for="userPhoneInput"><b>Enter 10-Digit Mobile Number *</b></label>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <input type="tel" id="userPhoneInput" class="form-control" style="flex:1; min-width:220px;" placeholder="Jaise: 9876543210" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
               <button type="button" class="btn btn-primary" id="requestOtpBtn" onclick="generateSmartOtp()">
-                💬 WhatsApp OTP Paayein
+                💬 WhatsApp OTP 
               </button>
             </div>
             <small style="color:var(--text-muted); font-size:0.78rem; margin-top:4px; display:block;">
-              ⚡ 100% Free WhatsApp Direct OTP — Kisi card ya recharge ki zaroorat nahi.
+              💢 Error 
             </small>
           </div>
 
@@ -2210,7 +2207,7 @@ body.light-theme footer {
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <input type="text" id="enteredOtpInput" class="form-control" style="flex:1; min-width:180px;" placeholder="Yahan 4-digit OTP bharein" maxlength="4">
               <button type="button" class="btn" style="background:var(--teal); color:#04121a; font-weight:800;" onclick="verifySmartOtp()">
-                ✅ Code Verify Karein
+                ✅ Code Verify please 
               </button>
             </div>
             <div id="otpValidationMsg" style="margin-top:8px; font-weight:700; font-size:0.82rem;"></div>
@@ -2220,7 +2217,7 @@ body.light-theme footer {
         <!-- STEP 2: DETAILS FORM -->
         <div id="step2DetailsSection" style="display:none; margin-top:18px;">
           <div style="background:rgba(16, 185, 129, 0.1); border:1px solid var(--success); padding:9px 13px; border-radius:var(--radius-sm); color:var(--success); font-weight:700; margin-bottom:14px; font-size:0.9rem;">
-            ✅ Mobile number verified! Ab aage ka form bharein:
+            ✅ Mobile number verified! Next:
           </div>
 
           <div class="form-group">
@@ -2245,7 +2242,7 @@ body.light-theme footer {
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="citizenMessage">Puri Baat / Vivaran *</label>
+            <label class="form-label" for="citizenMessage">your message/ Vivaran *</label>
             <textarea id="citizenMessage" rows="4" class="form-control" placeholder="Apni baat ya shikayat ka pura vivaran likhein..." required></textarea>
           </div>
 
@@ -2258,7 +2255,7 @@ body.light-theme footer {
       <!-- STEP 3: OFFICIAL TRACKING RECEIPT -->
       <div class="receipt-card" id="submissionReceipt">
         <div style="font-size:2.2rem;">🎉</div>
-        <h3 style="color:var(--success); margin:4px 0; font-size:1.3rem;">Shikayat Safaltapoorvak Darj Ho Gayi!</h3>
+        <h3 style="color:var(--success); margin:4px 0; font-size:1.3rem;">your massage sent successfully!</h3>
         <p style="color:var(--text-muted); font-size:0.86rem;">
           Aapki baat Gram Pratinidhi tak bhej di gayi hai. Kripya apna Tracking Token note kar lein:
         </p>
@@ -2266,8 +2263,8 @@ body.light-theme footer {
         <div class="receipt-token" id="receiptTokenBadge">WDM-2026-0000</div>
 
         <div style="display:flex; justify-content:center; gap:10px; margin-top:12px; flex-wrap:wrap;">
-          <button class="btn btn-secondary" onclick="copyReceiptToken()">📋 Token Copy Karein</button>
-          <button class="btn btn-primary" onclick="resetFormFlow()">➕ Nayi Suchna Bhejein</button>
+          <button class="btn btn-secondary" onclick="copyReceiptToken()">📋 It will be change soon</button>
+          <button class="btn btn-primary" onclick="resetFormFlow()">💢 EXIT</button>
         </div>
       </div>
     </div>
@@ -2279,10 +2276,10 @@ body.light-theme footer {
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="section-kicker">Sampark Sutra</div>
+        <div class="section-kicker">Imp Contact</div>
         <h2 class="section-title">Direct <span>Contact Karein</span></h2>
       </div>
-      <p class="section-subtitle">Prashasan ya portal team se direct baat karein.</p>
+      <p class="section-subtitle"> portal team se direct baat karein.</p>
     </div>
 
     <div class="quicklinks-grid" style="grid-template-columns: repeat(3, 1fr);">
@@ -2294,14 +2291,14 @@ body.light-theme footer {
 
       <div class="host-card" style="padding:22px;">
         <h4 style="color:var(--gold); font-size:1.15rem; margin-bottom:3px;">Gram Pradhan</h4>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Shri Shyam Kumar</p>
+        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Shri Sanjay Gupta</p>
         <a class="pratinidhi-call-btn" href="tel:+919452696410">📞 +91 94526 96410</a>
       </div>
 
       <div class="host-card" style="padding:22px;">
         <h4 style="color:var(--gold); font-size:1.15rem; margin-bottom:3px;">Gram Sachiv</h4>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Shri Ram</p>
-        <a class="pratinidhi-call-btn" href="tel:+919876543210">📞 +91 98765 43210</a>
+        <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:10px;">Unavailable</p>
+        <a class="pratinidhi-call-btn" href="tel:+919876543210">📞 +91 Error</a>
       </div>
     </div>
   </div>
@@ -2355,7 +2352,7 @@ body.light-theme footer {
         </p>
 
         <a href="https://forms.gle/UPPjJSzL97rZ4bQd9" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#4285F4; border-color:#4285F4; color:#fff; width:100%; font-size:0.95rem;">
-          🚀 Google Form Kholein (Upload Karein) ↗
+          🚀 Open Google Form  (Upload) ↗
         </a>
       </div>
       <small style="color:var(--text-muted); font-size:0.75rem; display:block; text-align:center;">
@@ -2366,12 +2363,12 @@ body.light-theme footer {
     <!-- TAB 2: INSTANT LOCAL PREVIEW FORM -->
     <div id="tabLocalContent" style="display:none;">
       <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:12px;">
-        Apne phone se photo select karein. Ye turant gallery me dikhne lagegi!
+        choose photos from your phone. it will be showing in gallery!
       </p>
 
       <form id="userUploadForm" onsubmit="handleUserPhotoUpload(event)">
         <div class="form-group">
-          <label class="form-label">Photo File Chunein *</label>
+          <label class="form-label">Choose Fule*</label>
           <input type="file" id="userPhotoFileInput" accept="image/*" class="form-control" onchange="previewUserPhoto(event)" required>
           <div id="imagePreviewContainer" style="display:none; margin-top:8px; text-align:center;">
             <img id="imagePreview" src="" alt="Preview" style="max-height:120px; border-radius:8px; border:2px solid var(--gold); object-fit:cover;">
@@ -2379,21 +2376,21 @@ body.light-theme footer {
         </div>
 
         <div class="form-group">
-          <label class="form-label">Photo Ka Naam / Caption *</label>
+          <label class="form-label">Image Name/ Caption *</label>
           <input type="text" id="userPhotoCaption" class="form-control" placeholder="Jaise: Piprahava Bandh Subah Ka Nazara" required>
         </div>
 
         <div class="form-group">
-          <label class="form-label">Aapka Pura Naam *</label>
+          <label class="form-label">Your Full Name *</label>
           <input type="text" id="userPhotoAuthor" class="form-control" placeholder="Apna naam likhein" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Category *</label>
           <select id="userPhotoCategory" class="form-control">
-            <option value="prakriti">🌿 Prakriti & Bandh</option>
+            <option value="prakriti">🌿 Forest Related</option>
             <option value="dharohar">🚂 Railway & Pul</option>
-            <option value="community">🌟 Gaonwasi Karyakram</option>
+            <option value="community">🌟 WDM Karyakram</option>
           </select>
         </div>
 
@@ -2473,7 +2470,7 @@ body.light-theme footer {
    ========================================================================== */
 function updateLiveClock() {
   const now = new Date();
-  const dateStr = now.toLocaleDateString('hi-IN', { day: '2-digit', month: 'short' });
+  const dateStr = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
   const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
   const clockEl = document.getElementById('liveClock');
   if (clockEl) clockEl.innerHTML = `🕒 <b>${dateStr}</b> ${timeStr}`;
@@ -2497,13 +2494,13 @@ function speakAnnouncement() {
     return;
   }
   window.speechSynthesis.cancel();
-  const text = "Wyndhamganj Butbherwa Shiv Nagar Digital Gram Portal me aapka swagat hai. Taza suchna: Gram Sabha baithak agle maheene nirdharit hai. Panchayat Bhawan par E-KYC shivir jari hai. Nal Jal sewa aur safai karyakram pragati par hai.";
+  const text = "Wyndhamganj Butbherwa Shiv Nagar Digital Gram Portal me aapka swagat hai. Taza suchna: Aane wale chhat pooja hetu karykram ke liye jo bhi bhag lena chahta hai . suchna wale box m apna massage fill krke send kre 🙏.";
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'hi-IN';
   utterance.rate = 0.95;
   utterance.pitch = 1.0;
   window.speechSynthesis.speak(utterance);
-  showToast('🔊 Taza suchna sunai ja rahi hai...');
+  showToast('🔊 important updates here...');
 }
 
 /* ==========================================================================
@@ -2795,7 +2792,7 @@ function previewUserPhoto(event) {
 function handleUserPhotoUpload(e) {
   e.preventDefault();
   if (!compressedImageDataUrl) {
-    alert('Kripya pehle ek photo chunein!');
+    alert('please choose photo!');
     return;
   }
 
@@ -2807,7 +2804,7 @@ function handleUserPhotoUpload(e) {
     src: compressedImageDataUrl,
     title: caption,
     cat: 'community',
-    badge: 'Gaonwasi Upload',
+    badge: 'public Upload',
     author: author,
     isCommunity: true
   };
@@ -2820,9 +2817,9 @@ function handleUserPhotoUpload(e) {
     closeUploadModal();
     loadGalleryItems();
     triggerConfetti();
-    showToast('🎉 Photo gallery mein jud gayi!');
+    showToast('🎉 added successfully!');
   } catch (err) {
-    alert('Memory limit reached. Kripya thodi choti photo chunein ya Google Form use karein.');
+    alert('Memory limit reaced ; please try again later.');
   }
 }
 
@@ -2847,11 +2844,11 @@ function generateSmartOtp() {
   document.getElementById('otpInteractiveBox').style.display = 'block';
   document.getElementById('displayedOtpCode').textContent = activeGeneratedOtp;
   
-  const msg = encodeURIComponent(`Wyndhamganj Butbherwa Portal OTP: ${activeGeneratedOtp} (Valid for Verification)`);
+  const msg = encodeURIComponent(`WDM verification OTP: ${activeGeneratedOtp} (Valid for Verification)`);
   document.getElementById('waQuickLink').href = `https://wa.me/91${phone}?text=${msg}`;
 
   document.getElementById('stepNode1').classList.add('active');
-  showToast(`✅ OTP Generate hua: ${activeGeneratedOtp}`);
+  showToast(`✅ OTP generated: ${activeGeneratedOtp}`);
 }
 
 function verifySmartOtp() {
@@ -2860,7 +2857,7 @@ function verifySmartOtp() {
 
   if (!entered) {
     statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = '❌ Kripya OTP code darj karein!';
+    statusEl.textContent = '❌ please enter OTP!';
     return;
   }
 
@@ -2879,10 +2876,10 @@ function verifySmartOtp() {
     document.getElementById('stepNode2').classList.add('active');
     document.getElementById('step2DetailsSection').style.display = 'block';
     document.getElementById('citizenName').focus();
-    showToast('✅ Verification Safal! Form Bharein');
+    showToast('✅ Verification successful! fill form');
   } else {
     statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = '❌ Galat OTP! Sahi 4-digit code daalein.';
+    statusEl.textContent = '❌ wrong OTP! write 4-digit code.';
   }
 }
 
