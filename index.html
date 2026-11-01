@@ -488,6 +488,96 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+        /* --- Important Updates Widget --- */
+    .updates-card {
+      background: var(--bg-card);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .updates-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .updates-header h3 {
+      font-size: 0.95rem;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+    }
+
+    .live-dot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--teal);
+      background: rgba(45, 212, 191, 0.12);
+      border: 1px solid var(--border-color);
+      padding: 2px 7px;
+      border-radius: 50px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    .updates-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .updates-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .updates-list li i {
+      margin-top: 3px;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .icon-teal { color: var(--teal); }
+    .icon-gold { color: var(--gold); }
+    .icon-blue { color: #38bdf8; }
+
+    .update-btn {
+      width: 100%;
+      font-size: 0.78rem;
+      padding: 8px;
+      border-color: rgba(37, 211, 102, 0.4);
+      color: #4ade80;
+    }
+
+    .update-btn:hover {
+      border-color: var(--whatsapp);
+      background: rgba(37, 211, 102, 0.1);
+    }
+    
 
     /* --- Emergency Helplines Section --- */
     .helpline-grid {
@@ -783,28 +873,37 @@
         </div>
       </div>
 
-      <!-- Live Meeting Countdown Widget -->
-      <div class="countdown-card">
-        <h3><i class="fa-solid fa-calendar-check"></i> Next Gram Sabha Meeting</h3>
-        <p>Panchayat Secretariat, Butbherwa</p>
-        <div class="timer-grid">
-          <div class="timer-box">
-            <span class="timer-num" id="cdDays">00</span>
-            <span class="timer-lbl">Days</span>
-          </div>
-          <div class="timer-box">
-            <span class="timer-num" id="cdHours">00</span>
-            <span class="timer-lbl">Hours</span>
-          </div>
-          <div class="timer-box">
-            <span class="timer-num" id="cdMinutes">00</span>
-            <span class="timer-lbl">Mins</span>
-          </div>
-          <div class="timer-box">
-            <span class="timer-num" id="cdSeconds">00</span>
-            <span class="timer-lbl">Secs</span>
-          </div>
+            <!-- Important Village Updates Card -->
+      <div class="updates-card">
+        <div class="updates-header">
+          <h3><i class="fa-solid fa-bell"></i> Important Updates</h3>
+          <span class="live-dot-badge"><span class="pulse-dot"></span> Live</span>
         </div>
+        <ul class="updates-list">
+          <li>
+            <i class="fa-solid fa-droplet icon-teal"></i>
+            <div>
+              <b>Clean Drinking Water:</b> Ward 2 & 4 pipeline testing successfully completed.
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-seedling icon-gold"></i>
+            <div>
+              <b>PM Kisan e-KYC:</b> Biometric verification active at local CSC centre.
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-lightbulb icon-blue"></i>
+            <div>
+              <b>Solar Lighting:</b> Maintenance drive scheduled for Shiv Nagar main route.
+            </div>
+          </li>
+        </ul>
+        <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn btn-secondary update-btn">
+          <i class="fa-brands fa-whatsapp"></i> Join WhatsApp For All Alerts
+        </a>
+      </div>
+      
         <a href="#grievance" class="btn btn-secondary" style="width:100%; font-size:0.78rem; padding:8px;">
           Submit Assembly Proposal
         </a>
