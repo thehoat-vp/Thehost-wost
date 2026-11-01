@@ -465,8 +465,10 @@ body.light-theme .menu-toggle {
   position: relative;
   overflow: hidden;
   padding: 48px 0;
-  background: linear-gradient(rgba(3, 13, 20, 0.82), rgba(3, 13, 20, 0.88)), url('IMG_20250929_062521.jpg') center/cover no-repeat;
+  background: url('IMG_20250929_062521.jpg') center/cover no-repeat;
 }
+
+
    
 
 #heroVfxCanvas {
@@ -481,7 +483,9 @@ body.light-theme .menu-toggle {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: 
+  background: linear-gradient(90deg, rgba(3, 13, 20, 0.82) 0%, rgba(3, 13, 20, 0.45) 55%, rgba(3, 13, 20, 0.15) 100%);
+  z-index: 1;
+} 
     linear-gradient(90deg, var(--bg-primary) 0%, rgba(3, 13, 20, 0.82) 55%, rgba(3, 13, 20, 0.35) 100%),
     radial-gradient(ellipse at 80% 50%, rgba(45, 212, 191, 0.12), transparent 70%);
   z-index: 1;
