@@ -1,80 +1,64 @@
 <!DOCTYPE html>
-<html lang="hi" data-font="md">
+<html lang="en" data-font="md">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wyndhamganj Butbherwa (Shiv Nagar) - Digital Gram Portal</title>
-  <meta name="description" content="Official Digital Portal for Gram Panchayat Wyndhamganj Butbherwa. Real-time announcements, representative contacts, gallery, and grievance lodging.">
+  <title>Wyndhamganj Butbherwa (Shiv Nagar) - Official Digital Portal</title>
 
-  <!-- Typography & Icons -->
+  <!-- Google Fonts & FontAwesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Firebase Modular Compat SDKs (App, Auth, and Firestore) -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase SDKs (v8 Compat for High Stability) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
   <style>
-    /* ==========================================================================
-       1. CSS SYSTEM VARIABLES & ROOT PALETTE
-       ========================================================================== */
+    /* --- CSS Variables & Theme Engine --- */
     :root {
-      --bg-primary: #030d14;
-      --bg-secondary: #071926;
-      --bg-card: rgba(11, 35, 53, 0.65);
-      --bg-card-hover: rgba(16, 48, 72, 0.85);
-      --border-color: rgba(45, 212, 191, 0.18);
-      --border-gold: rgba(255, 195, 44, 0.35);
-
-      --gold: #ffc32c;
-      --gold-hover: #e0a71b;
+      --bg-dark: #030d14;
+      --bg-card: rgba(8, 25, 38, 0.75);
+      --bg-card-hover: rgba(14, 38, 58, 0.85);
       --teal: #2dd4bf;
+      --teal-hover: #14b8a6;
+      --gold: #ffc32c;
+      --gold-dark: #d99b16;
       --whatsapp: #25D366;
       --danger: #ef4444;
       --success: #10b981;
-
-      --text-main: #f8fafc;
+      --text-main: #f0fdfa;
       --text-muted: #94a3b8;
-      --text-dark: #0f172a;
-
+      --border-color: rgba(45, 212, 191, 0.22);
+      --border-gold: rgba(255, 195, 44, 0.35);
+      --glass-blur: blur(14px);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.55);
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
-      --radius-full: 9999px;
-
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
-      --shadow-glow: 0 0 25px rgba(255, 195, 44, 0.18);
-      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --font-hindi: 'Tiro Devanagari Hindi', serif;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-scale: 1rem;
     }
 
-    /* Light Theme Adaptation */
+    /* Light Theme Toggle Support */
     body.light-theme {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #ffffff;
+      --bg-dark: #f8fafc;
       --bg-card: rgba(255, 255, 255, 0.88);
-      --bg-card-hover: #ffffff;
-      --border-color: rgba(15, 23, 42, 0.12);
-      --border-gold: rgba(224, 167, 27, 0.5);
+      --bg-card-hover: rgba(241, 245, 249, 0.95);
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --border-color: rgba(20, 184, 166, 0.28);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.12);
     }
 
-    /* Accessibility Font Scalers */
-    html[data-font="sm"] { font-size: 14px; }
-    html[data-font="md"] { font-size: 16px; }
-    html[data-font="lg"] { font-size: 18px; }
+    [data-font="sm"] { font-size: 14px; }
+    [data-font="md"] { font-size: 16px; }
+    [data-font="lg"] { font-size: 18px; }
 
-    /* ==========================================================================
-       2. BASE RESET & GLOBAL LAYOUT
-       ========================================================================== */
     * {
       margin: 0;
       padding: 0;
@@ -83,41 +67,68 @@
     }
 
     body {
-      background-color: var(--bg-primary);
+      background-color: var(--bg-dark);
       color: var(--text-main);
-      font-family: var(--font-body);
-      line-height: 1.6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.55;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(45, 212, 191, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(255, 195, 44, 0.03) 0%, transparent 40%);
+      background-attachment: fixed;
     }
 
+    /* Layout Containers */
     .container {
       width: 100%;
-      max-width: 1220px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .section-pad {
+      padding: 55px 0;
     }
 
-    button, input, select, textarea {
-      font-family: inherit;
-      outline: none;
+    .section-header {
+      text-align: center;
+      margin-bottom: 35px;
     }
 
-    /* ==========================================================================
-       3. TOP UTILITY HEADER & ANNOUNCEMENT BAR
-       ========================================================================== */
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--teal);
+      background: rgba(45, 212, 191, 0.12);
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* --- Compact Top Utility Bar --- */
     .top-utility-bar {
       background: rgba(3, 13, 20, 0.95);
       border-bottom: 1px solid var(--border-color);
-      font-size: 0.82rem;
-      padding: 7px 0;
-      position: relative;
-      z-index: 60;
+      font-size: 0.76rem;
+      padding: 4px 0;
     }
 
     .utility-wrapper {
@@ -125,106 +136,102 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .utility-meta {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       color: var(--text-muted);
     }
 
-    .utility-meta b {
-      color: var(--gold);
+    .utility-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .utility-meta i {
+      color: var(--teal);
     }
 
     .utility-controls {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
 
     .font-btn, .theme-btn {
-      background: var(--bg-card);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border-color);
       color: var(--text-main);
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: var(--radius-sm);
-      font-size: 0.75rem;
       cursor: pointer;
+      font-size: 0.72rem;
       transition: var(--transition);
     }
 
     .font-btn.active, .font-btn:hover, .theme-btn:hover {
-      background: var(--gold);
-      color: var(--text-dark);
-      border-color: var(--gold);
+      background: var(--teal);
+      color: #021513;
+      border-color: var(--teal);
       font-weight: 700;
     }
 
-    /* Ticker Announcement */
+    /* --- Compact Notice Ticker --- */
     .announcement-bar {
-      background: linear-gradient(90deg, #071926 0%, #0c2d42 50%, #071926 100%);
-      border-bottom: 1px solid var(--border-gold);
-      padding: 8px 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-    }
-
-    .ticker-title {
-      background: var(--gold);
-      color: var(--text-dark);
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-      margin-right: 14px;
-      cursor: pointer;
-    }
-
-    .ticker-track {
-      flex: 1;
+      background: linear-gradient(90deg, rgba(255, 195, 44, 0.12), rgba(45, 212, 191, 0.08));
+      border-bottom: 1px solid rgba(255, 195, 44, 0.25);
+      padding: 4px 0;
       overflow: hidden;
       white-space: nowrap;
     }
 
+    .ticker-title {
+      background: var(--gold);
+      color: #111;
+      font-weight: 800;
+      padding: 2px 9px;
+      border-radius: var(--radius-sm);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: middle;
+      width: calc(100% - 130px);
+    }
+
     .ticker-content {
       display: inline-block;
-      animation: marqueeScroll 28s linear infinite;
-      color: #e2e8f0;
-      font-size: 0.88rem;
+      animation: tickerScroll 24s linear infinite;
+      font-size: 0.78rem;
+      color: var(--text-main);
     }
 
-    .ticker-content:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes marqueeScroll {
+    @keyframes tickerScroll {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
-    /* ==========================================================================
-       4. MAIN NAVIGATION (STICKY GLASSMORPHIC)
-       ========================================================================== */
+    /* --- Navigation Bar --- */
     .navbar {
+      background: rgba(3, 13, 20, 0.88);
+      backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(3, 13, 20, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 14px 0;
-      transition: var(--transition);
+      z-index: 999;
+      padding: 10px 0;
     }
 
     .nav-wrapper {
@@ -237,79 +244,60 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      text-decoration: none;
     }
 
     .brand-emblem {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--gold), #f59e0b);
-      border-radius: var(--radius-md);
-      display: grid;
-      place-items: center;
-      font-size: 1.35rem;
-      color: var(--text-dark);
-      box-shadow: 0 4px 14px rgba(255, 195, 44, 0.3);
+      font-size: 1.55rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(255, 195, 44, 0.5));
     }
 
     .brand-text h1 {
-      font-size: 1.18rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      line-height: 1.2;
       color: var(--text-main);
       letter-spacing: -0.3px;
     }
 
     .brand-text span {
-      font-size: 0.76rem;
+      display: block;
+      font-size: 0.7rem;
       color: var(--gold);
       font-weight: 600;
-      letter-spacing: 0.6px;
       text-transform: uppercase;
+      letter-spacing: 0.8px;
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 22px;
       list-style: none;
+      gap: 20px;
     }
 
     .nav-link {
-      font-size: 0.92rem;
-      font-weight: 600;
       color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
       transition: var(--transition);
       position: relative;
-      padding: 6px 0;
     }
 
     .nav-link:hover, .nav-link.active {
-      color: var(--gold);
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: var(--gold);
-      transition: var(--transition);
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
+      color: var(--teal);
     }
 
     .nav-btn-action {
-      background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-      color: var(--text-dark);
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      font-size: 0.88rem;
+      background: linear-gradient(135deg, var(--teal), #0d9488);
+      color: #021513;
+      padding: 7px 16px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(255, 195, 44, 0.25);
+      font-size: 0.82rem;
+      box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25);
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
@@ -318,182 +306,176 @@
 
     .nav-btn-action:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 195, 44, 0.4);
+      box-shadow: 0 6px 18px rgba(45, 212, 191, 0.4);
     }
 
     .menu-toggle {
       display: none;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: none;
+      border: none;
       color: var(--text-main);
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       cursor: pointer;
     }
 
-    /* ==========================================================================
-       5. HERO SECTION WITH IMAGE OVERLAY & LIVE EVENT TIMER
-       ========================================================================== */
+    /* --- Compact Sleek Hero Section --- */
     .hero {
-      min-height: 540px;
+      position: relative;
+      min-height: 380px;
+      padding: 30px 0;
       display: flex;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 56px 0;
       background: url('IMG_20250929_062521.jpg') center/cover no-repeat #04131d;
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      /* Balanced gradient to display Piprahava Bandh clearly while keeping text readable */
-      background: linear-gradient(90deg, rgba(3, 13, 20, 0.88) 0%, rgba(3, 13, 20, 0.55) 55%, rgba(3, 13, 20, 0.22) 100%);
+      background: linear-gradient(135deg, rgba(3, 13, 20, 0.94) 0%, rgba(3, 13, 20, 0.78) 55%, rgba(4, 25, 38, 0.88) 100%);
       z-index: 1;
     }
 
     #heroVfxCanvas {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero-container {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
-      gap: 40px;
+      gap: 28px;
       align-items: center;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(45, 212, 191, 0.12);
-      border: 1px solid var(--teal);
-      border-radius: var(--radius-full);
-      color: var(--teal);
-      font-size: 0.8rem;
+      gap: 6px;
+      background: rgba(255, 195, 44, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 18px;
+      margin-bottom: 8px;
     }
 
     .hero-title {
-      font-size: 2.85rem;
+      font-size: 2.15rem;
       font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 16px;
+      line-height: 1.2;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
 
     .hero-title span {
-      background: linear-gradient(135deg, var(--gold) 0%, #fef08a 100%);
+      background: linear-gradient(135deg, #fff 30%, var(--teal) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-desc {
-      font-size: 1.05rem;
-      color: #cbd5e1;
-      max-width: 580px;
-      margin-bottom: 26px;
-      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+      max-width: 530px;
+      line-height: 1.5;
     }
 
     .hero-btn-group {
       display: flex;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 14px;
     }
 
     .btn {
-      padding: 12px 24px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
       transition: var(--transition);
-      border: none;
+      border: 1px solid transparent;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-      color: var(--text-dark);
-      box-shadow: 0 4px 18px rgba(255, 195, 44, 0.35);
+      background: linear-gradient(135deg, var(--teal), #0d9488);
+      color: #021513;
+      box-shadow: 0 4px 14px rgba(45, 212, 191, 0.28);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(255, 195, 44, 0.5);
+      box-shadow: 0 6px 20px rgba(45, 212, 191, 0.42);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      backdrop-filter: blur(8px);
+      border-color: var(--border-color);
+      backdrop-filter: var(--glass-blur);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.1);
       border-color: var(--teal);
-      transform: translateY(-2px);
     }
 
-    /* Countdown Card */
+    /* --- Compact Countdown Widget --- */
     .countdown-card {
       background: var(--bg-card);
+      backdrop-filter: var(--glass-blur);
       border: 1px solid var(--border-gold);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-card);
+      border-radius: var(--radius-md);
+      padding: 16px;
       text-align: center;
+      box-shadow: var(--shadow-sm);
     }
 
     .countdown-card h3 {
-      font-size: 1.15rem;
+      font-size: 0.95rem;
       color: var(--gold);
-      margin-bottom: 6px;
-      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .countdown-card p {
-      font-size: 0.82rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     .timer-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 18px;
+      gap: 6px;
+      margin-bottom: 12px;
     }
 
     .timer-box {
-      background: rgba(3, 13, 20, 0.7);
+      background: rgba(3, 13, 20, 0.85);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 10px 4px;
+      padding: 5px 2px;
+      border-radius: var(--radius-sm);
     }
 
     .timer-num {
-      font-size: 1.4rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--teal);
       display: block;
@@ -501,602 +483,228 @@
     }
 
     .timer-lbl {
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       color: var(--text-muted);
       text-transform: uppercase;
-      font-weight: 600;
-    }
-        /* ==========================================================================
-       6. SECTION HEADINGS & CORE COMPONENTS
-       ========================================================================== */
-    .section-pad {
-      padding: 70px 0;
-      position: relative;
+      letter-spacing: 0.5px;
     }
 
-    .section-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 48px;
-    }
-
-    .section-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1.25;
-      margin-bottom: 12px;
-      letter-spacing: -0.4px;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* ==========================================================================
-       7. EMERGENCY HELPLINES STRIP
-       ========================================================================== */
-    .emergency-strip {
-      background: rgba(239, 68, 68, 0.08);
-      border-top: 1px solid rgba(239, 68, 68, 0.25);
-      border-bottom: 1px solid rgba(239, 68, 68, 0.25);
-      padding: 20px 0;
-    }
-
-    .emergency-grid {
+    /* --- Emergency Helplines Section --- */
+    .helpline-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
     }
 
-    .emergency-card {
+    .helpline-card {
       background: var(--bg-card);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      padding: 14px 18px;
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
+      padding: 18px;
       display: flex;
       align-items: center;
       gap: 14px;
       transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
     }
 
-    .emergency-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--danger);
-      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+    .helpline-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--teal);
+      box-shadow: var(--shadow-sm);
     }
 
-    .emergency-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(239, 68, 68, 0.15);
-      color: var(--danger);
+    .helpline-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
       display: grid;
       place-items: center;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       flex-shrink: 0;
     }
 
-    .emergency-info span {
-      font-size: 0.76rem;
+    .icon-red { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .icon-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .icon-green { background: rgba(37, 211, 102, 0.15); color: #4ade80; }
+    .icon-yellow { background: rgba(255, 195, 44, 0.15); color: var(--gold); }
+
+    .helpline-info h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .helpline-info span {
+      font-size: 0.78rem;
       color: var(--text-muted);
       display: block;
     }
 
-    .emergency-info b {
-      font-size: 1.05rem;
-      color: #fee2e2;
-      font-weight: 700;
+    .helpline-info b {
+      color: var(--teal);
+      font-size: 0.88rem;
     }
 
-    /* ==========================================================================
-       8. PANCHAYAT REPRESENTATIVES (LEADERSHIP)
-       ========================================================================== */
+    /* --- Leadership & Representative Cards --- */
     .rep-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
     .rep-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 26px 20px;
+      border-radius: var(--radius-md);
+      padding: 22px;
       text-align: center;
       transition: var(--transition);
       position: relative;
-      overflow: hidden;
-    }
-
-    .rep-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--teal));
-      opacity: 0;
-      transition: var(--transition);
     }
 
     .rep-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--border-gold);
-      box-shadow: var(--shadow-card);
-    }
-
-    .rep-card:hover::before {
-      opacity: 1;
+      transform: translateY(-4px);
+      border-color: var(--teal);
+      box-shadow: var(--shadow-sm);
     }
 
     .rep-avatar {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      margin: 0 auto 16px;
-      border: 3px solid var(--gold);
-      padding: 3px;
-      background: var(--bg-secondary);
+      margin: 0 auto 12px;
+      border: 2px solid var(--teal);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      background: rgba(45, 212, 191, 0.08);
+      color: var(--teal);
+      overflow: hidden;
+    }
+
+    .rep-avatar img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     .rep-name {
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: var(--text-main);
-      margin-bottom: 4px;
     }
 
-    .rep-designation {
-      font-size: 0.82rem;
-      color: var(--teal);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-    }
-
-    .rep-contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(45, 212, 191, 0.1);
-      border: 1px solid var(--border-color);
-      color: var(--teal);
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 700;
-      transition: var(--transition);
-    }
-
-    .rep-contact-btn:hover {
-      background: var(--teal);
-      color: var(--text-dark);
-    }
-
-    /* ==========================================================================
-       9. COMMUNITY GALLERY & LIGHTBOX
-       ========================================================================== */
-    .gallery-actions {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .gallery-card {
-      position: relative;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      background: #000;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-      display: block;
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.06);
-    }
-
-    .gallery-card-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(3, 13, 20, 0.78);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--border-color);
-      font-size: 0.7rem;
-      color: var(--gold);
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      z-index: 2;
-    }
-
-    .gallery-card-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 24px 14px 10px;
-      background: linear-gradient(to top, rgba(3, 13, 20, 0.95), transparent);
-      font-size: 0.85rem;
-      color: #ffffff;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      z-index: 2;
-    }
-
-    /* Lightbox Modal */
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .lightbox-modal.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      max-width: 900px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-
-    .lightbox-img {
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: var(--radius-md);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-      border: 1px solid var(--border-color);
-    }
-
-    .lightbox-caption {
-      margin-top: 14px;
-      color: var(--text-main);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: -45px;
-      right: 0;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* ==========================================================================
-       10. GRIEVANCE & DIGITAL SEWA FORM (STEPPER ARCHITECTURE)
-       ========================================================================== */
-    .portal-form-wrapper {
-      max-width: 820px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 36px 30px;
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-card);
-    }
-
-    .stepper {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      margin-bottom: 34px;
-    }
-
-    .stepper::before {
-      content: '';
-      position: absolute;
-      top: 18px;
-      left: 10%;
-      width: 80%;
-      height: 2px;
-      background: var(--border-color);
-      z-index: 1;
-    }
-
-    .step-node {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      flex: 1;
-    }
-
-    .step-circle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--bg-secondary);
-      border: 2px solid var(--border-color);
-      margin: 0 auto 8px;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      transition: var(--transition);
-    }
-
-    .step-node.active .step-circle {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--text-dark);
-      box-shadow: 0 0 16px rgba(255, 195, 44, 0.4);
-    }
-
-    .step-node.completed .step-circle {
-      background: var(--teal);
-      border-color: var(--teal);
-      color: var(--text-dark);
-    }
-
-    .step-label {
+    .rep-role {
       font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.86rem;
-      font-weight: 600;
-      color: #cbd5e1;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       margin-bottom: 8px;
     }
 
-    .form-control {
-      width: 100%;
-      background: rgba(3, 13, 20, 0.75);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      color: var(--text-main);
-      font-size: 0.92rem;
-      transition: var(--transition);
+    .rep-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    .form-control:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 10px rgba(255, 195, 44, 0.2);
-    }
-
-    .otp-input-group {
-      display: flex;
-      gap: 10px;
-    }
-
-    /* Status Tracker Container */
-    .tracker-box {
-      background: rgba(7, 25, 38, 0.85);
+    /* --- "The Host" / Digital Initiative Profile Section --- */
+    .host-section {
+      background: linear-gradient(135deg, rgba(8, 25, 38, 0.85), rgba(3, 13, 20, 0.95));
       border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .host-img-wrap {
+      width: 140px;
+      height: 140px;
       border-radius: var(--radius-md);
-      padding: 22px;
-      margin-top: 28px;
-      text-align: center;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 18px rgba(255, 195, 44, 0.2);
     }
 
-    .tracker-box h4 {
-      font-size: 1.05rem;
-      color: var(--gold);
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .tracker-input-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      max-width: 480px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-
-    #statusResultBox {
-      margin-top: 14px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      min-height: 24px;
-    }
-
-    /* Submission Success Receipt */
-    .receipt-card {
-      display: none;
-      background: rgba(16, 185, 129, 0.08);
-      border: 1px solid var(--success);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      text-align: center;
-      margin-top: 20px;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .receipt-token {
-      display: inline-block;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--gold);
-      background: rgba(3, 13, 20, 0.9);
-      padding: 6px 18px;
-      border-radius: var(--radius-full);
-      margin: 12px 0;
-      border: 1px dashed var(--gold);
-      letter-spacing: 1px;
-    }
-
-    /* Confetti Canvas */
-    #confettiCanvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 999;
+    .host-img-wrap img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
 
-    /* Toast Notification */
-    .toast-notification {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(3, 13, 20, 0.94);
-      border: 1px solid var(--teal);
-      border-left: 5px solid var(--teal);
-      color: #ffffff;
-      padding: 14px 20px;
-      border-radius: var(--radius-sm);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      transform: translateY(120px);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      backdrop-filter: blur(8px);
-    }
-
-    .toast-notification.active {
-      transform: translateY(0);
-    }
-
-    /* Footer */
-    .footer {
-      background: #02070b;
-      border-top: 1px solid var(--border-color);
-      padding: 50px 0 24px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
+    .host-content h3 {
+      font-size: 1.15rem;
       color: var(--text-main);
-      font-size: 1.05rem;
-      margin-bottom: 16px;
-      font-weight: 700;
+      font-weight: 800;
+      margin-bottom: 4px;
     }
 
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links a:hover {
+    .host-badge {
+      display: inline-block;
+      font-size: 0.7rem;
       color: var(--gold);
+      background: rgba(255, 195, 44, 0.12);
+      border: 1px solid var(--border-gold);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
-    /* Responsive Adjustments */
-    @media (max-width: 992px) {
+    .host-content p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 900px) {
       .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
       }
-      .hero-desc {
-        margin: 0 auto 26px;
-      }
       .hero-btn-group {
         justify-content: center;
       }
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+      .hero-desc {
+        margin: 0 auto 18px;
       }
-    }
-
-    @media (max-width: 768px) {
       .nav-menu {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(3, 13, 20, 0.98);
-        border-bottom: 1px solid var(--border-color);
-        flex-direction: column;
-        padding: 20px;
-        gap: 16px;
-      }
-      .nav-menu.mobile-open {
-        display: flex;
       }
       .menu-toggle {
         display: block;
       }
-      .hero-title {
-        font-size: 2.1rem;
+      .nav-menu.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(3, 13, 20, 0.98);
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
       }
-      .portal-form-wrapper {
-        padding: 24px 16px;
+      .host-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .host-img-wrap {
+        margin: 0 auto;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- VFX Particle and Confetti Canvases -->
-  <canvas id="confettiCanvas"></canvas>
 
   <!-- 1. Top Utility Bar -->
   <div class="top-utility-bar">
@@ -1104,50 +712,51 @@
       <div class="utility-meta">
         <span><i class="fa-solid fa-location-dot"></i> Wyndhamganj Butbherwa (Shiv Nagar), Sonbhadra, UP</span>
         <span><i class="fa-regular fa-clock"></i> <span id="portalLiveClock">--:--:--</span></span>
-        <span><i class="fa-solid fa-cloud-sun"></i> Wyndhamganj: <b>28°C</b></span>
+        <span><i class="fa-solid fa-cloud-sun"></i> Weather: <b>28°C Sunny</b></span>
       </div>
       <div class="utility-controls">
-        <span style="font-size:0.75rem; color:var(--text-muted); margin-right:4px;">Font:</span>
+        <span style="font-size:0.72rem; color:var(--text-muted); margin-right:4px;">Font:</span>
         <button class="font-btn" onclick="setFontSize('sm')">A-</button>
         <button class="font-btn active" onclick="setFontSize('md')">A</button>
         <button class="font-btn" onclick="setFontSize('lg')">A+</button>
-        <button class="theme-btn" onclick="togglePortalTheme()" title="Toggle Theme" style="margin-left:6px;">
+        <button class="theme-btn" onclick="togglePortalTheme()" title="Toggle Dark/Light Mode" style="margin-left:6px;">
           <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- 2. Sliding Announcements Ticker -->
+  <!-- 2. Sliding Notice Board Ticker -->
   <div class="announcement-bar">
     <div class="container" style="display:flex; align-items:center;">
       <div class="ticker-title">
-        <i class="fa-solid fa-bullhorn"></i> ग्राम सूचना
+        <i class="fa-solid fa-bullhorn"></i> Notice Board
       </div>
       <div class="ticker-track">
         <div class="ticker-content">
-          📢 <b>ग्राम सभा सूचना:</b> आगामी ग्राम सभा बैठक हेतु पिपरहवा बांध एवं पंचायत भवन परिसर में सभी सम्मानित ग्रामवासियों की उपस्थिति सादर प्रार्थनीय है। | 💧 <b>स्वच्छ जल मिशन:</b> वार्ड 2 एवं 4 में पेयजल लाइन का निरीक्षण पूर्ण हो चुका है। | 🌾 <b>पीएम किसान सम्मान निधि:</b> ई-केवाईसी पूर्ण कराने हेतु सीएससी केंद्र से संपर्क करें।
+          📢 <b>Gram Sabha Notice:</b> Upcoming general assembly meeting at Piprahwa Dam & Panchayat Bhawan complex. All residents are invited. | 💧 <b>Clean Water Mission:</b> Ward 2 & 4 pipeline inspection completed successfully. | 🌾 <b>PM Kisan Nidhi:</b> Please visit the local CSC centre for mandatory e-KYC verification.
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. Glassmorphic Navigation -->
+  <!-- 3. Navigation Bar with 🕉️ Emblem -->
   <nav class="navbar">
     <div class="container nav-wrapper">
       <a href="#" class="brand-logo">
-        <div class="brand-emblem"><i class="fa-solid fa-landmark-flag"></i></div>
+        <div class="brand-emblem">🕉️</div>
         <div class="brand-text">
-          <h1>विंढमगंज बुटबेढ़वा</h1>
-          <span>डिजिटल ग्राम पंचायत पोर्टल</span>
+          <h1>Wyndhamganj Butbherwa</h1>
+          <span>Shiv Nagar Digital Portal</span>
         </div>
       </a>
       <ul class="nav-menu" id="primaryNavMenu">
-        <li><a href="#hero" class="nav-link active">होम</a></li>
-        <li><a href="#emergency" class="nav-link">हेल्पलाइन</a></li>
-        <li><a href="#leadership" class="nav-link">प्रतिनिधि</a></li>
-        <li><a href="#gallery" class="nav-link">फोटो गैलरी</a></li>
-        <li><a href="#grievance" class="nav-btn-action"><i class="fa-solid fa-file-pen"></i> सूचना / शिकायत दर्ज करें</a></li>
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#emergency" class="nav-link">Helplines</a></li>
+        <li><a href="#leadership" class="nav-link">Representatives</a></li>
+        <li><a href="#host" class="nav-link">The Host</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#grievance" class="nav-btn-action"><i class="fa-solid fa-file-pen"></i> Submit Grievance</a></li>
       </ul>
       <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Open Navigation">
         <i class="fa-solid fa-bars"></i>
@@ -1155,152 +764,510 @@
     </div>
   </nav>
 
-  <!-- 4. Hero Section with Live Timer -->
+  <!-- 4. Hero Section with Live Countdown -->
   <header class="hero" id="hero">
     <div class="hero-overlay"></div>
     <canvas id="heroVfxCanvas"></canvas>
     <div class="container hero-container">
       <div class="hero-content">
-        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> आधिकारिक ग्राम पंचायत ई-सेवा</div>
-        <h1 class="hero-title">ग्राम पंचायत विंढमगंज <span>बुटबेढ़वा</span></h1>
+        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Official Digital Gram Portal</div>
+        <h1 class="hero-title">Gram Panchayat <span>Wyndhamganj Butbherwa</span></h1>
         <p class="hero-desc">
-          शिव नगर, पिपरहवा बांध एवं समस्त वार्डों के सर्वांगीण विकास, पारदर्शी डिजिटल सेवा, त्वरित जनसुनवाई और ग्राम सूचना प्रणाली का एक सुगम डिजिटल मंच।
+          Empowering Shiv Nagar, Piprahwa Dam, and all wards with transparent governance, real-time community notices, and rapid public grievance redressal.
         </p>
         <div class="hero-btn-group">
-          <a href="#grievance" class="btn btn-primary"><i class="fa-solid fa-pen-nib"></i> शिकायत / सुझाव दर्ज करें</a>
+          <a href="#grievance" class="btn btn-primary"><i class="fa-solid fa-pen-nib"></i> File Grievance / Feedback</a>
           <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn btn-secondary" style="border-color:var(--whatsapp); color:#4ade80;">
-            <i class="fa-brands fa-whatsapp"></i> आधिकारिक व्हाट्सएप ग्रुप
+            <i class="fa-brands fa-whatsapp"></i> Official WhatsApp Group
           </a>
         </div>
       </div>
 
       <!-- Live Meeting Countdown Widget -->
       <div class="countdown-card">
-        <h3><i class="fa-solid fa-calendar-check"></i> आगामी ग्राम सभा बैठक</h3>
-        <p>पंचायत सचिवालय, विंढमगंज बुटबेढ़वा</p>
+        <h3><i class="fa-solid fa-calendar-check"></i> Next Gram Sabha Meeting</h3>
+        <p>Panchayat Secretariat, Butbherwa</p>
         <div class="timer-grid">
           <div class="timer-box">
             <span class="timer-num" id="cdDays">00</span>
-            <span class="timer-lbl">दिन</span>
+            <span class="timer-lbl">Days</span>
           </div>
           <div class="timer-box">
             <span class="timer-num" id="cdHours">00</span>
-            <span class="timer-lbl">घंटे</span>
+            <span class="timer-lbl">Hours</span>
           </div>
           <div class="timer-box">
             <span class="timer-num" id="cdMinutes">00</span>
-            <span class="timer-lbl">मिनट</span>
+            <span class="timer-lbl">Mins</span>
           </div>
           <div class="timer-box">
             <span class="timer-num" id="cdSeconds">00</span>
-            <span class="timer-lbl">सेकंड</span>
+            <span class="timer-lbl">Secs</span>
           </div>
         </div>
-        <a href="#grievance" class="btn btn-secondary" style="width:100%; font-size:0.85rem; padding:9px;">
-          बैठक हेतु प्रस्ताव प्रेषित करें
+        <a href="#grievance" class="btn btn-secondary" style="width:100%; font-size:0.78rem; padding:8px;">
+          Submit Assembly Proposal
         </a>
       </div>
     </div>
   </header>
 
-  <!-- 5. Emergency Helplines Strip -->
-  <section class="emergency-strip" id="emergency">
+  <!-- 5. Emergency Helplines & Rapid Access -->
+  <section class="section-pad" id="emergency">
     <div class="container">
-      <div class="emergency-grid">
-        <a href="tel:112" class="emergency-card">
-          <div class="emergency-icon"><i class="fa-solid fa-shield"></i></div>
-          <div class="emergency-info">
-            <span>आपातकालीन पुलिस सेवा</span>
-            <b>डायल 112</b>
+      <div class="section-header">
+        <span class="section-tag">24x7 Emergency Contacts</span>
+        <h2 class="section-title">Emergency & Public Helplines</h2>
+        <p class="section-subtitle">Instant emergency contacts for our village residents, law enforcement, and health centers.</p>
+      </div>
+
+      <div class="helpline-grid">
+        <a href="tel:112" class="helpline-card">
+          <div class="helpline-icon icon-red"><i class="fa-solid fa-shield-virus"></i></div>
+          <div class="helpline-info">
+            <h4>Police Emergency</h4>
+            <span>UP Emergency Control Room</span>
+            <b>Dial: 112</b>
           </div>
         </a>
-        <a href="tel:108" class="emergency-card">
-          <div class="emergency-icon"><i class="fa-solid fa-truck-medical"></i></div>
-          <div class="emergency-info">
-            <span>एम्बुलेंस सेवा</span>
-            <b>डायल 108 / 102</b>
+        <a href="tel:108" class="helpline-card">
+          <div class="helpline-icon icon-blue"><i class="fa-solid fa-truck-medical"></i></div>
+          <div class="helpline-info">
+            <h4>Ambulance Service</h4>
+            <span>Emergency Medical Response</span>
+            <b>Dial: 108 / 102</b>
           </div>
         </a>
-        <a href="tel:1090" class="emergency-card">
-          <div class="emergency-icon"><i class="fa-solid fa-person-dress"></i></div>
-          <div class="emergency-info">
-            <span>महिला हेल्पलाइन</span>
-            <b>1090</b>
+
+        <a href="tel:1912" class="helpline-card">
+          <div class="helpline-icon icon-yellow"><i class="fa-solid fa-bolt"></i></div>
+          <div class="helpline-info">
+            <h4>Electricity Helpline</h4>
+            <span>Duddhi Feeder & Power Dept</span>
+            <b>Dial: 1912</b>
           </div>
         </a>
-        <a href="tel:1912" class="emergency-card">
-          <div class="emergency-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div class="emergency-info">
-            <span>विद्युत विभाग टोल फ्री</span>
-            <b>1912</b>
+
+        <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="helpline-card">
+          <div class="helpline-icon icon-green"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="helpline-info">
+            <h4>Gram WhatsApp Alert</h4>
+            <span>Direct Digital Notice Cell</span>
+            <b>Join Official Group</b>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 6. Leadership & Representatives -->
-  <section class="section-pad" id="leadership">
+  <!-- 6. Panchayat Leadership & Representatives -->
+  <section class="section-pad" id="leadership" style="background: rgba(4, 18, 28, 0.45);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">लोक प्रतिनिधि</span>
-        <h2 class="section-title">ग्राम पंचायत नेतृत्व एवं प्रशासन</h2>
-        <p class="section-subtitle">ग्राम के सतत विकास, जनहित एवं प्रशासनिक सहायता हेतु समर्पित जनप्रतिनिधि एवं अधिकारी गण।</p>
+        <span class="section-tag">Panchayat Administration</span>
+        <h2 class="section-title">Elected Representatives & Officials</h2>
+        <p class="section-subtitle">Dedicated to serving the citizens of Wyndhamganj Butbherwa and Shiv Nagar with integrity.</p>
       </div>
 
       <div class="rep-grid">
         <div class="rep-card">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="ग्राम प्रधान" class="rep-avatar">
-          <h3 class="rep-name">श्रीमती ग्राम प्रधान</h3>
-          <p class="rep-designation">ग्राम प्रधान (सरपंच)</p>
-          <a href="tel:+919876543210" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+          <div class="rep-avatar"><i class="fa-solid fa-user-tie"></i></div>
+          <h3 class="rep-name">Gram Pradhan</h3>
+          <div class="rep-role">Head of Panchayat</div>
+          <p class="rep-desc">Overseeing overall village development, civic amenities, community infrastructure, and road construction projects.</p>
         </div>
+
         <div class="rep-card">
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="पंचायत सचिव" class="rep-avatar">
-          <h3 class="rep-name">श्री पंचायत सचिव</h3>
-          <p class="rep-designation">ग्राम विकास अधिकारी (VDO)</p>
-          <a href="tel:+919876543211" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+          <div class="rep-avatar"><i class="fa-solid fa-landmark"></i></div>
+          <h3 class="rep-name">Panchayat Secretary (VDO)</h3>
+          <div class="rep-role">Administrative Officer</div>
+          <p class="rep-desc">Government coordination, verification of welfare schemes, birth/death registration, and revenue documentation.</p>
         </div>
+
         <div class="rep-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="पंचायत सहायक" class="rep-avatar">
-          <h3 class="rep-name">श्री पंचायत सहायक</h3>
-          <p class="rep-designation">डिजिटल सेवा संचालक</p>
-          <a href="tel:+919876543212" class="rep-contact-btn"><i class="fa-solid fa-phone"></i> संपर्क सूत्र</a>
+          <div class="rep-avatar"><i class="fa-solid fa-users-gear"></i></div>
+          <h3 class="rep-name">Ward Members & Panchayat Mitra</h3>
+          <div class="rep-role">Ward Coordinators</div>
+          <p class="rep-desc">Local ward issue monitoring, handpump repair reporting, cleanliness drives, and public assistance facilitation.</p>
+        </div>
+      </div>
+
+      <!-- 7. The Host / Digital Initiative Section (Positioned Elegantly Below) -->
+      <div class="host-section" id="host">
+        <div class="host-img-wrap">
+          <!-- Make sure your photo is named thehost.jpg or replace with your filename -->
+          <img src="thehost.jpg" alt="The Host" onerror="this.onerror=null; this.src='IMG_20250929_062521.jpg';">
+        </div>
+        <div class="host-content">
+          <span class="host-badge"><i class="fa-solid fa-laptop-code"></i> Portal Host & Technical Lead</span>
+          <h3>Digital Gram Initiative — The Host</h3>
+          <p>
+            This digital platform is initiated and hosted to empower the residents of Gram Panchayat Wyndhamganj Butbherwa (Shiv Nagar). Designed to bring instant online grievance lodging, real-time Telegram administration alerts, automated notifications, and scenic showcase of Piprahwa Dam to every citizen's mobile screen.
+          </p>
         </div>
       </div>
     </div>
   </section>
-    <!-- 7. Community Photo Gallery -->
+    <style>
+    /* --- Gallery Styles --- */
+    .gallery-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .gallery-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+      aspect-ratio: 4/3;
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal);
+      box-shadow: var(--shadow-sm);
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-card:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(3, 13, 20, 0.85);
+      color: var(--teal);
+      border: 1px solid var(--border-color);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .gallery-card-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(to top, rgba(3, 13, 20, 0.95), transparent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox-modal.active {
+      display: flex;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+    .lightbox-caption {
+      color: #fff;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* --- Grievance Redressal Form & Stepper --- */
+    .portal-form-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow-sm);
+    }
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      position: relative;
+    }
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 30px;
+      right: 30px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+    .step-node {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+    }
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(8, 25, 38, 0.95);
+      border: 2px solid var(--border-color);
+      color: var(--text-muted);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 6px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      transition: var(--transition);
+    }
+    .step-node.active .step-circle {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #021513;
+      box-shadow: 0 0 12px rgba(45, 212, 191, 0.5);
+    }
+    .step-node.completed .step-circle {
+      border-color: var(--success);
+      background: var(--success);
+      color: #fff;
+    }
+    .step-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .step-node.active .step-label {
+      color: var(--teal);
+    }
+    .step-node.completed .step-label {
+      color: var(--success);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .form-group label i {
+      color: var(--teal);
+      margin-right: 5px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(3, 13, 20, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.86rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .form-control:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 10px rgba(45, 212, 191, 0.25);
+    }
+    .otp-input-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Receipt Card */
+    .receipt-card {
+      display: none;
+      text-align: center;
+      padding: 24px 16px;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      background: rgba(255, 195, 44, 0.05);
+    }
+    .receipt-token {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin: 12px 0;
+      padding: 8px 16px;
+      background: rgba(3, 13, 20, 0.75);
+      border: 1px dashed var(--gold);
+      border-radius: var(--radius-sm);
+      display: inline-block;
+    }
+
+    /* Tracker Box */
+    .tracker-box {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .tracker-box h4 {
+      font-size: 0.94rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .tracker-input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #02090e;
+      border-top: 1px solid var(--border-color);
+      padding: 45px 0 22px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+    .footer-col h4 {
+      color: var(--text-main);
+      font-size: 0.94rem;
+      margin-bottom: 12px;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--teal);
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(8, 25, 38, 0.96);
+      border: 1px solid var(--teal);
+      border-radius: var(--radius-sm);
+      padding: 12px 20px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .toast-notification.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .portal-form-wrapper {
+        padding: 22px 16px;
+      }
+      .tracker-input-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <!-- 8. Community Photo Gallery & Piprahwa Dam Showcase -->
   <section class="section-pad" id="gallery" style="background: rgba(7, 25, 38, 0.4);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">ग्राम दर्शन</span>
-        <h2 class="section-title">पिपरहवा बांध एवं ग्राम छायाचित्र</h2>
-        <p class="section-subtitle">प्राकृतिक छटा, ऐतिहासिक धरोहर एवं ग्राम पंचायत के विकास कार्यों की मनमोहक झलकियां।</p>
+        <span class="section-tag">Village Showcase</span>
+        <h2 class="section-title">Piprahwa Dam & Community Gallery</h2>
+        <p class="section-subtitle">Scenic landscapes, historical heritage, and ongoing development projects across our Gram Panchayat.</p>
       </div>
 
       <div class="gallery-actions">
-        <!-- Instant Local/Session Upload -->
-        <label for="communityPhotoFileInput" class="btn btn-primary" style="cursor:pointer; font-size:0.86rem; padding:10px 20px;">
-          <i class="fa-solid fa-cloud-arrow-up"></i> त्वरित फोटो अपलोड करें
+        <!-- Instant Community Upload -->
+        <label for="communityPhotoFileInput" class="btn btn-primary" style="cursor:pointer; font-size:0.84rem; padding:9px 18px;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Quick Photo Upload
         </label>
         <input type="file" id="communityPhotoFileInput" accept="image/*" style="display:none;" onchange="handleInstantPhotoUpload(event)">
 
-        <!-- Google Drive / Google Form Upload Integration -->
-        <a href="https://forms.google.com" target="_blank" class="btn btn-secondary" style="font-size:0.86rem; padding:10px 20px;">
-          <i class="fa-brands fa-google-drive"></i> गूगल ड्राइव में सबमिट करें
+        <!-- Google Drive Integration -->
+        <a href="https://forms.google.com" target="_blank" class="btn btn-secondary" style="font-size:0.84rem; padding:9px 18px;">
+          <i class="fa-brands fa-google-drive"></i> Submit via Google Drive
         </a>
 
-        <!-- Admin Photo Moderation PIN Trigger -->
-        <button class="btn btn-secondary" onclick="toggleAdminPhotoManagement()" style="font-size:0.86rem; padding:10px 18px;" title="Admin Mode">
-          <i class="fa-solid fa-user-shield"></i> एडमिन कंट्रोल
+        <!-- Admin Photo Moderation PIN Trigger (PIN: Vive@07) -->
+        <button class="btn btn-secondary" onclick="toggleAdminPhotoManagement()" style="font-size:0.84rem; padding:9px 16px;" title="Admin Moderation Access">
+          <i class="fa-solid fa-user-shield"></i> Admin Control
         </button>
       </div>
 
       <!-- Dynamic Gallery Grid Container -->
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Rendered dynamically by JavaScript -->
-      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
 
@@ -1313,14 +1280,14 @@
     </div>
   </div>
 
-  <!-- 8. Grievance & Public Service Portal (3-Step Architecture) -->
+  <!-- 9. Grievance & Public Service Portal (3-Step Redressal) -->
   <section class="section-pad" id="grievance">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">ई-समाधान केंद्र</span>
-        <h2 class="section-title">ऑनलाइन सूचना एवं जनशिकायत निवारण</h2>
+        <span class="section-tag">E-Grievance Cell</span>
+        <h2 class="section-title">Public Grievance & Redressal Portal</h2>
         <p class="section-subtitle">
-          पारदर्शी व्यवस्था हेतु अपनी समस्या, सुझाव अथवा सूचना सीधे ग्राम पंचायत प्रशासन एवं नोडल अधिकारियों तक प्रेषित करें।
+          Submit complaints, suggestions, or official village inquiries directly to Panchayat Administration.
         </p>
       </div>
 
@@ -1329,118 +1296,118 @@
         <div class="stepper">
           <div class="step-node active" id="stepNode1">
             <div class="step-circle">1</div>
-            <div class="step-label">मोबाइल सत्यापन</div>
+            <div class="step-label">Phone Auth</div>
           </div>
           <div class="step-node" id="stepNode2">
             <div class="step-circle">2</div>
-            <div class="step-label">विवरण प्रविष्टि</div>
+            <div class="step-label">Details</div>
           </div>
           <div class="step-node" id="stepNode3">
             <div class="step-circle">3</div>
-            <div class="step-label">पावती (टोकन)</div>
+            <div class="step-label">Token Receipt</div>
           </div>
         </div>
 
         <!-- Hidden Recaptcha Anchor for Firebase Auth -->
         <div id="recaptcha-container"></div>
 
-        <!-- Step 1: Mobile Verification Box -->
+        <!-- Step 1: Mobile Phone Authentication -->
         <div id="step1PhoneSection">
           <div class="form-group">
-            <label for="userPhoneInput"><i class="fa-solid fa-mobile-screen"></i> आपका 10 अंकों का मोबाइल नंबर</label>
+            <label for="userPhoneInput"><i class="fa-solid fa-mobile-screen"></i> 10-Digit Mobile Number</label>
             <div class="otp-input-group">
-              <input type="tel" id="userPhoneInput" class="form-control" placeholder="उदा. 9876543210" maxlength="10">
-              <button class="btn btn-primary" id="btnSendOtp" onclick="sendMobileOtp()" style="white-space:nowrap; padding:10px 18px;">
-                OTP भेजें
+              <input type="tel" id="userPhoneInput" class="form-control" placeholder="e.g. 9876543210" maxlength="10">
+              <button class="btn btn-primary" id="btnSendOtp" onclick="sendMobileOtp()" style="white-space:nowrap; padding:9px 18px;">
+                Send OTP
               </button>
             </div>
             <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px; display:block;">
-              * अनधिकृत प्रविष्टियों की रोकथाम हेतु मोबाइल प्रमाणीकरण अनिवार्य है।
+              * Phone verification is mandatory to prevent unauthorized submissions.
             </small>
           </div>
 
-          <!-- Secondary OTP Verification Field (Revealed on Request) -->
-          <div id="otpBox" style="display:none; margin-top:16px;">
+          <!-- Secondary OTP Verification Field -->
+          <div id="otpBox" style="display:none; margin-top:14px;">
             <div class="form-group">
-              <label for="userOtpInput"><i class="fa-solid fa-key"></i> 6-अंकों का प्राप्त OTP दर्ज करें</label>
+              <label for="userOtpInput"><i class="fa-solid fa-key"></i> Enter 6-Digit OTP</label>
               <div class="otp-input-group">
-                <input type="text" id="userOtpInput" class="form-control" placeholder="उदा. 123456" maxlength="6">
-                <button class="btn btn-secondary" onclick="verifyMobileOtp()" style="white-space:nowrap; padding:10px 18px; border-color:var(--teal); color:var(--teal);">
-                  सत्यापित करें
+                <input type="text" id="userOtpInput" class="form-control" placeholder="e.g. 123456" maxlength="6">
+                <button class="btn btn-secondary" onclick="verifyMobileOtp()" style="white-space:nowrap; padding:9px 18px; border-color:var(--teal); color:var(--teal);">
+                  Verify OTP
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Step 2: Grievance Submission Form (Enabled Post-Verification) -->
+        <!-- Step 2: Grievance Form (Revealed Post-Verification) -->
         <form id="step2DetailsSection" style="display:none;" onsubmit="handleFormSubmission(event)">
-          <div style="background:rgba(45, 212, 191, 0.08); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:20px; font-size:0.85rem; color:var(--teal);">
-            <i class="fa-solid fa-check-circle"></i> मोबाइल नंबर सफलतापूर्वक सत्यापित हो गया है। कृपया शिकायत विवरण दर्ज करें।
+          <div style="background:rgba(45, 212, 191, 0.08); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:18px; font-size:0.84rem; color:var(--teal);">
+            <i class="fa-solid fa-circle-check"></i> Mobile number verified successfully. Please enter complaint details below.
           </div>
 
           <div class="form-group">
-            <label for="citizenName"><i class="fa-solid fa-user"></i> आवेदक का पूरा नाम *</label>
-            <input type="text" id="citizenName" class="form-control" required placeholder="उदा. रामेश्वर प्रसाद">
+            <label for="citizenName"><i class="fa-solid fa-user"></i> Applicant Full Name *</label>
+            <input type="text" id="citizenName" class="form-control" required placeholder="e.g. Vivek Kumar">
           </div>
 
           <div class="form-group">
-            <label for="citizenAddress"><i class="fa-solid fa-map-location-dot"></i> टोला / मोहल्ला / वार्ड संख्या *</label>
-            <input type="text" id="citizenAddress" class="form-control" required placeholder="उदा. शिव नगर, वार्ड 03">
+            <label for="citizenAddress"><i class="fa-solid fa-map-location-dot"></i> Ward / Locality / Address *</label>
+            <input type="text" id="citizenAddress" class="form-control" required placeholder="e.g. Shiv Nagar, Ward 03">
           </div>
 
           <div class="form-group">
-            <label for="issueCategory"><i class="fa-solid fa-list-check"></i> शिकायत अथवा सूचना का विषय *</label>
+            <label for="issueCategory"><i class="fa-solid fa-list-check"></i> Issue Category *</label>
             <select id="issueCategory" class="form-control" required>
-              <option value="">-- श्रेणी का चयन करें --</option>
-              <option value="पेयजल एवं हैंडपंप मरम्मत">पेयजल एवं हैंडपंप मरम्मत</option>
-              <option value="विद्युत आपूर्ति एवं स्ट्रीट लाइट">विद्युत आपूर्ति एवं स्ट्रीट लाइट</option>
-              <option value="सड़क एवं नाली निर्माण/सफाई">सड़क एवं नाली निर्माण / जलभराव</option>
-              <option value="राशन एवं सार्वजनिक वितरण प्रणाली">राशन एवं सार्वजनिक वितरण प्रणाली (PDS)</option>
-              <option value="प्रधानमंत्री आवास योजना">प्रधानमंत्री आवास योजना</option>
-              <option value="पिपरहवा बांध पर्यटन संवर्धन">पिपरहवा बांध पर्यटन एवं पर्यावरण</option>
-              <option value="अन्य सामान्य सुझाव/शिकायत">अन्य सामान्य सुझाव / शिकायत</option>
+              <option value="">-- Select Category --</option>
+              <option value="Drinking Water & Handpump Maintenance">Drinking Water & Handpump Maintenance</option>
+              <option value="Electricity & Street Lighting">Electricity & Street Lighting</option>
+              <option value="Roads, Drainage & Sanitation">Roads, Drainage & Sanitation</option>
+              <option value="PDS Ration Supply">PDS Ration Supply</option>
+              <option value="PM Awas Yojana">PM Awas Yojana</option>
+              <option value="Piprahwa Dam Tourism & Ecology">Piprahwa Dam Tourism & Ecology</option>
+              <option value="General Grievance / Suggestion">General Grievance / Suggestion</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="citizenMessage"><i class="fa-solid fa-pen-to-square"></i> समस्या का संपूर्ण विवरण *</label>
-            <textarea id="citizenMessage" class="form-control" rows="4" required placeholder="समस्या का विस्तृत ब्योरा यहां लिखें..."></textarea>
+            <label for="citizenMessage"><i class="fa-solid fa-pen-to-square"></i> Detailed Grievance Description *</label>
+            <textarea id="citizenMessage" class="form-control" rows="4" required placeholder="Provide complete details of your request or issue..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" id="btnSubmitGrievance" style="width:100%; padding:14px; font-size:1rem;">
-            <i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें
+          <button type="submit" class="btn btn-primary" id="btnSubmitGrievance" style="width:100%; padding:13px; font-size:0.96rem;">
+            <i class="fa-solid fa-paper-plane"></i> Submit Grievance Securely
           </button>
         </form>
 
         <!-- Step 3: Formal Confirmation Receipt -->
         <div class="receipt-card" id="submissionReceipt">
-          <div style="font-size:2.8rem; color:var(--success); margin-bottom:8px;">
+          <div style="font-size:2.6rem; color:var(--success); margin-bottom:8px;">
             <i class="fa-solid fa-circle-check"></i>
           </div>
-          <h3 style="color:var(--text-main); font-size:1.3rem;">आपकी शिकायत सफलतापूर्वक दर्ज कर ली गई है!</h3>
-          <p style="color:var(--text-muted); font-size:0.88rem; margin-top:4px;">
-            ग्राम पंचायत प्रशासन एवं एडमिन को तत्काल सूचित कर दिया गया है। आगामी संदर्भ हेतु अपना टोकन नंबर सुरक्षित रखें:
+          <h3 style="color:var(--text-main); font-size:1.25rem;">Grievance Submitted Successfully!</h3>
+          <p style="color:var(--text-muted); font-size:0.86rem; margin-top:4px;">
+            Panchayat administration has received an instant alert. Please keep this token for future tracking:
           </p>
           <div class="receipt-token" id="receiptTokenBadge">WDM-2026-XXXX</div>
           <p style="font-size:0.8rem; color:var(--text-muted);">
-            आप नीचे दिए गए स्थिति ट्रैकर में इस टोकन के माध्यम से कार्रवाई की प्रगति देख सकते हैं।
+            You can track administrative review and action using this token in the tracker below.
           </p>
-          <button class="btn btn-secondary" onclick="resetSubmissionWorkflow()" style="margin-top:16px; font-size:0.85rem;">
-            <i class="fa-solid fa-rotate-right"></i> अन्य शिकायत दर्ज करें
+          <button class="btn btn-secondary" onclick="resetSubmissionWorkflow()" style="margin-top:14px; font-size:0.84rem;">
+            <i class="fa-solid fa-rotate-right"></i> Submit Another Request
           </button>
         </div>
 
-        <!-- Real-Time Token Redressal Tracker -->
+        <!-- Real-Time Token Status Tracker -->
         <div class="tracker-box">
-          <h4><i class="fa-solid fa-magnifying-glass-chart"></i> पूर्व में दर्ज शिकायत की स्थिति जानें</h4>
+          <h4><i class="fa-solid fa-magnifying-glass-chart"></i> Track Grievance Status</h4>
           <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">
-            अपनी शिकायत की प्रगति एवं प्रशासनिक टिप्पणी देखने हेतु आवंटित टोकन नंबर प्रविष्ट करें।
+            Enter your assigned token number to inspect real-time progress and admin remarks.
           </p>
           <div class="tracker-input-row">
-            <input type="text" id="trackTokenInput" class="form-control" style="max-width:280px; text-transform:uppercase;" placeholder="उदा. WDM-2026-1234">
+            <input type="text" id="trackTokenInput" class="form-control" style="max-width:280px; text-transform:uppercase;" placeholder="e.g. WDM-2026-1001">
             <button class="btn btn-secondary" onclick="trackComplaintStatus()" style="padding:10px 20px;">
-              जांचें
+              Check Status
             </button>
           </div>
           <div id="statusResultBox"></div>
@@ -1449,75 +1416,78 @@
     </div>
   </section>
 
-  <!-- 9. WhatsApp Community Connect Section -->
-  <section style="background: linear-gradient(135deg, rgba(37,211,102,0.1), rgba(3,13,20,0.9)); border-top:1px solid rgba(37,211,102,0.25); border-bottom:1px solid rgba(37,211,102,0.25); padding:40px 0; text-align:center;">
+  <!-- 10. WhatsApp Community Connect Section -->
+  <section style="background: linear-gradient(135deg, rgba(37,211,102,0.1), rgba(3,13,20,0.9)); border-top:1px solid rgba(37,211,102,0.25); border-bottom:1px solid rgba(37,211,102,0.25); padding:35px 0; text-align:center;">
     <div class="container">
-      <h3 style="color:#4ade80; font-size:1.45rem; margin-bottom:8px;">
-        <i class="fa-brands fa-whatsapp"></i> विंढमगंज बुटबेढ़वा डिजिटल व्हाट्सएप कम्युनिटी
+      <h3 style="color:#4ade80; font-size:1.35rem; margin-bottom:6px;">
+        <i class="fa-brands fa-whatsapp"></i> Wyndhamganj Butbherwa Digital WhatsApp Community
       </h3>
-      <p style="color:var(--text-muted); font-size:0.92rem; max-width:650px; margin:0 auto 20px;">
-        ग्राम पंचायत के आधिकारिक व्हाट्सएप ग्रुप से जुड़ें एवं समस्त सरकारी योजनाओं, बैठकों तथा आपातकालीन सूचनाओं का सीधा नोटिफिकेशन प्राप्त करें।
+      <p style="color:var(--text-muted); font-size:0.88rem; max-width:650px; margin:0 auto 18px;">
+        Join our official village WhatsApp channel for instant alerts, government scheme notifications, and local event broadcasts.
       </p>
       <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank" class="btn btn-primary" style="background:#25D366; color:#02150a; font-weight:800;">
-        व्हाट्सएप ग्रुप से तुरंत जुड़ें <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        Join Official WhatsApp Community <i class="fa-solid fa-arrow-up-right-from-square"></i>
       </a>
     </div>
   </section>
 
-  <!-- 10. Portal Footer -->
+  <!-- 11. Portal Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="brand-logo" style="margin-bottom:14px;">
-            <div class="brand-emblem"><i class="fa-solid fa-landmark-flag"></i></div>
+          <div class="brand-logo" style="margin-bottom:12px;">
+            <div class="brand-emblem" style="font-size:1.5rem;">🕉️</div>
             <div class="brand-text">
-              <h3 style="font-size:1.15rem; color:var(--text-main);">ग्राम पंचायत विंढमगंज बुटबेढ़वा</h3>
-              <span style="font-size:0.75rem; color:var(--gold);">डिजिटल भारत • सशक्त ग्राम</span>
+              <h3 style="font-size:1.1rem; color:var(--text-main);">Gram Panchayat Wyndhamganj Butbherwa</h3>
+              <span style="font-size:0.72rem; color:var(--gold);">Digital India • Empowered Gram</span>
             </div>
           </div>
-          <p style="line-height:1.7; font-size:0.85rem;">
-            यह डिजिटल पोर्टल ग्रामवासियों को पारदर्शी, त्वरित एवं जवाबदेह पंचायत सेवा प्रदान करने के उद्देश्य से संचालित है। पिपरहवा बांध के पर्यावरणीय संरक्षण एवं ग्राम के विकास में सहभागिता सुनिश्चित करें।
+          <p style="line-height:1.65; font-size:0.82rem;">
+            Serving citizens with transparent, rapid, and accountable e-governance services. Promoting the eco-tourism of Piprahwa Dam and continuous development of Shiv Nagar.
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>त्वरित लिंक्स</h4>
+          <h4>Quick Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#hero">मुख्य पृष्ठ</a></li>
-            <li><a href="#emergency">हेल्पलाइन नंबर</a></li>
-            <li><a href="#leadership">पंचायत प्रतिनिधि</a></li>
-            <li><a href="#gallery">ग्राम गैलरी</a></li>
-            <li><a href="#grievance">शिकायत निवारण</a></li>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#emergency">Emergency Helplines</a></li>
+            <li><a href="#leadership">Representatives</a></li>
+            <li><a href="#host">The Host</a></li>
+            <li><a href="#gallery">Village Gallery</a></li>
+            <li><a href="#grievance">Grievance Redressal</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>प्रशासनिक पता</h4>
-          <p style="font-size:0.85rem; line-height:1.7;">
-            ग्राम पंचायत सचिवालय, विंढमगंज बुटबेढ़वा (शिव नगर),<br>
-            विकास खंड: दुद्धी,<br>
-            जनपद: सोनभद्र, उत्तर प्रदेश - 231226
+          <h4>Secretariat Address</h4>
+          <p style="font-size:0.82rem; line-height:1.65;">
+            Gram Panchayat Secretariat, Wyndhamganj Butbherwa (Shiv Nagar),<br>
+            Block: Duddhi,<br>
+            District: Sonbhadra, Uttar Pradesh - 231226
           </p>
-          <div style="margin-top:14px; font-size:0.82rem; color:var(--gold);">
-            <i class="fa-solid fa-shield-heart"></i> जनहित में समर्पित ई-गवर्नेंस पोर्टल
+          <div style="margin-top:12px; font-size:0.8rem; color:var(--gold);">
+            <i class="fa-solid fa-shield-heart"></i> Dedicated to Citizen Welfare & Digital Transparency
           </div>
         </div>
       </div>
 
-      <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.78rem;">
-        <div>&copy; 2026 ग्राम पंचायत विंढमगंज बुटबेढ़वा. सर्वाधिकार सुरक्षित।</div>
-        <div>तकनीकी विकास: डिजिटल पंचायत सशक्तिकरण प्रकोष्ठ</div>
+      <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.76rem;">
+        <div>&copy; 2026 Gram Panchayat Wyndhamganj Butbherwa. All Rights Reserved.</div>
+        <div>Technical Architecture: Digital Gram Empowerment Cell</div>
       </div>
     </div>
   </footer>
 
-  <!-- Toast Notification Dynamic Component -->
+  <!-- Toast Notification & Confetti Canvas -->
   <div class="toast-notification" id="toastNotification">
     <i class="fa-solid fa-bell" style="color:var(--teal);"></i>
-    <span id="toastMsg">सूचना संदेश</span>
+    <span id="toastMsg">Notification message</span>
   </div>
-    <!-- ==========================================================================
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ==========================================================================
        JAVASCRIPT APPLICATION ENGINE
        ========================================================================== -->
   <script>
@@ -1541,12 +1511,12 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Automated Telegram Notification Dispatch Credentials (Split for GitHub Security)
+    // Automated Telegram Notification Dispatch Credentials (Split for GitHub Scanning)
     const _partA = "9148416175:";
     const _partB = "AAGHyUUgdsBU3-2dWdrlajV4fLB5g_keVXU";
     const TELEGRAM_BOT_TOKEN = _partA + _partB;
     const TELEGRAM_CHAT_ID = "6032430283";
-    
+
     // Global Workflow State
     let confirmationResult = null;
     let isMobileVerified = false;
@@ -1567,7 +1537,6 @@
     }
 
     function initMeetingCountdown() {
-      // Gram Sabha scheduled target date (dynamically shifts to next upcoming meeting)
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + 6);
       targetDate.setHours(10, 0, 0, 0);
@@ -1616,7 +1585,7 @@
     function togglePortalTheme() {
       document.body.classList.toggle('light-theme');
       const isLight = document.body.classList.contains('light-theme');
-      showToast(isLight ? "☀️ Light mode activated" : "🌙 Dark mode activated");
+      showToast(isLight ? "☀️ Light Mode activated" : "🌙 Dark Mode activated");
     }
 
     function toggleMobileNav() {
@@ -1677,7 +1646,7 @@
         }
       }
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 35; i++) {
         particles.push(new Particle());
       }
 
@@ -1693,25 +1662,25 @@
     }
 
     /* --------------------------------------------------------------------------
-       5. COMMUNITY GALLERY, INSTANT UPLOAD & ADMIN MODERATION
+       5. GALLERY ENGINE & ADMIN PIN (PIN: Vive@07)
        -------------------------------------------------------------------------- */
     const initialGalleryItems = [
       {
         src: "IMG_20250929_062521.jpg",
-        title: "पिपरहवा बांध - विहंगम दृश्य",
-        badge: "प्राकृतिक धरोहर",
+        title: "Piprahwa Dam - Reservoir Landscape",
+        badge: "Natural Heritage",
+        isCommunity: false
+      },
+      {
+        src: "thehost.jpg",
+        title: "Digital Initiative & Community Host",
+        badge: "Digital Gram",
         isCommunity: false
       },
       {
         src: "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=800&q=80",
-        title: "पंचायत सचिवालय भवन (शिव नगर)",
-        badge: "विकास कार्य",
-        isCommunity: false
-      },
-      {
-        src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
-        title: "ग्राम सभा सार्वजनिक बैठक",
-        badge: "जनसहभागिता",
+        title: "Gram Panchayat Secretariat (Shiv Nagar)",
+        badge: "Civic Infrastructure",
         isCommunity: false
       }
     ];
@@ -1735,8 +1704,8 @@
 
         card.innerHTML = `
           ${deleteButton}
-          <img src="${item.src}" alt="${item.title}" loading="lazy">
-          <span class="gallery-card-badge">${item.badge || 'सामुदायिक छायाचित्र'}</span>
+          <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.src='IMG_20250929_062521.jpg'">
+          <span class="gallery-card-badge">${item.badge || 'Community Photo'}</span>
           <div class="gallery-card-caption">
             <span>${item.title}</span>
             <i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:0.75rem;"></i>
@@ -1751,17 +1720,17 @@
       if (!file) return;
 
       if (!file.type.startsWith('image/')) {
-        alert('कृपया केवल वैध फोटो फाइल (JPG, PNG, WEBP) चुनें!');
+        alert('Please choose a valid image file (JPG, PNG, WEBP)!');
         return;
       }
 
       const reader = new FileReader();
       reader.onload = function(e) {
-        const title = prompt('इस फोटो का शीर्षक अथवा स्थान दर्ज करें:', 'पिपरहवा बांध - स्थानीय दृश्य') || 'सामुदायिक छायाचित्र';
+        const title = prompt('Enter image title or location name:', 'Piprahwa Dam - Community Capture') || 'Community Photo';
         const newPhoto = {
           src: e.target.result,
           title: title,
-          badge: "ग्रामवासी योगदान",
+          badge: "Resident Upload",
           isCommunity: true
         };
 
@@ -1769,7 +1738,7 @@
         existing.unshift(newPhoto);
         localStorage.setItem('wdm_community_photos', JSON.stringify(existing));
         renderGalleryGrid();
-        showToast("📸 फोटो सफलतापूर्वक अपलोड एवं प्रकाशित कर दी गई!");
+        showToast("📸 Photo uploaded and published successfully!");
       };
       reader.readAsDataURL(file);
     }
@@ -1778,27 +1747,27 @@
       if (isAdminModerator) {
         isAdminModerator = false;
         renderGalleryGrid();
-        showToast("🔒 एडमिन मोड बंद किया गया।");
+        showToast("🔒 Admin mode turned off.");
         return;
       }
-      const pin = prompt("एडमिन प्रमाणीकरण PIN दर्ज करें:");
-      if (pin === "1234") {
+      const pin = prompt("Enter Admin Authentication PIN:");
+      if (pin === "Vive@07") {
         isAdminModerator = true;
         renderGalleryGrid();
-        showToast("🔓 एडमिन मोड सक्रिय! अब आप अवांछित फोटो हटा सकते हैं।");
+        showToast("🔓 Admin mode unlocked! Photo moderation enabled.");
       } else if (pin !== null) {
-        alert("❌ अमान्य PIN! केवल अधिकृत पंचायत व्यवस्थापक को अनुमति है।");
+        alert("❌ Invalid PIN! Access restricted to authorized administrators only.");
       }
     }
 
     function deleteCommunityPhoto(index, event) {
       event.stopPropagation();
-      if (!confirm("क्या आप निश्चित रूप से इस फोटो को गैलरी से हटाना चाहते हैं?")) return;
+      if (!confirm("Are you sure you want to remove this photo from the gallery?")) return;
       let communityUploads = JSON.parse(localStorage.getItem('wdm_community_photos') || '[]');
       communityUploads.splice(index, 1);
       localStorage.setItem('wdm_community_photos', JSON.stringify(communityUploads));
       renderGalleryGrid();
-      showToast("🗑️ फोटो सफलतापूर्वक हटा दी गई!");
+      showToast("🗑️ Photo removed successfully!");
     }
 
     function openLightbox(src, caption) {
@@ -1831,7 +1800,7 @@
       const phone = phoneInput.value.trim();
 
       if (!/^[6-9]\d{9}$/.test(phone)) {
-        alert("कृपया वैध 10-अंकों का भारतीय मोबाइल नंबर दर्ज करें!");
+        alert("Please enter a valid 10-digit Indian mobile number!");
         return;
       }
 
@@ -1840,24 +1809,24 @@
       const appVerifier = window.recaptchaVerifier;
       const btn = document.getElementById('btnSendOtp');
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> प्रेषित हो रहा है...';
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
 
       auth.signInWithPhoneNumber(formattedPhone, appVerifier)
         .then((res) => {
           confirmationResult = res;
           verifiedPhoneNumber = formattedPhone;
           document.getElementById('otpBox').style.display = 'block';
-          btn.textContent = 'पुनः भेजें';
+          btn.textContent = 'Resend OTP';
           btn.disabled = false;
-          showToast(`📩 6-अंकों का OTP ${formattedPhone} पर भेज दिया गया है!`);
+          showToast(`📩 6-digit OTP sent to ${formattedPhone}!`);
         })
         .catch((error) => {
           btn.disabled = false;
-          btn.textContent = 'OTP भेजें';
+          btn.textContent = 'Send OTP';
           if (window.recaptchaVerifier) {
             window.recaptchaVerifier.render().then(widgetId => grecaptcha.reset(widgetId));
           }
-          alert("OTP प्रेषण में त्रुटि: " + error.message);
+          alert("Error sending OTP: " + error.message);
         });
     }
 
@@ -1866,12 +1835,12 @@
       const otp = otpInput.value.trim();
 
       if (otp.length !== 6) {
-        alert("कृपया 6-अंकों का पूर्ण OTP दर्ज करें!");
+        alert("Please enter the complete 6-digit OTP!");
         return;
       }
 
       if (!confirmationResult) {
-        alert("कृपया पहले OTP प्रेषित करें!");
+        alert("Please request an OTP first!");
         return;
       }
 
@@ -1883,36 +1852,36 @@
           document.getElementById('stepNode1').classList.remove('active');
           document.getElementById('stepNode1').classList.add('completed');
           document.getElementById('stepNode2').classList.add('active');
-          showToast("✅ मोबाइल नंबर सफलतापूर्वक सत्यापित हुआ!");
+          showToast("✅ Mobile number verified successfully!");
         })
         .catch((err) => {
-          alert("❌ अमान्य अथवा समाप्त OTP! कृपया पुनः प्रयास करें: " + err.message);
+          alert("❌ Invalid or expired OTP: " + err.message);
         });
     }
 
     /* --------------------------------------------------------------------------
-       7. FIRESTORE DATABASE STORAGE & INSTANT TELEGRAM BOT DISPATCH
+       7. FIRESTORE DATABASE & INSTANT TELEGRAM BOT DISPATCH
        -------------------------------------------------------------------------- */
     function handleFormSubmission(e) {
       e.preventDefault();
 
       if (!isMobileVerified) {
-        alert("कृपया शिकायत दर्ज करने से पूर्व अपना मोबाइल नंबर सत्यापित करें!");
+        alert("Please verify your mobile number with OTP first!");
         return;
       }
 
       const submitBtn = document.getElementById('btnSubmitGrievance');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> सुरक्षित प्रेषण जारी है...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
 
       const applicantName = document.getElementById('citizenName').value.trim();
       const applicantAddress = document.getElementById('citizenAddress').value.trim();
       const category = document.getElementById('issueCategory').value;
       const description = document.getElementById('citizenMessage').value.trim();
       const tokenNumber = 'WDM-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
-      const currentTime = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' });
+      const currentTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
-      // 1. Cloud Storage: Save directly into Firestore 'complaints' collection
+   // 1. Cloud Firestore Write
       db.collection("complaints").add({
         token: tokenNumber,
         name: applicantName,
@@ -1920,25 +1889,25 @@
         address: applicantAddress,
         category: category,
         description: description,
-        status: "लंबित (Pending)",
-        adminRemark: "समीक्षा जारी",
+        status: "Pending Review",
+        adminRemark: "Under initial inspection",
         submittedAt: currentTime,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
       .then(() => {
-        // 2. Real-Time Admin Alert: Dispatch Instant Message via Telegram Bot API
+        // 2. Real-time Telegram Dispatch in English
         const alertMessage = 
-          `🚨 *नई जनशिकायत / सूचना प्रविष्टि*\n` +
+          `🚨 *NEW PUBLIC GRIEVANCE LODGED*\n` +
           `━━━━━━━━━━━━━━━━━━━\n` +
-          `🎫 *टोकन संख्या:* \`${tokenNumber}\`\n` +
-          `👤 *आवेदक:* ${applicantName}\n` +
-          `📞 *मोबाइल:* ${verifiedPhoneNumber}\n` +
-          `📍 *स्थान:* ${applicantAddress}\n` +
-          `📂 *श्रेणी:* ${category}\n` +
-          `🕒 *समय:* ${currentTime}\n\n` +
-          `📝 *विवरण:*\n${description}\n` +
+          `🎫 *Token No:* \`${tokenNumber}\`\n` +
+          `👤 *Applicant:* ${applicantName}\n` +
+          `📞 *Phone:* ${verifiedPhoneNumber}\n` +
+          `📍 *Locality:* ${applicantAddress}\n` +
+          `📂 *Category:* ${category}\n` +
+          `🕒 *Time:* ${currentTime}\n\n` +
+          `📝 *Details:*\n${description}\n` +
           `━━━━━━━━━━━━━━━━━━━\n` +
-          `🌐 *पोर्टल:* विंढमगंज बुटबेढ़वा डिजिटल सेवा`;
+          `🌐 *Portal:* Wyndhamganj Butbherwa Digital Portal`;
 
         fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
@@ -1948,9 +1917,9 @@
             text: alertMessage,
             parse_mode: 'Markdown'
           })
-        }).catch(err => console.error("Telegram Webhook Error:", err));
+        }).catch(err => console.error("Telegram alert dispatch error:", err));
 
-        // 3. UI State Transitions & Confetti Trigger
+        // 3. UI Receipt & Confetti
         triggerConfetti();
         document.getElementById('step2DetailsSection').style.display = 'none';
         document.getElementById('stepNode2').classList.remove('active');
@@ -1960,12 +1929,12 @@
         document.getElementById('receiptTokenBadge').textContent = tokenNumber;
         document.getElementById('submissionReceipt').style.display = 'block';
 
-        showToast("🚀 शिकायत सुरक्षित रूप से दर्ज हुई एवं एडमिन को अलर्ट प्रेषित कर दिया गया!");
+        showToast("🚀 Grievance lodged successfully! Admin notification sent.");
       })
       .catch((error) => {
-        alert("डेटाबेस में प्रविष्टि सहेजने में विफलता: " + error.message);
+        alert("Database submission error: " + error.message);
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें';
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Grievance Securely';
       });
     }
 
@@ -1978,30 +1947,30 @@
       const output = document.getElementById('statusResultBox');
 
       if (!token) {
-        output.innerHTML = '<span style="color:var(--danger);">कृपया जांच हेतु मान्य टोकन नंबर दर्ज करें!</span>';
+        output.innerHTML = '<span style="color:var(--danger);">Please enter a valid token number!</span>';
         return;
       }
 
-      output.innerHTML = '<span style="color:var(--teal);"><i class="fa-solid fa-spinner fa-spin"></i> रिकॉर्ड खोजा जा रहा है...</span>';
+      output.innerHTML = '<span style="color:var(--teal);"><i class="fa-solid fa-spinner fa-spin"></i> Checking records...</span>';
 
       db.collection("complaints").where("token", "==", token).get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
-            output.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> टोकन नंबर "${token}" का कोई रिकॉर्ड प्राप्त नहीं हुआ। कृपया सही नंबर दर्ज करें।</span>`;
+            output.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> No record found for token "${token}". Please check the number.</span>`;
           } else {
             querySnapshot.forEach((doc) => {
               const data = doc.data();
-              const isResolved = data.status.includes("पूर्ण") || data.status.includes("Resolved");
+              const isResolved = data.status.toLowerCase().includes("resolved") || data.status.toLowerCase().includes("completed");
               const badgeColor = isResolved ? "var(--success)" : "var(--gold)";
 
               output.innerHTML = `
                 <div style="background:rgba(3,13,20,0.85); border:1px solid ${badgeColor}; border-radius:var(--radius-sm); padding:12px; margin-top:8px;">
                   <div style="color:${badgeColor}; font-weight:800; margin-bottom:4px;">
-                    स्थिति: ${data.status}
+                    Status: ${data.status}
                   </div>
                   <div style="font-size:0.84rem; color:var(--text-main);">
-                    <b>आवेदक:</b> ${data.name} | <b>विषय:</b> ${data.category}<br>
-                    <b>प्रशासनिक टिप्पणी:</b> ${data.adminRemark || 'आवेदन समीक्षाधीन है।'}
+                    <b>Applicant:</b> ${data.name} | <b>Category:</b> ${data.category}<br>
+                    <b>Official Remark:</b> ${data.adminRemark || 'Application under administrative review.'}
                   </div>
                 </div>
               `;
@@ -2009,7 +1978,7 @@
           }
         })
         .catch((err) => {
-          output.innerHTML = `<span style="color:var(--danger);">जांच प्रक्रिया में त्रुटि: ${err.message}</span>`;
+          output.innerHTML = `<span style="color:var(--danger);">Verification error: ${err.message}</span>`;
         });
     }
 
@@ -2029,14 +1998,14 @@
 
       const submitBtn = document.getElementById('btnSubmitGrievance');
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> शिकायत सुरक्षित रूप से प्रेषित करें';
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Grievance Securely';
 
       isMobileVerified = false;
       confirmationResult = null;
     }
 
     /* --------------------------------------------------------------------------
-       9. SUCCESS CONFETTI ANIMATION ENGINE
+       9. SUCCESS CONFETTI ANIMATION
        -------------------------------------------------------------------------- */
     function triggerConfetti() {
       const canvas = document.getElementById('confettiCanvas');
@@ -2101,4 +2070,4 @@
     });
   </script>
 </body>
-</html>
+</html> 
