@@ -1,654 +1,986 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+
 <title>Shiv Nagar Butbherwa | The Host</title>
-<meta name="description" content="Shiv Nagar Butbherwa - Village Information, Gallery, Events and Important Contacts">
+
+<meta name="description" content="Welcome to Shiv Nagar Butbherwa. Village information, gallery, events and important announcements.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
- margin:0;
- padding:0;
- box-sizing:border-box;
- scroll-behavior:smooth;
-}
+
 :root{
- --bg:#07111f;
- --card:#101f32;
- --text:#f4f7ff;
- --muted:#b7c5d8;
- --accent:#00d9ff;
- --second:#8b5cf6;
+--bg:#071426;
+--card:#10243d;
+--gold:#e8bd64;
+--gold2:#ffe2a0;
+--white:#ffffff;
+--muted:#b9c6d8;
+--border:rgba(232,189,100,.25);
 }
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
 body{
- font-family:Arial,sans-serif;
- background:var(--bg);
- color:var(--text);
- line-height:1.6;
+background:var(--bg);
+color:var(--white);
+font-family:'Poppins',sans-serif;
+overflow-x:hidden;
 }
-body.light{
- --bg:#f1f5fb;
- --card:#ffffff;
- --text:#142033;
- --muted:#526176;
-}
+
 a{
- color:inherit;
- text-decoration:none;
+text-decoration:none;
+color:inherit;
 }
-button{
- cursor:pointer;
+
+img{
+max-width:100%;
+display:block;
 }
-header{
- position:sticky;
- top:0;
- z-index:100;
- background:rgba(5,15,29,.95);
- backdrop-filter:blur(12px);
- border-bottom:1px solid #263c55;
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
 }
-.navbar{
- max-width:1200px;
- margin:auto;
- padding:14px 20px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px;
+
+.section{
+padding:75px 0;
 }
-.logo{
- font-size:20px;
- font-weight:bold;
- color:var(--accent);
-}
-.logo small{
- display:block;
- font-size:10px;
- color:#fff;
- letter-spacing:2px;
-}
-.navlinks{
- display:flex;
- align-items:center;
- gap:17px;
-}
-.navlinks a{
- font-size:13px;
- color:white;
-}
-.navlinks a:hover{
- color:var(--accent);
-}
-.menu-btn{
- display:none;
- background:var(--accent);
- border:0;
- padding:8px 12px;
- border-radius:7px;
-}
-.theme-btn{
- border:1px solid var(--accent);
- color:var(--accent);
- background:transparent;
- padding:7px 10px;
- border-radius:20px;
-}
-section{
- max-width:1200px;
- margin:auto;
- padding:75px 20px;
-}
-.hero{
- max-width:none;
- min-height:570px;
- display:flex;
- align-items:center;
- justify-content:center;
- text-align:center;
- padding:80px 20px;
- background:
- linear-gradient(90deg,rgba(3,10,22,.9),rgba(3,10,22,.55)),
- url('IMG_20250929_062521.jpg') center/cover no-repeat;
-}
-.hero-content{
- max-width:850px;
-}
-.hero h1{
- font-size:clamp(35px,7vw,68px);
- line-height:1.15;
- margin-bottom:18px;
-}
-.hero h1 span{
- color:var(--accent);
-}
-.hero p{
- color:#e1e9f5;
- font-size:17px;
- margin-bottom:25px;
-}
-.btn{
- display:inline-block;
- background:linear-gradient(90deg,var(--accent),#0ea5e9);
- color:#04111d;
- font-weight:bold;
- padding:12px 22px;
- border-radius:30px;
- margin:5px;
- border:0;
-}
-.btn.secondary{
- background:transparent;
- color:var(--accent);
- border:1px solid var(--accent);
-}
+
 .section-title{
- text-align:center;
- font-size:32px;
- margin-bottom:12px;
+text-align:center;
+margin-bottom:40px;
 }
-.section-title span{
- color:var(--accent);
+
+.section-title h2{
+font-family:'Playfair Display',serif;
+font-size:clamp(28px,5vw,42px);
+color:var(--gold);
 }
-.section-sub{
- text-align:center;
- color:var(--muted);
- margin-bottom:35px;
+
+.section-title p{
+color:var(--muted);
+margin-top:10px;
+font-size:14px;
 }
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
- gap:20px;
+
+.gold{
+color:var(--gold);
 }
-.card{
- background:var(--card);
- border:1px solid #263d58;
- border-radius:15px;
- padding:22px;
- transition:.3s;
+
+/* ANNOUNCEMENT BAR */
+
+.announcement{
+height:38px;
+background:linear-gradient(90deg,#b98228,#f5d58b,#b98228);
+color:#101827;
+display:flex;
+align-items:center;
+overflow:hidden;
+font-size:12px;
+font-weight:700;
+position:relative;
+z-index:1001;
 }
-.card:hover{
- transform:translateY(-6px);
- border-color:var(--accent);
- box-shadow:0 10px 30px #00d9ff18;
+
+.announcement-label{
+background:#071426;
+color:var(--gold);
+height:100%;
+display:flex;
+align-items:center;
+padding:0 12px;
+white-space:nowrap;
+z-index:2;
 }
-.card h3{
- color:var(--accent);
- margin-bottom:10px;
+
+.announcement-track{
+overflow:hidden;
+flex:1;
+white-space:nowrap;
 }
-.card p{
- color:var(--muted);
- font-size:14px;
+
+.announcement-text{
+display:inline-block;
+padding-left:100%;
+animation:announcementMove 28s linear infinite;
 }
-.quicklinks{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
- gap:12px;
- margin-top:-35px;
- position:relative;
- z-index:2;
- padding:0 20px;
- max-width:1100px;
- margin-left:auto;
- margin-right:auto;
+
+.announcement-text span{
+margin-right:35px;
 }
-.quicklinks a{
- background:var(--card);
- padding:18px 10px;
- border-radius:12px;
- text-align:center;
- border:1px solid #29445f;
- font-weight:bold;
+
+@keyframes announcementMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
 }
-.quicklinks a:hover{
- color:var(--accent);
- border-color:var(--accent);
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(7,20,38,.96);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
 }
-.about-box{
- display:grid;
- grid-template-columns:1fr 1.4fr;
- gap:30px;
- align-items:center;
+
+.navbar{
+min-height:72px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
 }
-.about-box img{
- width:100%;
- max-height:360px;
- object-fit:cover;
- border-radius:18px;
- border:2px solid var(--accent);
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:19px;
+font-weight:800;
+color:var(--gold);
 }
-.about-box p{
- color:var(--muted);
- margin:12px 0;
+
+.logo small{
+display:block;
+font-family:'Poppins',sans-serif;
+font-size:9px;
+letter-spacing:3px;
+color:#fff;
 }
-.info-list{
- padding-left:20px;
- color:var(--muted);
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:20px;
 }
-.info-list li{
- margin:8px 0;
+
+.nav-links a{
+font-size:12px;
+color:#e5eaf2;
+transition:.3s;
 }
-   .gallery{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:17px;
+
+.nav-links a:hover{
+color:var(--gold);
 }
-.gallery-item{
- background:var(--card);
- border-radius:13px;
- overflow:hidden;
- border:1px solid #29445f;
- cursor:pointer;
+
+.menu-btn{
+display:none;
+font-size:25px;
+color:var(--gold);
+background:none;
+border:none;
+cursor:pointer;
 }
-.gallery-item img{
- width:100%;
- height:210px;
- object-fit:cover;
- display:block;
- transition:.4s;
+
+/* HERO */
+
+.hero{
+min-height:580px;
+display:flex;
+align-items:center;
+position:relative;
+background:
+linear-gradient(90deg,rgba(3,13,27,.94),rgba(3,13,27,.45)),
+url('IMG_20250929_062521.jpg') center/cover no-repeat;
 }
-.gallery-item:hover img{
- transform:scale(1.07);
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(0deg,var(--bg),transparent 35%);
 }
-.gallery-item p{
- padding:12px;
- text-align:center;
- color:var(--muted);
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:750px;
+padding:80px 0;
+animation:fadeUp 1s ease;
 }
-.contact-card{
- text-align:center;
+
+.hero-tag{
+display:inline-block;
+border:1px solid var(--gold);
+color:var(--gold);
+padding:8px 16px;
+border-radius:30px;
+font-size:11px;
+letter-spacing:2px;
+margin-bottom:20px;
 }
-.contact-card .icon{
- font-size:32px;
- margin-bottom:10px;
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(38px,7vw,70px);
+line-height:1.15;
+margin-bottom:20px;
 }
-.contact-card a{
- color:var(--accent);
- font-weight:bold;
- display:inline-block;
- margin-top:10px;
+
+.hero p{
+color:#d0d9e7;
+max-width:570px;
+font-size:14px;
+line-height:1.9;
 }
-.share-box{
- text-align:center;
- background:linear-gradient(135deg,#10243c,#172d4a);
- border:1px solid var(--accent);
- border-radius:18px;
- padding:35px 20px;
+
+.hero-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:13px;
+margin-top:30px;
 }
-.share-box p{
- color:#d0dbea;
- max-width:650px;
- margin:12px auto 20px;
+
+.btn{
+display:inline-block;
+padding:12px 23px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+transition:.3s;
+cursor:pointer;
 }
-.event-date{
- color:var(--accent);
- font-size:13px;
- font-weight:bold;
+
+.btn-gold{
+background:var(--gold);
+color:#071426;
 }
-footer{
- background:#030914;
- padding:30px 20px;
- text-align:center;
- color:#aabbd0;
+
+.btn-outline{
+border:1px solid var(--gold);
+color:var(--gold);
 }
-footer a{
- color:var(--accent);
+
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 25px rgba(232,189,100,.2);
 }
-.social-links{
- margin:15px;
+
+/* ABOUT */
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:45px;
+align-items:center;
 }
-.social-links a{
- margin:8px;
- color:var(--accent);
+
+.about-image{
+position:relative;
 }
-.lightbox{
- display:none;
- position:fixed;
- inset:0;
- z-index:9999;
- background:rgba(0,0,0,.95);
- align-items:center;
- justify-content:center;
- padding:20px;
+
+.about-image img{
+width:100%;
+height:370px;
+object-fit:cover;
+border-radius:18px;
+border:1px solid var(--border);
+box-shadow:0 15px 40px #0005;
 }
-.lightbox.show{
- display:flex;
+
+.about-image::after{
+content:"";
+position:absolute;
+inset:12px -12px -12px 12px;
+border:1px solid var(--gold);
+border-radius:18px;
+z-index:-1;
 }
-.lightbox img{
- max-width:95%;
- max-height:85vh;
- object-fit:contain;
- border-radius:10px;
+
+.about-content h2{
+font-family:'Playfair Display',serif;
+font-size:34px;
+color:var(--gold);
+margin-bottom:18px;
 }
-.close-lightbox{
- position:absolute;
- top:15px;
- right:25px;
- color:white;
- font-size:38px;
- background:none;
- border:0;
+
+.about-content p{
+color:var(--muted);
+font-size:13px;
+line-height:2;
+margin-bottom:15px;
 }
+
+.about-points{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:22px;
+}
+
+.point{
+background:var(--card);
+padding:14px;
+border-radius:10px;
+border-left:3px solid var(--gold);
+font-size:12px;
+}
+
+/* INFORMATION */
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.info-card{
+background:linear-gradient(145deg,#122b49,#0b1a2d);
+border:1px solid var(--border);
+padding:25px;
+border-radius:15px;
+transition:.3s;
+}
+
+.info-card:hover{
+transform:translateY(-7px);
+border-color:var(--gold);
+}
+
+.info-icon{
+font-size:30px;
+margin-bottom:14px;
+}
+
+.info-card h3{
+color:var(--gold);
+font-size:17px;
+margin-bottom:10px;
+}
+
+.info-card p{
+color:var(--muted);
+font-size:12px;
+line-height:1.8;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(25px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* MOBILE NAVIGATION */
+
 @media(max-width:850px){
- .menu-btn{display:block}
- .navlinks{
-  display:none;
-  position:absolute;
-  top:65px;
-  left:0;
-  width:100%;
-  background:#07111f;
-  padding:20px;
-  flex-direction:column;
-  align-items:flex-start;
- }
- .navlinks.open{display:flex}
- .about-box{grid-template-columns:1fr}
- .hero{min-height:480px}
+
+.nav-links{
+display:none;
+position:absolute;
+top:72px;
+left:0;
+width:100%;
+background:#0b1c31;
+flex-direction:column;
+padding:20px;
+border-bottom:1px solid var(--border);
 }
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.info-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:520px){
+
+.announcement{
+height:34px;
+font-size:10px;
+}
+
+.announcement-label{
+padding:0 7px;
+font-size:9px;
+}
+
+.hero{
+min-height:520px;
+}
+
+.hero h1{
+font-size:39px;
+}
+
+.info-grid{
+grid-template-columns:1fr;
+}
+
+.about-image img{
+height:270px;
+}
+
+.section{
+padding:55px 0;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- ANNOUNCEMENT BAR -->
+
+<div class="announcement">
+<div class="announcement-label">🔔 IMPORTANT</div>
+<div class="announcement-track">
+<div class="announcement-text">
+<span>📢 Welcome to Shiv Nagar Butbherwa</span>
+<span>🌟 Village News & Updates</span>
+<span>🎉 Upcoming Events</span>
+<span>📸 Share Your Village Photos</span>
+<span>📢 Welcome to Shiv Nagar Butbherwa</span>
+</div>
+</div>
+</div>
+
+<!-- HEADER -->
+
 <header>
- <nav class="navbar">
-  <a href="#home" class="logo">
-   SHIV NAGAR BUTBHERWA
-   <small>THE HOST • VILLAGE INFORMATION</small>
-  </a>
+<div class="container navbar">
 
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+<a href="#home" class="logo">
+SHIV NAGAR
+<small>BUTBHERWA • THE HOST</small>
+</a>
 
-  <div class="navlinks" id="navlinks">
-   <a href="#home">Home</a>
-   <a href="#about">About</a>
-   <a href="#information">Information</a>
-   <a href="#gallery">Gallery</a>
-   <a href="#events">Events</a>
-   <a href="#community">More</a>
-   <a href="#contact">Contact</a>
-   <button class="theme-btn" onclick="toggleTheme()">☀ Theme</button>
-  </div>
- </nav>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<nav class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#information">Information</a>
+<a href="#gallery">Gallery</a>
+<a href="#events">Events</a>
+<a href="#more">More</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</div>
 </header>
 
-<section class="hero" id="home">
- <div class="hero-content">
-  <h1>Welcome To<br><span>Shiv Nagar Butbherwa</span></h1>
-  <p>
-   हमारे गाँव की पहचान, हमारी संस्कृति और हमारी एकता।
-   Shiv Nagar Butbherwa के सूचना पोर्टल पर आपका स्वागत है।
-  </p>
-  <a href="#about" class="btn">Explore Village</a>
-  <a href="#gallery" class="btn secondary">View Gallery</a>
- </div>
-</section>
+<!-- HERO -->
 
-<div class="quicklinks">
- <a href="#about">🏡 About Village</a>
- <a href="#information">📚 Information</a>
- <a href="#gallery">📸 Gallery</a>
- <a href="#events">🎉 Events</a>
- <a href="#contact">📞 Contacts</a>
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+
+<div class="hero-tag">WELCOME TO OUR VILLAGE</div>
+
+<h1>Shiv Nagar <span class="gold">Butbherwa</span></h1>
+
+<p>
+स्वागत है आपका शिव नगर बटभेरवा की आधिकारिक जानकारी वेबसाइट पर।
+यहाँ आपको हमारे गाँव की जानकारी, तस्वीरें, कार्यक्रम और महत्वपूर्ण सूचनाएँ मिलेंगी।
+</p>
+
+<div class="hero-buttons">
+<a href="#about" class="btn btn-gold">Explore Village</a>
+<a href="#gallery" class="btn btn-outline">View Gallery</a>
 </div>
 
-<section id="about">
- <h2 class="section-title">About <span>Our Village</span></h2>
- <p class="section-sub">हमारा गाँव, हमारी पहचान</p>
-
- <div class="about-box">
-  <img src="images/942fe674faf2ef24f01fc8b726c5222a.jpg"
-       alt="Shiv Nagar Butbherwa">
-  <div>
-   <h2>हमारे गाँव में आपका स्वागत है!</h2>
-   <p>
-    Shiv Nagar Butbherwa हमारी प्यारी मातृभूमि है।
-    यह वेबसाइट गाँव की जानकारी, महत्वपूर्ण संपर्क,
-    फोटो, कार्यक्रम और स्थानीय अपडेट साझा करने के लिए बनाई गई है।
-   </p>
-   <p>
-    हमारा उद्देश्य गाँव के लोगों को एक डिजिटल मंच से जोड़ना
-    और गाँव की अच्छी यादों को सुरक्षित रखना है।
-   </p>
-   <p><b>Website By: The Host</b></p>
-  </div>
- </div>
+</div>
+</div>
 </section>
 
-<section id="information">
- <h2 class="section-title">Village <span>Information</span></h2>
- <p class="section-sub">गाँव से जुड़ी महत्वपूर्ण जानकारी</p>
+<!-- ABOUT -->
 
- <div class="grid">
-  <div class="card">
-   <h3>📚 Education</h3>
-   <p>गाँव और आसपास की शिक्षा, स्कूल तथा पढ़ाई से जुड़ी जानकारी।</p>
-  </div>
-  <div class="card">
-   <h3>🏥 Health Services</h3>
-   <p>स्वास्थ्य सेवाओं और चिकित्सा सुविधाओं से संबंधित जानकारी।</p>
-  </div>
-  <div class="card">
-   <h3>🚌 Transport</h3>
-   <p>आवागमन और परिवहन से संबंधित स्थानीय जानकारी।</p>
-  </div>
-  <div class="card">
-   <h3>🏛 Government Services</h3>
-   <p>सरकारी योजनाओं और उपयोगी सरकारी सेवाओं की जानकारी।</p>
-   <a href="https://www.india.gov.in/" target="_blank" class="btn">India Portal</a>
-  </div>
- </div>
+<section class="section" id="about">
+<div class="container about-grid">
+
+<div class="about-image">
+<img src="images/942fe674faf2ef24f01fc8b726c5222a.jpg" alt="The Host">
+</div>
+
+<div class="about-content">
+
+<h2>About Our Village</h2>
+
+<p>
+हम शिव नगर बटभेरवा के सभी ग्रामवासियों का स्वागत करते हैं।
+इस वेबसाइट का उद्देश्य गाँव की जानकारी, संस्कृति, विकास और महत्वपूर्ण गतिविधियों को एक स्थान पर उपलब्ध कराना है।
+</p>
+
+<p>
+यह प्लेटफॉर्म गाँव के लोगों को जोड़ने और गाँव की सुंदर यादों को साझा करने का एक छोटा-सा प्रयास है।
+</p>
+
+<div class="about-points">
+<div class="point">🏡 Village Information</div>
+<div class="point">📸 Memories & Gallery</div>
+<div class="point">🎉 Events & Festivals</div>
+<div class="point">🤝 Community Updates</div>
+</div>
+
+</div>
+</div>
 </section>
 
-<section id="gallery">
- <h2 class="section-title">Village <span>Gallery</span></h2>
- <p class="section-sub">हमारे गाँव की खूबसूरत तस्वीरें — बड़ी करके देखने के लिए फोटो पर क्लिक करें।</p>
+<!-- INFORMATION -->
 
- <div class="gallery">
-  <div class="gallery-item" onclick="openPhoto(this)">
-   <img src="IMG_20250930_164330.jpg" alt="Railway Bridge">
-   <p>Railway Bridge</p>
-  </div>
+<section class="section" id="information">
+<div class="container">
 
-  <div class="gallery-item" onclick="openPhoto(this)">
-   <img src="IMG_20250929_062521.jpg" alt="Piprahava Bandh">
-   <p>Piprahava Bandh</p>
-  </div>
+<div class="section-title">
+<h2>Village Information</h2>
+<p>हमारे गाँव से जुड़ी महत्वपूर्ण जानकारी</p>
+</div>
 
-  <div class="gallery-item" onclick="openPhoto(this)">
-   <img src="images/942fe674faf2ef24f01fc8b726c5222a.jpg" alt="Village Memories">
-   <p>Village Memories</p>
-  </div>
+<div class="info-grid">
 
-  <div class="gallery-item" onclick="openPhoto(this)">
-   <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900" alt="Nature">
-   <p>Nature & Village Life</p>
-  </div>
- </div>
+<div class="info-card">
+<div class="info-icon">🏡</div>
+<h3>Our Village</h3>
+<p>शिव नगर बटभेरवा की जानकारी, इतिहास और स्थानीय पहचान।</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🌿</div>
+<h3>Development</h3>
+<p>गाँव के विकास, सुविधाओं और जनहित से जुड़ी जानकारियाँ।</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🤝</div>
+<h3>Community</h3>
+<p>ग्रामवासियों के सहयोग और सामुदायिक गतिविधियों की जानकारी।</p>
+</div>
+
+</div>
+</div>
+</section>
+<!-- GALLERY SECTION -->
+
+<style>
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.gallery-item{
+position:relative;
+overflow:hidden;
+border-radius:14px;
+border:1px solid var(--border);
+cursor:pointer;
+background:var(--card);
+}
+
+.gallery-item img{
+width:100%;
+height:220px;
+object-fit:cover;
+transition:.5s;
+}
+
+.gallery-item:hover img{
+transform:scale(1.1);
+}
+
+.gallery-caption{
+padding:12px;
+color:var(--gold);
+font-size:12px;
+text-align:center;
+}
+
+.gallery-note{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+margin-top:20px;
+}
+
+@media(max-width:700px){
+.gallery-grid{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+.gallery-item img{
+height:145px;
+}
+}
+</style>
+
+<section class="section" id="gallery">
+<div class="container">
+
+<div class="section-title">
+<h2>Our Village Gallery</h2>
+<p>हमारे गाँव की खूबसूरत यादें और तस्वीरें</p>
+</div>
+
+<div class="gallery-grid">
+
+<div class="gallery-item"
+onclick="openPhoto(this)">
+<img src="IMG_20261101_105032.jpg"
+alt="Village Photo 1">
+<div class="gallery-caption">
+Village Memories
+</div>
+</div>
+
+<div class="gallery-item"
+onclick="openPhoto(this)">
+<img src="IMG_20261101_105050.jpg"
+alt="Village Photo 2">
+<div class="gallery-caption">
+Beautiful Butbherwa
+</div>
+</div>
+
+<div class="gallery-item"
+onclick="openPhoto(this)">
+<img src="IMG_20250929_062521.jpg"
+alt="Piprahava Bandh">
+<div class="gallery-caption">
+Piprahava Bandh
+</div>
+</div>
+
+<div class="gallery-item"
+onclick="openPhoto(this)">
+<img src="IMG_20250930_164330.jpg"
+alt="Railway Bridge">
+<div class="gallery-caption">
+Railway Bridge
+</div>
+</div>
+
+</div>
+
+<p class="gallery-note">
+More village memories coming soon ❤️
+</p>
+
+<div style="text-align:center;margin-top:25px">
+<a class="btn btn-gold"
+href="https://forms.gle/UPPjJSzL97rZ4bQd9"
+target="_blank">
+📸 Upload Your Photo
+</a>
+</div>
+
+</div>
 </section>
 
-<section id="events">
- <h2 class="section-title">Events & <span>Updates</span></h2>
- <p class="section-sub">गाँव के कार्यक्रम और घोषणाएँ</p>
+<!-- EVENTS SECTION -->
 
- <div class="grid">
-  <div class="card">
-   <div class="event-date">VILLAGE UPDATE</div>
-   <h3>📢 Local Announcements</h3>
-   <p>गाँव की नई घोषणाएँ और महत्वपूर्ण सूचनाएँ यहाँ साझा की जा सकती हैं।</p>
-  </div>
+<section class="section" id="events">
+<div class="container">
 
-  <div class="card">
-   <div class="event-date">FESTIVALS</div>
-   <h3>🎉 त्योहार एवं उत्सव</h3>
-   <p>त्योहारों, सांस्कृतिक कार्यक्रमों और गाँव के आयोजनों की तस्वीरें।</p>
-  </div>
+<div class="section-title">
+<h2>Village Events</h2>
+<p>गाँव के त्योहार और खास आयोजन</p>
+</div>
 
-  <div class="card">
-   <div class="event-date">COMMUNITY</div>
-   <h3>🤝 Community News</h3>
-   <p>गाँव से जुड़ी सकारात्मक खबरें और सामुदायिक गतिविधियाँ।</p>
-  </div>
- </div>
+<div class="info-grid">
+
+<div class="info-card">
+<div class="info-icon">🎉</div>
+<h3>Festivals</h3>
+<p>गाँव में मनाए जाने वाले त्योहार और उत्सव।</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🪔</div>
+<h3>Religious Events</h3>
+<p>धार्मिक कार्यक्रम और सांस्कृतिक आयोजन।</p>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🤝</div>
+<h3>Community Events</h3>
+<p>ग्रामवासियों के सामूहिक कार्यक्रम और गतिविधियाँ।</p>
+</div>
+
+</div>
+</div>
 </section>
 
-<section id="community">
- <h2 class="section-title">More <span>Features</span></h2>
- <p class="section-sub">हमारे डिजिटल गाँव से जुड़ें</p>
+<!-- MORE SECTION -->
 
- <div class="grid">
-  <div class="card">
-   <h3>📸 Share Village Photo</h3>
-   <p>आप भी अपने गाँव की फोटो और यादें हमारे साथ साझा कर सकते हैं।</p>
-   <a class="btn" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">
-    Share Photo
-   </a>
-  </div>
+<section class="section" id="more">
+<div class="container">
 
-  <div class="card">
-   <h3>💬 Join Community</h3>
-   <p>गाँव के लोगों से जुड़ें और महत्वपूर्ण अपडेट प्राप्त करें।</p>
-   <a class="btn" href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">
-    Join WhatsApp
-   </a>
-  </div>
+<div class="section-title">
+<h2>Explore More</h2>
+<p>हमारे गाँव से जुड़े और भी फीचर्स</p>
+</div>
 
-  <div class="card">
-   <h3>🌐 Government Portal</h3>
-   <p>सरकारी जानकारी और सेवाओं के लिए आधिकारिक वेबसाइट।</p>
-   <a class="btn" href="https://up.gov.in/" target="_blank">Visit Portal</a>
-  </div>
- </div>
-</section>
-<section id="contact">
- <h2 class="section-title">Important <span>Contacts</span></h2>
- <p class="section-sub">किसी भी संपर्क पर क्लिक करें — फोन का Dialer खुल जाएगा।</p>
+<div class="info-grid">
 
- <div class="grid">
+<div class="info-card">
+<div class="info-icon">📢</div>
+<h3>Latest Updates</h3>
+<p>गाँव की महत्वपूर्ण सूचनाएँ और नई अपडेट।</p>
+</div>
 
-  <div class="card contact-card">
-   <div class="icon">🌐</div>
-   <h3>The Host</h3>
-   <p>Website & Digital Information</p>
-   <a href="tel:+919214360582">📞 +91 92143 60582</a>
-  </div>
+<div class="info-card">
+<div class="info-icon">📷</div>
+<h3>Share Memories</h3>
+<p>अपनी यादगार तस्वीरें हमारे साथ साझा करें।</p>
+</div>
 
-  <div class="card contact-card">
-   <div class="icon">🏡</div>
-   <h3>Gram Pradhan</h3>
-   <p>ग्राम प्रधान संपर्क</p>
-   <a href="tel:+919452696410">📞 +91 94526 96410</a>
-  </div>
+<div class="info-card">
+<div class="info-icon">💡</div>
+<h3>Give Suggestions</h3>
+<p>वेबसाइट और गाँव के लिए अपने सुझाव भेजें।</p>
+</div>
 
-  <div class="card contact-card">
-   <div class="icon">🤝</div>
-   <h3>Active Person</h3>
-   <p>Village Community Contact</p>
-   <a href="tel:+917394894882">📞 +91 73948 94882</a>
-  </div>
-
-  <div class="card contact-card">
-   <div class="icon">✉️</div>
-   <h3>Email</h3>
-   <p>For Information & Suggestions</p>
-   <a href="mailto:thehostwost@gmail.com">
-    thehostwost@gmail.com
-   </a>
-  </div>
-
- </div>
-
- <div class="share-box" style="margin-top:35px">
-  <h2>Have Something To Share?</h2>
-  <p>
-   गाँव से जुड़ी कोई अच्छी फोटो, जानकारी या सुझाव है?
-   हमारे WhatsApp Community में जुड़कर साझा करें।
-  </p>
-  <a class="btn"
-   href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4"
-   target="_blank">
-   Share With Village
-  </a>
- </div>
+</div>
+</div>
 </section>
 
-<footer>
- <h2>Shiv Nagar Butbherwa</h2>
- <p>हमारा गाँव • हमारी पहचान • हमारा परिवार</p>
+<!-- PART 3 YAHAN AAYEGA --><!-- PHOTO UPLOAD SECTION -->
 
- <div class="social-links">
-  <a href="mailto:thehostwost@gmail.com">Email</a>
-  |
-  <a href="https://chat.whatsapp.com/CeyuuvTdSAf3873UJLJIjb?s=cl&p=a&mlu=4&ilr=4" target="_blank">WhatsApp</a>
- </div>
+<section class="section" id="upload">
+<div class="container">
 
- <p>© <span id="year"></span> The Host. All Rights Reserved.</p>
+<div class="section-title">
+<h2>Share Your Memories</h2>
+<p>अपने गाँव की खूबसूरत तस्वीरें हमारे साथ साझा करें।</p>
+</div>
+
+<div class="info-card" style="text-align:center;padding:35px 20px">
+
+<div style="font-size:45px">📸</div>
+
+<h3 style="font-size:22px;margin:15px 0">
+Upload Your Photo
+</h3>
+
+<p style="color:var(--muted);font-size:13px;line-height:2">
+क्या आपके पास शिव नगर बटभेरवा की कोई अच्छी तस्वीर है?
+उसे हमारे साथ साझा करें।
+आपकी फोटो जाँच के बाद Gallery में जोड़ी जाएगी।
+</p>
+
+<a href="https://forms.gle/UPPjJSzL97rZ4bQd9"
+target="_blank"
+class="btn btn-gold"
+style="margin-top:22px">
+📤 Submit Your Photo
+</a>
+
+</div>
+</div>
+</section>
+
+
+<!-- CONTACT SECTION -->
+
+<section class="section" id="contact">
+<div class="container">
+
+<div class="section-title">
+<h2>Contact Us</h2>
+<p>हमसे संपर्क करें</p>
+</div>
+
+<div class="info-grid">
+
+<div class="info-card">
+<div class="info-icon">👨‍💻</div>
+<h3>The Host</h3>
+<p>Website Administrator</p>
+<a class="btn btn-outline"
+href="tel:+919214360582">
+Call Now
+</a>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🏡</div>
+<h3>Gram Pradhan</h3>
+<p>Village Contact</p>
+<a class="btn btn-outline"
+href="tel:+919452696410">
+Call Now
+</a>
+</div>
+
+<div class="info-card">
+<div class="info-icon">🤝</div>
+<h3>Active Person</h3>
+<p>Community Contact</p>
+<a class="btn btn-outline"
+href="tel:+917394894882">
+Call Now
+</a>
+</div>
+
+</div>
+
+<div class="info-card"
+style="text-align:center;margin-top:20px">
+
+<h3>📧 Email Us</h3>
+
+<a href="mailto:thehostwost@gmail.com"
+style="color:var(--gold);font-size:13px">
+thehostwost@gmail.com
+</a>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer style="
+background:#040d19;
+padding:35px 15px;
+text-align:center;
+border-top:1px solid var(--border);
+">
+
+<h2 style="
+font-family:'Playfair Display',serif;
+color:var(--gold);
+font-size:23px;
+">
+Shiv Nagar Butbherwa
+</h2>
+
+<p style="
+color:var(--muted);
+font-size:12px;
+margin:12px 0;
+">
+एक गाँव, अनेक यादें, एक परिवार ❤️
+</p>
+
+<p style="font-size:11px;color:#8997aa">
+Designed & Managed by The Host
+</p>
+
+<p style="
+font-size:11px;
+color:#65758b;
+margin-top:20px;
+">
+© <span id="year"></span>
+Shiv Nagar Butbherwa. All Rights Reserved.
+</p>
+
 </footer>
 
-<!-- PHOTO FULL SCREEN VIEWER -->
-<div class="lightbox" id="lightbox" onclick="closePhoto()">
- <button class="close-lightbox" onclick="closePhoto()">×</button>
- <img id="lightbox-img" src="" alt="Full Size Photo">
+
+<!-- PHOTO LIGHTBOX -->
+
+<div id="photoViewer"
+onclick="closePhoto()"
+style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+z-index:9999;
+align-items:center;
+justify-content:center;
+padding:20px;
+">
+
+<span style="
+position:absolute;
+top:20px;
+right:25px;
+font-size:35px;
+color:white;
+cursor:pointer;
+">×</span>
+
+<img id="largePhoto"
+style="
+max-width:95%;
+max-height:85vh;
+object-fit:contain;
+border-radius:10px;
+">
+
 </div>
 
+
+<!-- JAVASCRIPT -->
+
 <script>
+
 // MOBILE MENU
+
 function toggleMenu(){
- document.getElementById("navlinks").classList.toggle("open");
+document.getElementById("navLinks")
+.classList.toggle("active");
 }
 
-// MENU CLOSE AFTER CLICK
-document.querySelectorAll(".navlinks a").forEach(function(link){
- link.addEventListener("click",function(){
-  document.getElementById("navlinks").classList.remove("open");
- });
+// CLOSE MOBILE MENU
+
+document.querySelectorAll(".nav-links a")
+.forEach(function(link){
+link.addEventListener("click",function(){
+document.getElementById("navLinks")
+.classList.remove("active");
+});
 });
 
-// DARK AND LIGHT THEME
-function toggleTheme(){
- document.body.classList.toggle("light");
+// GALLERY PHOTO VIEWER
 
- try{
-  localStorage.setItem(
-   "villageTheme",
-   document.body.classList.contains("light") ? "light" : "dark"
-  );
- }catch(e){}
-}
-
-// SAVE THEME
-try{
- if(localStorage.getItem("villageTheme")==="light"){
-  document.body.classList.add("light");
- }
-}catch(e){}
-
-// GALLERY FULL SCREEN
 function openPhoto(element){
- let image = element.querySelector("img");
+let image=element.querySelector("img");
 
- document.getElementById("lightbox-img").src = image.src;
- document.getElementById("lightbox-img").alt = image.alt;
+document.getElementById("largePhoto").src=
+image.src;
 
- document.getElementById("lightbox").classList.add("show");
+document.getElementById("photoViewer")
+.style.display="flex";
 }
 
-// CLOSE PHOTO
 function closePhoto(){
- document.getElementById("lightbox").classList.remove("show");
+document.getElementById("photoViewer")
+.style.display="none";
 }
-
-// ESCAPE KEY TO CLOSE PHOTO
-document.addEventListener("keydown",function(event){
- if(event.key==="Escape"){
-  closePhoto();
- }
-});
 
 // CURRENT YEAR
-document.getElementById("year").textContent =
- new Date().getFullYear();
+
+document.getElementById("year").textContent=
+new Date().getFullYear();
+
+// ESCAPE KEY TO CLOSE PHOTO
+
+document.addEventListener("keydown",function(e){
+if(e.key==="Escape"){
+closePhoto();
+}
+});
 
 </script>
 
