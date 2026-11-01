@@ -2887,12 +2887,26 @@ function handleFormSubmission(e) {
     return;
   }
 
+  const phone = document.getElementById('userPhoneInput').value.trim();
   const name = document.getElementById('citizenName').value.trim();
+  const address = document.getElementById('citizenAddress').value.trim();
   const cat = document.getElementById('issueCategory').value;
+  const message = document.getElementById('citizenMessage').value.trim();
   const token = 'WDM-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
 
-  triggerConfetti();
+  // Aapke WhatsApp par sandesh bhejega
+  const adminPhone = "919214360582";
+  const textMsg = `📌 *Nayi Gram Suchna / Shikayat*%0A%0A` +
+                  `👤 *Naam:* ${encodeURIComponent(name)}%0A` +
+                  `📞 *Phone:* ${phone} (Verified)%0A` +
+                  `📍 *Pata:* ${encodeURIComponent(address)}%0A` +
+                  `📂 *Prakar:* ${encodeURIComponent(cat)}%0A` +
+                  `📝 *Vivaran:* ${encodeURIComponent(message)}%0A` +
+                  `🎫 *Token No:* ${token}`;
 
+  window.open(`https://wa.me/${adminPhone}?text=${textMsg}`, '_blank');
+
+  triggerConfetti();
   document.getElementById('step2DetailsSection').style.display = 'none';
   document.getElementById('stepNode2').classList.remove('active');
   document.getElementById('stepNode2').classList.add('completed');
@@ -2902,11 +2916,9 @@ function handleFormSubmission(e) {
   document.getElementById('receiptTokenBadge').textContent = token;
   receipt.style.display = 'block';
 
-  const history = JSON.parse(localStorage.getItem('wdm_complaints') || '[]');
-  history.push({ token, name, cat, date: new Date().toLocaleDateString('hi-IN') });
-  localStorage.setItem('wdm_complaints', JSON.stringify(history));
-  showToast('🚀 Shikayat Darj Ho Gayi!');
+  showToast('🚀 Shikayat WhatsApp par bhej di gayi hai!');
 }
+   
 
 function copyReceiptToken() {
   const token = document.getElementById('receiptTokenBadge').textContent;
